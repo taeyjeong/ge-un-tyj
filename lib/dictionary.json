@@ -1,0 +1,354 @@
+[
+  {
+    "name": "ISO3",
+    "prefix": "iso3",
+    "years": "-",
+    "group": "Identifiers",
+    "columns": 1,
+    "example": "iso3"
+  },
+  {
+    "name": "HDR Country Name",
+    "prefix": "country",
+    "years": "-",
+    "group": "Identifiers",
+    "columns": 1,
+    "example": "country"
+  },
+  {
+    "name": "Human Development Groups",
+    "prefix": "hdicode",
+    "years": "-",
+    "group": "Identifiers",
+    "columns": 1,
+    "example": "hdicode"
+  },
+  {
+    "name": "UNDP Developing Regions",
+    "prefix": "region",
+    "years": "-",
+    "group": "Identifiers",
+    "columns": 1,
+    "example": "region"
+  },
+  {
+    "name": "HDI Rank",
+    "prefix": "hdi_rank",
+    "years": "2023",
+    "group": "HDI",
+    "columns": 1,
+    "example": "hdi_rank_2023"
+  },
+  {
+    "name": "Human Development Index (value)",
+    "prefix": "hdi",
+    "years": "1990-2023",
+    "group": "HDI",
+    "columns": 34,
+    "example": "hdi_1990"
+  },
+  {
+    "name": "Life Expectancy at Birth (years)",
+    "prefix": "le",
+    "years": "1990-2023",
+    "group": "HDI",
+    "columns": 34,
+    "example": "le_1990"
+  },
+  {
+    "name": "Expected Years of Schooling (years)",
+    "prefix": "eys",
+    "years": "1990-2023",
+    "group": "HDI",
+    "columns": 34,
+    "example": "eys_1990"
+  },
+  {
+    "name": "Mean Years of Schooling (years)",
+    "prefix": "mys",
+    "years": "1990-2023",
+    "group": "HDI",
+    "columns": 34,
+    "example": "mys_1990"
+  },
+  {
+    "name": "Gross National Income Per Capita (2021 PPP$)",
+    "prefix": "gnipc",
+    "years": "1990-2023",
+    "group": "HDI",
+    "columns": 34,
+    "example": "gnipc_1990"
+  },
+  {
+    "name": "GDI Group",
+    "prefix": "gdi_group",
+    "years": "2023",
+    "group": "GDI",
+    "columns": 1,
+    "example": "gdi_group_2023"
+  },
+  {
+    "name": "Gender Development Index (value)",
+    "prefix": "gdi",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "gdi_1990"
+  },
+  {
+    "name": "HDI female (value)",
+    "prefix": "hdi_f",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "hdi_f_1990"
+  },
+  {
+    "name": "Life Expectancy at Birth, female (years)",
+    "prefix": "le_f",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "le_f_1990"
+  },
+  {
+    "name": "Expected Years of Schooling, female (years)",
+    "prefix": "eys_f",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "eys_f_1990"
+  },
+  {
+    "name": "Mean Years of Schooling, female (years)",
+    "prefix": "mys_f",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "mys_f_1990"
+  },
+  {
+    "name": "Gross National Income Per Capita, female (2021 PPP$)",
+    "prefix": "gni_pc_f",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "gni_pc_f_1990"
+  },
+  {
+    "name": "HDI male (value)",
+    "prefix": "hdi_m",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "hdi_m_1990"
+  },
+  {
+    "name": "Life Expectancy at Birth, male (years)",
+    "prefix": "le_m",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "le_m_1990"
+  },
+  {
+    "name": "Expected Years of Schooling, male (years)",
+    "prefix": "eys_m",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "eys_m_1990"
+  },
+  {
+    "name": "Mean Years of Schooling, male (years)",
+    "prefix": "mys_m",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "mys_m_1990"
+  },
+  {
+    "name": "Gross National Income Per Capita, male (2021 PPP$)",
+    "prefix": "gni_pc_m",
+    "years": "1990-2023",
+    "group": "GDI",
+    "columns": 34,
+    "example": "gni_pc_m_1990"
+  },
+  {
+    "name": "Inequality-adjusted Human Development Index (value)",
+    "prefix": "ihdi",
+    "years": "2010-2023",
+    "group": "IHDI",
+    "columns": 14,
+    "example": "ihdi_2010"
+  },
+  {
+    "name": "Coefficient of human inequality",
+    "prefix": "coef_ineq",
+    "years": "2010-2023",
+    "group": "IHDI",
+    "columns": 14,
+    "example": "coef_ineq_2010"
+  },
+  {
+    "name": "Overall loss (%)",
+    "prefix": "loss",
+    "years": "2010-2023",
+    "group": "IHDI",
+    "columns": 14,
+    "example": "loss_2010"
+  },
+  {
+    "name": "Inequality in life expectancy",
+    "prefix": "ineq_le",
+    "years": "2010-2023",
+    "group": "IHDI",
+    "columns": 14,
+    "example": "ineq_le_2010"
+  },
+  {
+    "name": "Inequality in education",
+    "prefix": "ineq_edu",
+    "years": "2010-2023",
+    "group": "IHDI",
+    "columns": 14,
+    "example": "ineq_edu_2010"
+  },
+  {
+    "name": "Inequality in income",
+    "prefix": "ineq_inc",
+    "years": "2010-2021, 2022-2023=2022",
+    "group": "IHDI",
+    "columns": 14,
+    "example": "ineq_inc_2010"
+  },
+  {
+    "name": "GII Rank",
+    "prefix": "gii_rank",
+    "years": "2023",
+    "group": "GII",
+    "columns": 1,
+    "example": "gii_rank_2023"
+  },
+  {
+    "name": "Gender Inequality Index (value)",
+    "prefix": "gii",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "gii_1990"
+  },
+  {
+    "name": "Maternal Mortality Ratio (deaths per 100,000 live births)",
+    "prefix": "mmr",
+    "years": "1990-2019, 2020-2023=2020",
+    "group": "GII",
+    "columns": 34,
+    "example": "mmr_1990"
+  },
+  {
+    "name": "Adolescent Birth Rate (births per 1,000 women ages 15-19)",
+    "prefix": "abr",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "abr_1990"
+  },
+  {
+    "name": "Population with at least some secondary education, female (% ages 25 and older)",
+    "prefix": "se_f",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "se_f_1990"
+  },
+  {
+    "name": "Population with at least some secondary education, male (% ages 25 and older)",
+    "prefix": "se_m",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "se_m_1990"
+  },
+  {
+    "name": "Share of seats in parliament, female (% held by women)",
+    "prefix": "pr_f",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "pr_f_1990"
+  },
+  {
+    "name": "Share of seats in parliament, male (% held by men)",
+    "prefix": "pr_m",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "pr_m_1990"
+  },
+  {
+    "name": "Labour force participation rate, female (% ages 15 and older)",
+    "prefix": "lfpr_f",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "lfpr_f_1990"
+  },
+  {
+    "name": "Labour force participation rate, male (% ages 15 and older)",
+    "prefix": "lfpr_m",
+    "years": "1990-2023",
+    "group": "GII",
+    "columns": 34,
+    "example": "lfpr_m_1990"
+  },
+  {
+    "name": "Difference from HDI rank",
+    "prefix": "rankdiff_hdi_phdi",
+    "years": "2023",
+    "group": "PHDI",
+    "columns": 1,
+    "example": "rankdiff_hdi_phdi_2023"
+  },
+  {
+    "name": "Planetary pressures\u2013adjusted Human Development Index (value)",
+    "prefix": "phdi",
+    "years": "1990-2023",
+    "group": "PHDI",
+    "columns": 34,
+    "example": "phdi_1990"
+  },
+  {
+    "name": "Difference from HDI value (%)",
+    "prefix": "diff_hdi_phdi",
+    "years": "1990-2023",
+    "group": "PHDI",
+    "columns": 34,
+    "example": "diff_hdi_phdi_1990"
+  },
+  {
+    "name": "Carbon dioxide emissions per capita (production) (tonnes)",
+    "prefix": "co2_prod",
+    "years": "1990-2023",
+    "group": "PHDI",
+    "columns": 34,
+    "example": "co2_prod_1990"
+  },
+  {
+    "name": "Material footprint per capita (tonnes)",
+    "prefix": "mf",
+    "years": "1990-2023",
+    "group": "PHDI",
+    "columns": 34,
+    "example": "mf_1990"
+  },
+  {
+    "name": "Population, total (millions)",
+    "prefix": "pop_total",
+    "years": "1990-2023",
+    "group": "Additional Indicator",
+    "columns": 34,
+    "example": "pop_total_1990"
+  }
+]

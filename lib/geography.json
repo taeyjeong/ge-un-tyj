@@ -1,0 +1,1242 @@
+{
+  "DZA": {
+    "iso2": "DZ",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "EGY": {
+    "iso2": "EG",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "LBY": {
+    "iso2": "LY",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "MAR": {
+    "iso2": "MA",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "SDN": {
+    "iso2": "SD",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "TUN": {
+    "iso2": "TN",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "ESH": {
+    "iso2": "EH",
+    "geographicalRegion": "Northern Africa",
+    "continent": "Africa"
+  },
+  "IOT": {
+    "iso2": "IO",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "BDI": {
+    "iso2": "BI",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "COM": {
+    "iso2": "KM",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "DJI": {
+    "iso2": "DJ",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "ERI": {
+    "iso2": "ER",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "ETH": {
+    "iso2": "ET",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "ATF": {
+    "iso2": "TF",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "KEN": {
+    "iso2": "KE",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "MDG": {
+    "iso2": "MG",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "MWI": {
+    "iso2": "MW",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "MUS": {
+    "iso2": "MU",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "MYT": {
+    "iso2": "YT",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "MOZ": {
+    "iso2": "MZ",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "REU": {
+    "iso2": "RE",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "RWA": {
+    "iso2": "RW",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "SYC": {
+    "iso2": "SC",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "SOM": {
+    "iso2": "SO",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "SSD": {
+    "iso2": "SS",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "UGA": {
+    "iso2": "UG",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "TZA": {
+    "iso2": "TZ",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "ZMB": {
+    "iso2": "ZM",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "ZWE": {
+    "iso2": "ZW",
+    "geographicalRegion": "Eastern Africa",
+    "continent": "Africa"
+  },
+  "AGO": {
+    "iso2": "AO",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "CMR": {
+    "iso2": "CM",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "CAF": {
+    "iso2": "CF",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "TCD": {
+    "iso2": "TD",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "COG": {
+    "iso2": "CG",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "COD": {
+    "iso2": "CD",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "GNQ": {
+    "iso2": "GQ",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "GAB": {
+    "iso2": "GA",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "STP": {
+    "iso2": "ST",
+    "geographicalRegion": "Middle Africa",
+    "continent": "Africa"
+  },
+  "BWA": {
+    "iso2": "BW",
+    "geographicalRegion": "Southern Africa",
+    "continent": "Africa"
+  },
+  "SWZ": {
+    "iso2": "SZ",
+    "geographicalRegion": "Southern Africa",
+    "continent": "Africa"
+  },
+  "LSO": {
+    "iso2": "LS",
+    "geographicalRegion": "Southern Africa",
+    "continent": "Africa"
+  },
+  "NAM": {
+    "iso2": "NA",
+    "geographicalRegion": "Southern Africa",
+    "continent": "Africa"
+  },
+  "ZAF": {
+    "iso2": "ZA",
+    "geographicalRegion": "Southern Africa",
+    "continent": "Africa"
+  },
+  "BEN": {
+    "iso2": "BJ",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "BFA": {
+    "iso2": "BF",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "CPV": {
+    "iso2": "CV",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "CIV": {
+    "iso2": "CI",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "GMB": {
+    "iso2": "GM",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "GHA": {
+    "iso2": "GH",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "GIN": {
+    "iso2": "GN",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "GNB": {
+    "iso2": "GW",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "LBR": {
+    "iso2": "LR",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "MLI": {
+    "iso2": "ML",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "MRT": {
+    "iso2": "MR",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "NER": {
+    "iso2": "NE",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "NGA": {
+    "iso2": "NG",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "SHN": {
+    "iso2": "SH",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "SEN": {
+    "iso2": "SN",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "SLE": {
+    "iso2": "SL",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "TGO": {
+    "iso2": "TG",
+    "geographicalRegion": "Western Africa",
+    "continent": "Africa"
+  },
+  "AIA": {
+    "iso2": "AI",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "ATG": {
+    "iso2": "AG",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "ABW": {
+    "iso2": "AW",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "BHS": {
+    "iso2": "BS",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "BRB": {
+    "iso2": "BB",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "BES": {
+    "iso2": "BQ",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "VGB": {
+    "iso2": "VG",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "CYM": {
+    "iso2": "KY",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "CUB": {
+    "iso2": "CU",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "CUW": {
+    "iso2": "CW",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "DMA": {
+    "iso2": "DM",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "DOM": {
+    "iso2": "DO",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "GRD": {
+    "iso2": "GD",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "GLP": {
+    "iso2": "GP",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "HTI": {
+    "iso2": "HT",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "JAM": {
+    "iso2": "JM",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "MTQ": {
+    "iso2": "MQ",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "MSR": {
+    "iso2": "MS",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "PRI": {
+    "iso2": "PR",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "BLM": {
+    "iso2": "BL",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "KNA": {
+    "iso2": "KN",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "LCA": {
+    "iso2": "LC",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "MAF": {
+    "iso2": "MF",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "VCT": {
+    "iso2": "VC",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "SXM": {
+    "iso2": "SX",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "TTO": {
+    "iso2": "TT",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "TCA": {
+    "iso2": "TC",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "VIR": {
+    "iso2": "VI",
+    "geographicalRegion": "Caribbean",
+    "continent": "Americas"
+  },
+  "BLZ": {
+    "iso2": "BZ",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "CRI": {
+    "iso2": "CR",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "SLV": {
+    "iso2": "SV",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "GTM": {
+    "iso2": "GT",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "HND": {
+    "iso2": "HN",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "MEX": {
+    "iso2": "MX",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "NIC": {
+    "iso2": "NI",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "PAN": {
+    "iso2": "PA",
+    "geographicalRegion": "Central America",
+    "continent": "Americas"
+  },
+  "ARG": {
+    "iso2": "AR",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "BOL": {
+    "iso2": "BO",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "BVT": {
+    "iso2": "BV",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "BRA": {
+    "iso2": "BR",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "CHL": {
+    "iso2": "CL",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "COL": {
+    "iso2": "CO",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "ECU": {
+    "iso2": "EC",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "FLK": {
+    "iso2": "FK",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "GUF": {
+    "iso2": "GF",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "GUY": {
+    "iso2": "GY",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "PRY": {
+    "iso2": "PY",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "PER": {
+    "iso2": "PE",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "SGS": {
+    "iso2": "GS",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "SUR": {
+    "iso2": "SR",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "URY": {
+    "iso2": "UY",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "VEN": {
+    "iso2": "VE",
+    "geographicalRegion": "South America",
+    "continent": "Americas"
+  },
+  "BMU": {
+    "iso2": "BM",
+    "geographicalRegion": "Northern America",
+    "continent": "Americas"
+  },
+  "CAN": {
+    "iso2": "CA",
+    "geographicalRegion": "Northern America",
+    "continent": "Americas"
+  },
+  "GRL": {
+    "iso2": "GL",
+    "geographicalRegion": "Northern America",
+    "continent": "Americas"
+  },
+  "SPM": {
+    "iso2": "PM",
+    "geographicalRegion": "Northern America",
+    "continent": "Americas"
+  },
+  "USA": {
+    "iso2": "US",
+    "geographicalRegion": "Northern America",
+    "continent": "Americas"
+  },
+  "ATA": {
+    "iso2": "AQ",
+    "geographicalRegion": "",
+    "continent": ""
+  },
+  "KAZ": {
+    "iso2": "KZ",
+    "geographicalRegion": "Central Asia",
+    "continent": "Asia"
+  },
+  "KGZ": {
+    "iso2": "KG",
+    "geographicalRegion": "Central Asia",
+    "continent": "Asia"
+  },
+  "TJK": {
+    "iso2": "TJ",
+    "geographicalRegion": "Central Asia",
+    "continent": "Asia"
+  },
+  "TKM": {
+    "iso2": "TM",
+    "geographicalRegion": "Central Asia",
+    "continent": "Asia"
+  },
+  "UZB": {
+    "iso2": "UZ",
+    "geographicalRegion": "Central Asia",
+    "continent": "Asia"
+  },
+  "CHN": {
+    "iso2": "CN",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "HKG": {
+    "iso2": "HK",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "MAC": {
+    "iso2": "MO",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "PRK": {
+    "iso2": "KP",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "JPN": {
+    "iso2": "JP",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "MNG": {
+    "iso2": "MN",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "KOR": {
+    "iso2": "KR",
+    "geographicalRegion": "Eastern Asia",
+    "continent": "Asia"
+  },
+  "BRN": {
+    "iso2": "BN",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "KHM": {
+    "iso2": "KH",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "IDN": {
+    "iso2": "ID",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "LAO": {
+    "iso2": "LA",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "MYS": {
+    "iso2": "MY",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "MMR": {
+    "iso2": "MM",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "PHL": {
+    "iso2": "PH",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "SGP": {
+    "iso2": "SG",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "THA": {
+    "iso2": "TH",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "TLS": {
+    "iso2": "TL",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "VNM": {
+    "iso2": "VN",
+    "geographicalRegion": "South-eastern Asia",
+    "continent": "Asia"
+  },
+  "AFG": {
+    "iso2": "AF",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "BGD": {
+    "iso2": "BD",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "BTN": {
+    "iso2": "BT",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "IND": {
+    "iso2": "IN",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "IRN": {
+    "iso2": "IR",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "MDV": {
+    "iso2": "MV",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "NPL": {
+    "iso2": "NP",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "PAK": {
+    "iso2": "PK",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "LKA": {
+    "iso2": "LK",
+    "geographicalRegion": "Southern Asia",
+    "continent": "Asia"
+  },
+  "ARM": {
+    "iso2": "AM",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "AZE": {
+    "iso2": "AZ",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "BHR": {
+    "iso2": "BH",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "CYP": {
+    "iso2": "CY",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "GEO": {
+    "iso2": "GE",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "IRQ": {
+    "iso2": "IQ",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "ISR": {
+    "iso2": "IL",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "JOR": {
+    "iso2": "JO",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "KWT": {
+    "iso2": "KW",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "LBN": {
+    "iso2": "LB",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "OMN": {
+    "iso2": "OM",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "QAT": {
+    "iso2": "QA",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "SAU": {
+    "iso2": "SA",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "PSE": {
+    "iso2": "PS",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "SYR": {
+    "iso2": "SY",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "TUR": {
+    "iso2": "TR",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "ARE": {
+    "iso2": "AE",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "YEM": {
+    "iso2": "YE",
+    "geographicalRegion": "Western Asia",
+    "continent": "Asia"
+  },
+  "BLR": {
+    "iso2": "BY",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "BGR": {
+    "iso2": "BG",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "CZE": {
+    "iso2": "CZ",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "HUN": {
+    "iso2": "HU",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "POL": {
+    "iso2": "PL",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "MDA": {
+    "iso2": "MD",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "ROU": {
+    "iso2": "RO",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "RUS": {
+    "iso2": "RU",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "SVK": {
+    "iso2": "SK",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "UKR": {
+    "iso2": "UA",
+    "geographicalRegion": "Eastern Europe",
+    "continent": "Europe"
+  },
+  "ALA": {
+    "iso2": "AX",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "DNK": {
+    "iso2": "DK",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "EST": {
+    "iso2": "EE",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "FRO": {
+    "iso2": "FO",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "FIN": {
+    "iso2": "FI",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "GGY": {
+    "iso2": "GG",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "ISL": {
+    "iso2": "IS",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "IRL": {
+    "iso2": "IE",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "IMN": {
+    "iso2": "IM",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "JEY": {
+    "iso2": "JE",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "LVA": {
+    "iso2": "LV",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "LTU": {
+    "iso2": "LT",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "NOR": {
+    "iso2": "NO",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "SJM": {
+    "iso2": "SJ",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "SWE": {
+    "iso2": "SE",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "GBR": {
+    "iso2": "GB",
+    "geographicalRegion": "Northern Europe",
+    "continent": "Europe"
+  },
+  "ALB": {
+    "iso2": "AL",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "AND": {
+    "iso2": "AD",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "BIH": {
+    "iso2": "BA",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "HRV": {
+    "iso2": "HR",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "GIB": {
+    "iso2": "GI",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "GRC": {
+    "iso2": "GR",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "VAT": {
+    "iso2": "VA",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "ITA": {
+    "iso2": "IT",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "MLT": {
+    "iso2": "MT",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "MNE": {
+    "iso2": "ME",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "MKD": {
+    "iso2": "MK",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "PRT": {
+    "iso2": "PT",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "SMR": {
+    "iso2": "SM",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "SRB": {
+    "iso2": "RS",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "SVN": {
+    "iso2": "SI",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "ESP": {
+    "iso2": "ES",
+    "geographicalRegion": "Southern Europe",
+    "continent": "Europe"
+  },
+  "AUT": {
+    "iso2": "AT",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "BEL": {
+    "iso2": "BE",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "FRA": {
+    "iso2": "FR",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "DEU": {
+    "iso2": "DE",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "LIE": {
+    "iso2": "LI",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "LUX": {
+    "iso2": "LU",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "MCO": {
+    "iso2": "MC",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "NLD": {
+    "iso2": "NL",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "CHE": {
+    "iso2": "CH",
+    "geographicalRegion": "Western Europe",
+    "continent": "Europe"
+  },
+  "AUS": {
+    "iso2": "AU",
+    "geographicalRegion": "Australia and New Zealand",
+    "continent": "Oceania"
+  },
+  "CXR": {
+    "iso2": "CX",
+    "geographicalRegion": "Australia and New Zealand",
+    "continent": "Oceania"
+  },
+  "CCK": {
+    "iso2": "CC",
+    "geographicalRegion": "Australia and New Zealand",
+    "continent": "Oceania"
+  },
+  "HMD": {
+    "iso2": "HM",
+    "geographicalRegion": "Australia and New Zealand",
+    "continent": "Oceania"
+  },
+  "NZL": {
+    "iso2": "NZ",
+    "geographicalRegion": "Australia and New Zealand",
+    "continent": "Oceania"
+  },
+  "NFK": {
+    "iso2": "NF",
+    "geographicalRegion": "Australia and New Zealand",
+    "continent": "Oceania"
+  },
+  "FJI": {
+    "iso2": "FJ",
+    "geographicalRegion": "Melanesia",
+    "continent": "Oceania"
+  },
+  "NCL": {
+    "iso2": "NC",
+    "geographicalRegion": "Melanesia",
+    "continent": "Oceania"
+  },
+  "PNG": {
+    "iso2": "PG",
+    "geographicalRegion": "Melanesia",
+    "continent": "Oceania"
+  },
+  "SLB": {
+    "iso2": "SB",
+    "geographicalRegion": "Melanesia",
+    "continent": "Oceania"
+  },
+  "VUT": {
+    "iso2": "VU",
+    "geographicalRegion": "Melanesia",
+    "continent": "Oceania"
+  },
+  "GUM": {
+    "iso2": "GU",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "KIR": {
+    "iso2": "KI",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "MHL": {
+    "iso2": "MH",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "FSM": {
+    "iso2": "FM",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "NRU": {
+    "iso2": "NR",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "MNP": {
+    "iso2": "MP",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "PLW": {
+    "iso2": "PW",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "UMI": {
+    "iso2": "UM",
+    "geographicalRegion": "Micronesia",
+    "continent": "Oceania"
+  },
+  "ASM": {
+    "iso2": "AS",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "COK": {
+    "iso2": "CK",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "PYF": {
+    "iso2": "PF",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "NIU": {
+    "iso2": "NU",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "PCN": {
+    "iso2": "PN",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "WSM": {
+    "iso2": "WS",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "TKL": {
+    "iso2": "TK",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "TON": {
+    "iso2": "TO",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "TUV": {
+    "iso2": "TV",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  },
+  "WLF": {
+    "iso2": "WF",
+    "geographicalRegion": "Polynesia",
+    "continent": "Oceania"
+  }
+}
