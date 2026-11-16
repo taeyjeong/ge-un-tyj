@@ -1,6 +1,4 @@
-import type {ReactNode} from 'react';
-function Fraction({top,bottom}:{top:ReactNode;bottom:ReactNode}){return <span className="math-fraction"><span>{top}</span><span>{bottom}</span></span>;}
-function Root({children,cube=false}:{children:ReactNode;cube?:boolean}){return <span className="math-root"><span>{cube?'∛':'√'}</span><span className="math-radicand">{children}</span></span>;}
+import {Fraction,Root} from './MathNotation';
 function Symbol({name,sex}:{name:string;sex:string}){return <span>{name}<sub>{sex}</sub></span>;}
 export default function GiiFormula(){
  const hf=<Root><Fraction top="10" bottom="M"/> × <Fraction top="1" bottom="A"/></Root>;

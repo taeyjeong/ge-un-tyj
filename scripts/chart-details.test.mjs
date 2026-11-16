@@ -32,3 +32,10 @@ for(const country of countries){
  }
 }
 console.log('Passed tooltip components: both indices, exact hovered-year values, unavailable values, simple indicators, repeated-year caveats, and all 195 countries.');
+
+for(const country of countries){
+ const detail=chartDetails(country,"hdi",2023);
+ assert.equal(detail.health.length,4);
+ assert.deepEqual(detail.health.map(row=>row.value),["le","eys","mys","gnipc"].map(metric=>valueAt(country,metric,2023)));
+}
+console.log("Passed HDI tooltip: all four exact-year inputs for every country.");

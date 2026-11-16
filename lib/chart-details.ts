@@ -13,7 +13,15 @@ export function valueAt(country:Country,metric:Metric,year:number):number|null{
 }
 export function chartDetails(country:Country,metric:Metric,year:number):ChartDetails{
   const details:ChartDetails={metric,year,value:valueAt(country,metric,year),factors:[],health:[],notes:[]};
-  if(metric==='gdi'){
+  if(metric==='hdi'){
+    details.health=[
+      {label:'Life expectancy at birth',unit:'years',value:valueAt(country,'le',year)},
+      {label:'Expected years of schooling',unit:'years',value:valueAt(country,'eys',year)},
+      {label:'Mean years of schooling',unit:'years · ages 25+',value:valueAt(country,'mys',year)},
+      {label:'GNI per capita',unit:'2021 PPP $',value:valueAt(country,'gnipc',year)},
+    ];
+    details.notes.push('HDI combines health, education and income using a geometric mean. Higher values indicate greater human development.');
+  }else if(metric==='gdi'){
     details.factors=[
       {label:'Human Development Index',unit:'index',female:valueAt(country,'hdi_f',year),male:valueAt(country,'hdi_m',year)},
       {label:'Life expectancy at birth',unit:'years',female:valueAt(country,'le_f',year),male:valueAt(country,'le_m',year)},
