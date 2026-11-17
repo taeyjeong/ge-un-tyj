@@ -10,7 +10,7 @@ import IndexCalculations from './IndexCalculations';
 import {selectedCountriesFirst} from '../lib/selection';
 import {colorFor,descriptionFor,flagFor,indicatorFor,type Country,type GraphSettings} from '../lib/types';
 export default function Explorer({countries}:{countries:Country[]}){
- const [selected,setSelected]=useState<string[]>(['KOR','USA','SWE']);
+ const [selected,setSelected]=useState<string[]>(['JPN','KOR','USA']);
  const [search,setSearch]=useState('');
  const [settings,setSettings]=useState<GraphSettings>({metric:'gii',startYear:1990,endYear:2023,mode:'line',zeroBaseline:true});
  const [modal,setModal]=useState<'graph'|'countries'|'maximize'|null>(null);
