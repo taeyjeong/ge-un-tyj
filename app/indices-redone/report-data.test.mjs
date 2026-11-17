@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {latestCountryRows,previousObservation,indexChange,numericRow,reportHref,csvRows} from './report-data.ts';
+const row=(country,year,value,display=String(value))=>({country,year,value,display,period:String(year),inputs:{},note:''});
+const rows=[row('JPN',2020,.12),row('JPN',2021,0),row('JPN',2023,.1),row('KOR',2023,null,'<5'),row('USA',2022,.2)];
+assert.deepEqual(latestCountryRows(rows,['JPN','KOR','USA'],2023,2023).map(r=>[r.country,r.value]),[['JPN',.1],['KOR',null]]);
+assert.deepEqual(latestCountryRows(rows,[],2020,2023),[]);
+assert.equal(previousObservation(rows,rows[2]).value,0);
+assert.equal(indexChange(.1,0),.1);
+assert.equal(indexChange(null,.2),null);
+assert.equal(indexChange(.1,undefined),null);
+assert.equal(numericRow(rows[3]),false);
+assert.equal(reportHref('gii',[]),'/indices-redone?index=gii&countries=');
+assert.equal(reportHref('hdi',['JPN','KOR','USA']),'/indices-redone?index=hdi&countries=JPN%2CKOR%2CUSA');
+const csv=csvRows(rows,code=>code==='JPN'?'Japan, "example"':code);
+assert.ok(csv.includes('"Japan, ""example"""'));
+assert.ok(csv.includes('"KOR","KOR","2023","","<5"'));
+console.log('Passed latest-in-range, empty selections, missing/censored scores, previous numeric observation, zero baseline changes, country routing and CSV quoting.');

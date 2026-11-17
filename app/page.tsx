@@ -1,14 +1,5 @@
-import Explorer from '../components/Explorer';
-import data from '../lib/countries.json';
-import type {Country,Observation} from '../lib/types';
-const countries:Country[]=data.map(country=>({
- ...country,
- series:Object.fromEntries(Object.entries(country.series).map(([metric,points])=>[
-  metric,
-  points.map(([year,value]):Observation=>{
-   if(typeof year!=='number'||(value!==null&&typeof value!=='number'))throw new Error(`Invalid observation: ${country.code}/${metric}`);
-   return [year,value];
-  })
- ]))
-}));
-export default function Page(){return <Explorer countries={countries.toSorted((a,b)=>a.name.localeCompare(b.name))}/>;}
+import IndexExplorer from '../components/IndexExplorer';
+import {indexPageData} from '../lib/index-data';
+import {navigationCountries} from '../lib/navigation';
+export const metadata={title:'GII · Gender Inequality Index',description:'Compare gender inequality across countries, inspect the component values and follow the GII calculation and full equation.'};
+export default async function Page({searchParams}:{searchParams:Promise<{countries?:string|string[]}>}){const params=await searchParams;const {countries,rows}=indexPageData('gii');const selected=navigationCountries(params.countries).filter(code=>countries.some(c=>c.code===code));return <IndexExplorer key={'gii-'+selected.join(',')} id="gii" countries={countries} observations={rows} initialSelected={selected}/>;}

@@ -1,0 +1,9 @@
+import Link from 'next/link';
+import DatasetTabs from '../../components/DatasetTabs';
+import {indexFor} from '../../lib/indices';
+import {indexNavigation,navigationCountries,navigationHref} from '../../lib/navigation';
+export const metadata={title:'Composite indices & scores',description:'Explore published composite indices, their components, equations and conditional what-if calculations.'};
+export default async function Page({searchParams}:{searchParams:Promise<{countries?:string|string[]}>}){
+ const params=await searchParams;const countries=navigationCountries(params.countries);const href=(path:string)=>navigationHref(path,countries);
+ return <><header><Link className="brand" href={href('/')}>GE<span> / WORLD DATA</span></Link><span>COMPOSITE INDICES & SCORES</span></header><main><DatasetTabs active="/indices" countries={countries}/><div className="eyebrow">UNDERSTAND HOW THE SCORE IS MADE</div><h1>Composite indices.</h1><p className="intro">Compare scores, inspect their components and follow the equation. Change an input to explore its mathematical effect while other inputs stay fixed.</p>{indexNavigation.map(group=><section className="index-directory-group" key={group.label}><h2>{group.label}</h2><div className="topic-grid">{group.links.map(link=>{const id=link.href==='/'?'gii':link.href.split('/').at(-1)!;const index=indexFor(id)!;return <article className="topic-card" key={link.href}><div className="eyebrow">{index.source}</div><h3><Link href={href(link.href)}>{index.short} · {index.title}</Link></h3><p>{index.description}</p><p className="topic-card-measure">{index.range}<small>{index.direction}</small></p><Link className="text-button" href={href(link.href)}>Open index & equation →</Link></article>;})}</div></section>)}<footer><p>Food Consumption Score uses household observations.<br/>Country selections are carried between country-based explorers.</p><p>Independent explorer.</p></footer></main></>;
+}

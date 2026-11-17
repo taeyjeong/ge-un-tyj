@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {calculateHdi,hdiInputDefinitions,hdiInputsFor} from '../lib/hdi-model';
 import {flagFor,formatValue,type Country} from '../lib/types';
 const precise=(value:number)=>value.toFixed(6);
-export default function HdiCalculation({countries,defaultYear}:{countries:Country[];defaultYear:number}){
+export default function HdiCalculation({countries,defaultYear,hideControls=false}:{countries:Country[];defaultYear:number;hideControls?:boolean}){
  const [countryCode,setCountryCode]=useState(countries[0]?.code??'');
  const [year,setYear]=useState(defaultYear);
  const country=countries.find(country=>country.code===countryCode)??countries[0];
@@ -18,7 +18,7 @@ export default function HdiCalculation({countries,defaultYear}:{countries:Countr
  return <section id="hdi-calculation" className="gii-model" aria-labelledby="hdi-model-title">
  <div className="data-heading"><div><div className="eyebrow">FROM INPUTS TO INDEX</div><h2 id="hdi-model-title">Explore the HDI calculation</h2></div><a href="#hdi-full-formula">View the full formula ↓</a></div>
  <p className="muted">Follow a country and year from four raw inputs to three dimension indices and the final Human Development Index.</p>
- <div className="table-controls"><label>Country<select value={country.code} onChange={event=>setCountryCode(event.target.value)}>{countries.map(item=><option key={item.code} value={item.code}>{flagFor(item.iso2)} {item.name}</option>)}</select></label><label>Year<select value={year} onChange={event=>setYear(Number(event.target.value))}>{Array.from({length:34},(_,index)=>1990+index).map(value=><option key={value}>{value}</option>)}</select></label></div>
+ {!hideControls&&<div className="table-controls"><label>Country<select value={country.code} onChange={event=>setCountryCode(event.target.value)}>{countries.map(item=><option key={item.code} value={item.code}>{flagFor(item.iso2)} {item.name}</option>)}</select></label><label>Year<select value={year} onChange={event=>setYear(Number(event.target.value))}>{Array.from({length:34},(_,index)=>1990+index).map(value=><option key={value}>{value}</option>)}</select></label></div>}
  <h3>1. Prepare the four inputs</h3><p className="muted">Apply UNDP’s minimum and maximum goalposts for calculation. The original observations stay unchanged; missing values stay missing.</p>
  <div className="table-wrap"><table className="gii-inputs"><caption className="sr-only">{country.name} · {year} · HDI inputs and goalposts</caption><thead><tr><th scope="col">Input</th><th scope="col">Unit</th><th scope="col">CSV value</th><th scope="col">Goalposts</th><th scope="col">Used in formula</th></tr></thead><tbody>{hdiInputDefinitions.map(({key,label,unit,minimum,maximum})=><tr key={key}><th scope="row">{label}</th><td>{unit}</td><td>{formatValue(inputs[key],key)}</td><td>{minimum.toLocaleString('en-US')}–{maximum.toLocaleString('en-US')}</td><td>{steps?precise(steps.bounded[key]):'—'}</td></tr>)}</tbody></table></div>
  {!steps?<p className="gii-status" role="status">{calculation.status==='missing-inputs'?'Cannot reconstruct this year because inputs are unavailable':'Cannot reconstruct this year because inputs are outside the valid range'}: {fieldNames}. Reported HDI: {formatValue(reported,'hdi')}.</p>:<>

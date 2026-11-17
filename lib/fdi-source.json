@@ -1,0 +1,16 @@
+{
+  "url": "https://api.imf.org/external/sdmx/2.1/data/IMF.MCM,FDI/all",
+  "download": "/index-sources/fdi-imf-extract.csv",
+  "metadataUrl": "https://data.imf.org/Datasets/FDI",
+  "retrievedDate": "2026-11-17",
+  "sourceResponseSha256": "6e32c6bea25f46146f4d9fd0e650db3342df73e745627b7dfb384ddd8c5dd5b0",
+  "extractSha256": "fe02b499ba5cf62a8f6775199354da40cd3d313a81f9089127941f80ed542e1f",
+  "rows": 7503,
+  "countries": 183,
+  "from": 1980,
+  "to": 2020,
+  "dataflow": "IMF.MCM:FDI(1.0.0)",
+  "source": "International Monetary Fund",
+  "license": "\u00a9 International Monetary Fund Copyright. All Rights Reserved. https://www.imf.org/external/terms.htm",
+  "citation": "International Monetary Fund. 2025. Financial Development Index (FDI),  https://data.imf.org/en/datasets/IMF.MCM:FDI. Accessed on [current date]."
+}

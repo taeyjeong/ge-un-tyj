@@ -6,8 +6,11 @@ import HdiFormula from './HdiFormula';
 import GiiCalculation from './GiiCalculation';
 import GiiFormula from './GiiFormula';
 import type {Country} from '../lib/types';
-export default function IndexCalculations({countries,defaultYear}:{countries:Country[];defaultYear:number}){
- const [index,setIndex]=useState<'hdi'|'gii'>('hdi');
+import type {FocusIndex} from '../lib/hdr-focus';
+export default function IndexCalculations({countries,defaultYear,activeIndex,onIndexChange}:{countries:Country[];defaultYear:number;activeIndex?:FocusIndex;onIndexChange?:(index:FocusIndex)=>void}){
+ const [localIndex,setLocalIndex]=useState<FocusIndex>('hdi');
+ const index=activeIndex??localIndex;
+ function setIndex(value:FocusIndex){setLocalIndex(value);onIndexChange?.(value);}
  const id=useId();
  function navigate(event:KeyboardEvent<HTMLButtonElement>){
   if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;

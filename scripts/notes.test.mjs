@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readStoredNotes,validNoteBody,maxNoteLength} from '../lib/notes.ts';
+const first={id:'00000000-0000-4000-8000-000000000001',body:'Why did GII change?',kind:'question',created_at:'2023-01-02T00:00:00.000Z',page_path:'/'};
+const second={id:'00000000-0000-4000-8000-000000000002',body:'Compare earnings next.',kind:'note',created_at:'2023-01-01T00:00:00.000Z',page_path:'/employment'};
+assert.equal(validNoteBody('  '),false);
+assert.equal(validNoteBody('A'.repeat(maxNoteLength)),true);
+assert.equal(validNoteBody('A'.repeat(maxNoteLength+1)),false);
+assert.deepEqual(readStoredNotes(null),[]);
+assert.deepEqual(readStoredNotes(JSON.stringify([first,second])),[second,first]);
+assert.throws(()=>readStoredNotes('{not json}'));
+assert.throws(()=>readStoredNotes(JSON.stringify({body:'not a list'})));
+for(const patch of [{body:''},{body:' '},{kind:'assistant'},{id:'wrong'},{created_at:'invalid date'},{page_path:null}])assert.throws(()=>readStoredNotes(JSON.stringify([{...first,...patch}])));
+const hostile={...first,body:'<script>alert("test")</script>'};
+assert.equal(readStoredNotes(JSON.stringify([hostile]))[0].body,hostile.body);
+console.log('Passed notes parsing, order, body limits, kinds, malformed storage and plain-text preservation.');

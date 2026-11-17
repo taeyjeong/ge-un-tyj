@@ -1,0 +1,590 @@
+[
+  {
+    "id": "climate",
+    "title": "Climate & environment",
+    "headline": "Our changing planet.",
+    "description": "Emissions, forests, protected land and the air people breathe.",
+    "measures": [
+      {
+        "code": "EN.GHG.CO2.PC.CE.AR5",
+        "label": "CO₂ emissions per person",
+        "unit": "t CO₂e / person",
+        "caution": "Excludes land use, land-use change and forestry (LULUCF).",
+        "name": "Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita)",
+        "definition": "Total annual emissions of carbon dioxide (CO2), one of the six Kyoto greenhouse gases (GHG), from the agriculture, energy, waste, and industrial sectors, excluding LULUCF, standardized to carbon dioxide equivalent values divided by the economy's population. This measure excludes GHG fluxes caused by Land Use, Land-Use Change and Forestry (LULUCF), as these fluxes have larger uncertainties.",
+        "organization": "EDGAR (Emissions Database for Global Atmospheric Research) Community GHG Database, Joint Research Centre (JRC) - European Commission, uri: https://edgar.jrc.ec.europa.eu/dataset_ghg2024, publisher: JRC European Commission, date published: 2024;\nInternational Energy Agency (IEA), uri: https://edgar.jrc.ec.europa.eu/dataset_ghg2024, publisher: JRC European Commission, date published: 2024",
+        "url": "https://data.worldbank.org/indicator/EN.GHG.CO2.PC.CE.AR5"
+      },
+      {
+        "code": "EN.GHG.ALL.PC.CE.AR5",
+        "label": "Greenhouse gas emissions per person",
+        "unit": "t CO₂e / person",
+        "caution": "Excludes land use, land-use change and forestry (LULUCF).",
+        "name": "Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita)",
+        "definition": "Total annual emissions of the six greenhouse gases (GHG) covered by the Kyoto Protocol (carbon dioxide (CO2), methane (CH4), nitrous oxide (N2O), hydrofluorocarbons (HFCs), perfluorocarbons (PFCs), and sulphurhexafluoride (SF6)) from the energy, industry, waste, and agriculture sectors, standardized to carbon dioxide equivalent values divided by the economy's population. This measure excludes GHG fluxes caused by Land Use Change and Forestry (LULUCF), as these fluxes have larger uncertainties.",
+        "organization": "EDGAR (Emissions Database for Global Atmospheric Research) Community GHG Database, Joint Research Centre (JRC) - European Commission, uri: https://edgar.jrc.ec.europa.eu/dataset_ghg2024, publisher: JRC European Commission, date published: 2024;\nInternational Energy Agency (IEA), uri: https://edgar.jrc.ec.europa.eu/dataset_ghg2024, publisher: JRC European Commission, date published: 2024",
+        "url": "https://data.worldbank.org/indicator/EN.GHG.ALL.PC.CE.AR5"
+      },
+      {
+        "code": "AG.LND.FRST.ZS",
+        "label": "Forest area",
+        "unit": "% of land area",
+        "caution": "",
+        "name": "Forest area (% of land area)",
+        "definition": "Forest area (% of land area) is the share of total land area that is under natural or planted stands of trees of at least 5 meters in situ, whether productive or not, and excludes tree stands in agricultural production systems (for example, in fruit plantations and agroforestry systems) and trees in urban parks and gardens.",
+        "organization": "FAOSTAT, Food and Agriculture Organization of the United Nations (FAO), uri: https://www.fao.org/faostat/en/#data/RL, publisher: Food and Agriculture Organization of the United Nations (FAO)",
+        "url": "https://data.worldbank.org/indicator/AG.LND.FRST.ZS"
+      },
+      {
+        "code": "EN.ATM.PM25.MC.M3",
+        "label": "PM2.5 exposure",
+        "unit": "µg/m³",
+        "caution": "Population-weighted annual exposure, not a live air-quality reading.",
+        "name": "PM2.5 air pollution, mean annual exposure (micrograms per cubic meter)",
+        "definition": "Population-weighted exposure to ambient PM2.5 pollution is defined as the average level of exposure of a nation's population to concentrations of suspended particles measuring less than 2.5 microns in aerodynamic diameter, which are capable of penetrating deep into the respiratory tract and causing severe health damage. Exposure is calculated by weighting mean annual concentrations of PM2.5 by population in both urban and rural areas.",
+        "organization": "Global Burden of Disease Study 2023 (GBD 2023) Air Pollution Exposure Estimates and Risk Curves 1990-2023, GBD Collaborator Network, uri: https://ghdx.healthdata.org/record/ihme-data/gbd-2023-air-pollution-exposure-estimates-1990-2023, note: Need to create account to retrieve data., publisher: Institute for Health Metrics and Evaluation (IHME), date accessed: 2026-04-03, date published: 2026-01-23",
+        "url": "https://data.worldbank.org/indicator/EN.ATM.PM25.MC.M3"
+      },
+      {
+        "code": "ER.LND.PTLD.ZS",
+        "label": "Protected land",
+        "unit": "% of land area",
+        "caution": "",
+        "name": "Terrestrial protected areas (% of total land area)",
+        "definition": "Terrestrial protected areas are totally or partially protected areas of at least 1,000 hectares that are designated by national authorities as scientific reserves with limited public access, national parks, natural monuments, nature reserves or wildlife sanctuaries, protected landscapes, and areas managed mainly for sustainable use. Marine areas, unclassified areas, littoral (intertidal) areas, and sites protected under local or provincial law are excluded.",
+        "organization": "Protected Planet: The World Database on Protected Areas (WDPA) and World Database on Other Effective Area-based Conservation Measures (WD-OECM), UN Environment Programme World Conservation Monitoring Centre (UNEP-WCMC), uri: https://www.protectedplanet.net/en, publisher: Protected Planet, date accessed: 20240516, date published: 202405;\nInternational Union for Conservation of Nature (IUCN), uri: https://www.protectedplanet.net/en, publisher: Protected Planet, date accessed: 20240516",
+        "url": "https://data.worldbank.org/indicator/ER.LND.PTLD.ZS"
+      }
+    ]
+  },
+  {
+    "id": "poverty",
+    "title": "Poverty & inequality",
+    "headline": "Who gets left behind?",
+    "description": "Poverty, income distribution and the share reaching the poorest households.",
+    "measures": [
+      {
+        "code": "SI.POV.DDAY",
+        "label": "Poverty below $3 a day",
+        "unit": "% of population",
+        "caution": "Uses 2021 purchasing power parity (PPP). Do not mix with older $2.15 / 2017 PPP series.",
+        "name": "Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population)",
+        "definition": "Poverty headcount ratio at $3.00 a day is the percentage of the population living on less than $3.00 a day at 2021 purchasing power adjusted prices. As a result of revisions in PPP exchange rates, poverty rates for individual countries cannot be compared with poverty rates reported in earlier editions.",
+        "organization": "World Bank, Poverty and Inequality Platform. Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. Data for high-income economies are mostly from the Luxembourg Income Study database. For more information and methodology, please see http://pip.worldbank.org., World Bank (WB), uri: http://pip.worldbank.org, note: Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. Data for high-income economies are mostly from the Luxembourg Income Study database.",
+        "url": "https://data.worldbank.org/indicator/SI.POV.DDAY"
+      },
+      {
+        "code": "SI.POV.GINI",
+        "label": "Gini index",
+        "unit": "index, 0–100",
+        "caution": "Higher values mean greater income or consumption inequality. Survey concepts can differ.",
+        "name": "Gini index",
+        "definition": "Gini index measures the extent to which the distribution of income (or, in some cases, consumption expenditure) among individuals or households within an economy deviates from a perfectly equal distribution. A Lorenz curve plots the cumulative percentages of total income received against the cumulative number of recipients, starting with the poorest individual or household. The Gini index measures the area between the Lorenz curve and a hypothetical line of absolute equality, expressed as a percentage of the maximum area under the line. Thus a Gini index of 0 represents perfect equality, while an index of 100 implies perfect inequality.",
+        "organization": "World Bank, Poverty and Inequality Platform. Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. Data for high-income economies are mostly from the Luxembourg Income Study database. For more information and methodology, please see http://pip.worldbank.org., World Bank (WB), uri: http://pip.worldbank.org, note: Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. Data for high-income economies are mostly from the Luxembourg Income Study database.",
+        "url": "https://data.worldbank.org/indicator/SI.POV.GINI"
+      },
+      {
+        "code": "SI.DST.FRST.20",
+        "label": "Income share of the poorest 20%",
+        "unit": "% of income",
+        "caution": "",
+        "name": "Income share held by lowest 20%",
+        "definition": "Percentage share of income or consumption is the share that accrues to subgroups of population indicated by deciles or quintiles. Percentage shares by quintile may not sum to 100 because of rounding.",
+        "organization": "World Bank, Poverty and Inequality Platform. Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. Data for high-income economies are mostly from the Luxembourg Income Study database. For more information and methodology, please see http://pip.worldbank.org., World Bank (WB), uri: http://pip.worldbank.org, note: Data are based on primary household survey data obtained from government statistical agencies and World Bank country departments. Data for high-income economies are mostly from the Luxembourg Income Study database.",
+        "url": "https://data.worldbank.org/indicator/SI.DST.FRST.20"
+      },
+      {
+        "code": "SI.POV.NAHC",
+        "label": "National poverty rate",
+        "unit": "% of population",
+        "caution": "National poverty lines differ between countries; these are not a uniform international threshold.",
+        "name": "Poverty headcount ratio at national poverty lines (% of population)",
+        "definition": "National poverty headcount ratio is the percentage of the population living below the national poverty line(s). National estimates are based on population-weighted subgroup estimates from household surveys. For economies for which the data are from EU-SILC, the reported year is the income reference year, which is the year before the survey year.",
+        "organization": "World Bank, Poverty and Inequality Platform. Data are compiled from official government sources or are computed by World Bank staff using national (i.e. country–specific) poverty lines., World Bank (WB), note: Data are compiled from official government sources or are computed by World Bank staff using national (i.e. country–specific) poverty lines.",
+        "url": "https://data.worldbank.org/indicator/SI.POV.NAHC"
+      }
+    ]
+  },
+  {
+    "id": "food",
+    "title": "Food & hunger",
+    "headline": "Enough food. For everyone.",
+    "description": "Food insecurity and nutrition across countries and generations.",
+    "measures": [
+      {
+        "code": "SN.ITK.MSFI.ZS",
+        "label": "Moderate or severe food insecurity",
+        "unit": "% of population",
+        "caution": "",
+        "name": "Prevalence of moderate or severe food insecurity in the population (%)",
+        "definition": "The percentage of people in the population who live in households classified as moderately or severely food insecure. A household is classified as moderately or severely food insecure when at least one adult in the household has reported to have been exposed, at times during the year, to low quality diets and might have been forced to also reduce the quantity of food they would normally eat because of a lack of money or other resources.",
+        "organization": "Food and Agriculture Organization of the United Nations (FAO)",
+        "url": "https://data.worldbank.org/indicator/SN.ITK.MSFI.ZS"
+      },
+      {
+        "code": "SN.ITK.DEFC.ZS",
+        "label": "Undernourishment",
+        "unit": "% of population",
+        "caution": "",
+        "name": "Prevalence of undernourishment (% of population)",
+        "definition": "Prevalence of undernourishment is the percentage of the population whose habitual food consumption is insufficient to provide the dietary energy levels that are required to maintain a normal active and healthy life. Data showing as 2.5 may signify a prevalence of undernourishment below 2.5%.",
+        "organization": "Food and Agriculture Organization of the United Nations (FAO), uri: http://www.fao.org/faostat/en/#home",
+        "url": "https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS"
+      },
+      {
+        "code": "SH.STA.STNT.ZS",
+        "label": "Child stunting",
+        "unit": "% of children under 5",
+        "caution": "Low height for age.",
+        "name": "Prevalence of stunting, height for age (% of children under 5)",
+        "definition": "Prevalence of stunting is the percentage of children under age 5 whose height for age is more than two standard deviations below the median for the international reference population ages 0-59 months. For children up to two years old height is measured by recumbent length. For older children height is measured by stature while standing. The data are based on the WHO's 2006 Child Growth Standards.",
+        "organization": "UNICEF, WHO, World Bank: Joint child Malnutrition Estimates (JME). Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology., UN Children's Fund (UNICEF), note: Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology;\nWorld Health Organization (WHO), note: Joint child Malnutrition Estimates (JME); Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology;\nWorld Bank (WB), note: Joint child Malnutrition Estimates (JME); Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology",
+        "url": "https://data.worldbank.org/indicator/SH.STA.STNT.ZS"
+      },
+      {
+        "code": "SH.STA.WAST.ZS",
+        "label": "Child wasting",
+        "unit": "% of children under 5",
+        "caution": "Low weight for height.",
+        "name": "Prevalence of wasting, weight for height (% of children under 5)",
+        "definition": "Prevalence of wasting is the proportion of children under age 5 whose weight for height is more than two standard deviations below the median for the international reference population ages 0-59 months.",
+        "organization": "UNICEF, WHO, World Bank: Joint child Malnutrition Estimates (JME). Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology., UN Children's Fund (UNICEF), note: Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology;\nWorld Health Organization (WHO), note: Joint child Malnutrition Estimates (JME); Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology;\nWorld Bank (WB), note: Joint child Malnutrition Estimates (JME); Aggregation is based on UNICEF, WHO, and the World Bank harmonized dataset (adjusted, comparable data) and methodology",
+        "url": "https://data.worldbank.org/indicator/SH.STA.WAST.ZS"
+      }
+    ]
+  },
+  {
+    "id": "health",
+    "title": "Health",
+    "headline": "Longer, healthier lives.",
+    "description": "Life expectancy, child survival, disease and access to health services.",
+    "measures": [
+      {
+        "code": "SP.DYN.LE00.IN",
+        "label": "Life expectancy",
+        "unit": "years",
+        "caution": "",
+        "name": "Life expectancy at birth, total (years)",
+        "definition": "Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.",
+        "organization": "World Population Prospects, United Nations (UN), uri: UN Population Division;\nStatistical databases and publications from national statistical offices, National Statistical Offices (NSOs), note: Derived from male and female life expectancy at birth from sources such as statistical databases and publications from national statistical offices.;\nDemographic Statistics, Eurostat (ESTAT), note: Derived from male and female life expectancy at birth from sources such as Eurostat: Demographic Statistics.",
+        "url": "https://data.worldbank.org/indicator/SP.DYN.LE00.IN"
+      },
+      {
+        "code": "SH.DYN.MORT",
+        "label": "Under-five mortality",
+        "unit": "deaths / 1,000 live births",
+        "caution": "",
+        "name": "Mortality rate, under-5 (per 1,000 live births)",
+        "definition": "Under-five mortality rate is the probability per 1,000 that a newborn baby will die before reaching age five, if subject to age-specific mortality rates of the specified year.",
+        "organization": "UN Inter-agency Group for Child Mortality Estimation, UN Children's Fund (UNICEF), uri: www.childmortality.org, publisher: UNICEF, WHO, World Bank, United Nations Population Division;\nWorld Health Organization (WHO), uri: www.childmortality.org, note: UN Inter-agency Group for Child Mortality Estimation;\nWorld Bank (WB), uri: www.childmortality.org, note: UN Inter-agency Group for Child Mortality Estimation;\nUnited Nations (UN), uri: www.childmortality.org, note: UN Inter-agency Group for Child Mortality Estimation, publisher: UN Population Division",
+        "url": "https://data.worldbank.org/indicator/SH.DYN.MORT"
+      },
+      {
+        "code": "SH.TBS.INCD",
+        "label": "Tuberculosis incidence",
+        "unit": "cases / 100,000 people",
+        "caution": "",
+        "name": "Incidence of tuberculosis (per 100,000 people)",
+        "definition": "Incidence of tuberculosis is the estimated number of new and relapse tuberculosis cases arising in a given year, expressed as the rate per 100,000 population. All forms of TB are included, including cases in people living with HIV. Estimates for all years are recalculated as new information becomes available and techniques are refined, so they may differ from those published previously.",
+        "organization": "Global Tuberculosis Report, World Health Organization (WHO)",
+        "url": "https://data.worldbank.org/indicator/SH.TBS.INCD"
+      },
+      {
+        "code": "SH_UHC_SCI",
+        "label": "Universal health coverage",
+        "unit": "index, 0–100",
+        "caution": "Service coverage index; not the share of people with insurance.",
+        "name": "UHC service coverage index",
+        "definition": "A composite index representing coverage of essential health services based on 14 tracer indicators in the areas of reproductive, maternal, newborn and child health, infectious diseases, noncommunicable diseases and service capacity and access. It is presented on a scale of 0 to 100 index points.",
+        "organization": "Universal Health Coverage Dataset, World Health Organization (WHO), uri: https://www.who.int/data/gho/data/indicators/indicator-details/GHO/uhc-index-of-service-coverage",
+        "url": "https://data.worldbank.org/indicator/SH_UHC_SCI"
+      },
+      {
+        "code": "SH.XPD.CHEX.GD.ZS",
+        "label": "Health expenditure",
+        "unit": "% of GDP",
+        "caution": "",
+        "name": "Current health expenditure (% of GDP)",
+        "definition": "Level of current health expenditure expressed as a percentage of GDP.  Estimates of current health expenditures include healthcare goods and services consumed during each year. This indicator does not include capital health expenditures such as buildings, machinery, IT and stocks of vaccines for emergency or outbreaks.",
+        "organization": "Global Health Expenditure Database, updated December 12th, 2025, World Health Organization (WHO), uri: https://apps.who.int/nha/database",
+        "url": "https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS"
+      }
+    ]
+  },
+  {
+    "id": "education",
+    "title": "Education",
+    "headline": "The opportunity to learn.",
+    "description": "Literacy, school completion, children out of school and public investment.",
+    "measures": [
+      {
+        "code": "SE.PRM.CMPT.ZS",
+        "label": "Primary school completion",
+        "unit": "% of relevant age group",
+        "caution": "Gross completion rates can exceed 100% because of over-age and under-age students.",
+        "name": "Primary completion rate, total (% of relevant age group)",
+        "definition": "Primary completion rate, or gross intake ratio to the last grade of primary education, is the number of new entrants (enrollments minus repeaters) in the last grade of primary education, regardless of age, divided by the population at the entrance age for the last grade of primary education. Data limitations preclude adjusting for students who drop out during the final year of primary education.",
+        "organization": "Data API, UN Educational, Scientific and Cultural Organization (UNESCO), uri: https://databrowser.uis.unesco.org/resources, note: The data are obtained through the UIS API.  Detailed documentation is available at: https://api.uis.unesco.org/api/public/documentation/, publisher: UNESCO Institute for Statistics (UIS), type: Bulk file (csv), date accessed: 2026-03-19, date published: 2026-02",
+        "url": "https://data.worldbank.org/indicator/SE.PRM.CMPT.ZS"
+      },
+      {
+        "code": "SE.SEC.CMPT.LO.ZS",
+        "label": "Lower secondary completion",
+        "unit": "% of relevant age group",
+        "caution": "Gross completion rates can exceed 100%.",
+        "name": "Lower secondary completion rate, total (% of relevant age group)",
+        "definition": "Lower secondary education completion rate is measured as the gross intake ratio to the last grade of lower secondary education (general and pre-vocational). It is calculated as the number of new entrants in the last grade of lower secondary education, regardless of age, divided by the population at the entrance age for the last grade of lower secondary education.",
+        "organization": "Data API, UN Educational, Scientific and Cultural Organization (UNESCO), uri: https://databrowser.uis.unesco.org/resources, note: The data are obtained through the UIS API.  Detailed documentation is available at: https://api.uis.unesco.org/api/public/documentation/, publisher: UNESCO Institute for Statistics (UIS), date accessed: 2026-03-19, date published: 2026-02",
+        "url": "https://data.worldbank.org/indicator/SE.SEC.CMPT.LO.ZS"
+      },
+      {
+        "code": "SE.ADT.LITR.ZS",
+        "label": "Adult literacy",
+        "unit": "% of people aged 15+",
+        "caution": "",
+        "name": "Literacy rate, adult total (% of people ages 15 and above)",
+        "definition": "Adult literacy rate is the percentage of people ages 15 and above who can both read and write with understanding a short simple statement about their everyday life.",
+        "organization": "Data API, UN Educational, Scientific and Cultural Organization (UNESCO), uri: https://databrowser.uis.unesco.org/resources, note: The data are obtained through the UIS API.  Detailed documentation is available at: https://api.uis.unesco.org/api/public/documentation/, publisher: UNESCO Institute for Statistics (UIS), type: Excel (bulk file), date accessed: 2026-03-19, date published: 2026-02",
+        "url": "https://data.worldbank.org/indicator/SE.ADT.LITR.ZS"
+      },
+      {
+        "code": "SE.PRM.UNER.ZS",
+        "label": "Children out of school",
+        "unit": "% of primary school age",
+        "caution": "",
+        "name": "Children out of school (% of primary school age)",
+        "definition": "Children out of school are the percentage of primary-school-age children who are not enrolled in primary or secondary school. Children in the official primary age group that are in preprimary education should be considered out of school.",
+        "organization": "Data API, UN Educational, Scientific and Cultural Organization (UNESCO), uri: https://databrowser.uis.unesco.org/resources, note: The data are obtained through the UIS API.  Detailed documentation is available at: https://api.uis.unesco.org/api/public/documentation/, publisher: UNESCO Institute for Statistics (UIS), type: Bulk file (csv), date accessed: 2026-03-19, date published: 2026-02",
+        "url": "https://data.worldbank.org/indicator/SE.PRM.UNER.ZS"
+      },
+      {
+        "code": "SE.XPD.TOTL.GD.ZS",
+        "label": "Education expenditure",
+        "unit": "% of GDP",
+        "caution": "",
+        "name": "Government expenditure on education, total (% of GDP)",
+        "definition": "General government expenditure on education (current, capital, and transfers) is expressed as a percentage of GDP. It includes expenditure funded by transfers from international sources to government. General government usually refers to local, regional and central governments.",
+        "organization": "Data API, UN Educational, Scientific and Cultural Organization (UNESCO), uri: https://databrowser.uis.unesco.org/resources, note: The data are obtained through the UIS API.  Detailed documentation is available at: https://api.uis.unesco.org/api/public/documentation/, publisher: UNESCO Institute for Statistics (UIS), date accessed: 2026-03-19, date published: 2026-02",
+        "url": "https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS"
+      }
+    ]
+  },
+  {
+    "id": "water",
+    "title": "Water & sanitation",
+    "headline": "The basics of a healthy life.",
+    "description": "Safe drinking water, sanitation, handwashing and freshwater pressure.",
+    "measures": [
+      {
+        "code": "SH.H2O.SMDW.ZS",
+        "label": "Safely managed drinking water",
+        "unit": "% of population",
+        "caution": "",
+        "name": "People using safely managed drinking water services (% of population)",
+        "definition": "The percentage of people using drinking water from an improved source that is accessible on premises, available when needed and free from fecal and priority chemical contamination. Improved water sources include piped water, boreholes or tubewells, protected dug wells, protected springs, and packaged or delivered water.",
+        "organization": "WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene, World Health Organization (WHO), uri: washdata.org, note: Aggregate data by groups are computed based on the groupings for the World Bank fiscal year in which the data was released by the WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene., publisher: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene (washdata.org), date accessed: 2025-09-30, date published: 2025-08-25;\nUN Children's Fund (UNICEF), uri: washdata.org, note: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene",
+        "url": "https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS"
+      },
+      {
+        "code": "SH.STA.SMSS.ZS",
+        "label": "Safely managed sanitation",
+        "unit": "% of population",
+        "caution": "",
+        "name": "People using safely managed sanitation services (% of population)",
+        "definition": "The percentage of people using improved sanitation facilities that are not shared with other households and where excreta are safely disposed of in situ or transported and treated offsite. Improved sanitation facilities include flush/pour flush to piped sewer systems, septic tanks or pit latrines: ventilated improved pit latrines, composting toilets or pit latrines with slabs.",
+        "organization": "WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene, World Health Organization (WHO), uri: washdata.org, note: Aggregate data by groups are computed based on the groupings for the World Bank fiscal year in which the data was released by the WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene., publisher: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene (washdata.org), date accessed: 2025-09-30, date published: 2025-08-25;\nUN Children's Fund (UNICEF), uri: washdata.org, note: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene",
+        "url": "https://data.worldbank.org/indicator/SH.STA.SMSS.ZS"
+      },
+      {
+        "code": "SH.STA.HYGN.ZS",
+        "label": "Basic handwashing facilities",
+        "unit": "% of population",
+        "caution": "Includes soap and water on premises.",
+        "name": "People with basic handwashing facilities including soap and water (% of population)",
+        "definition": "The percentage of people living in households that have a handwashing facility with soap and water available on the premises. Handwashing facilities may be fixed or mobile and include a sink with tap water, buckets with taps, tippy-taps, and jugs or basins designated for handwashing. Soap includes bar soap, liquid soap, powder detergent, and soapy water but does not include ash, soil, sand or other handwashing agents.",
+        "organization": "WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene, World Health Organization (WHO), uri: washdata.org, publisher: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene (washdata.org), date accessed: 2025-09-30, date published: 2025-08-25;\nUN Children's Fund (UNICEF), uri: washdata.org, note: WHO/UNICEF Joint Monitoring Programme (JMP) for Water Supply, Sanitation and Hygiene",
+        "url": "https://data.worldbank.org/indicator/SH.STA.HYGN.ZS"
+      },
+      {
+        "code": "ER.H2O.FWST.ZS",
+        "label": "Water stress",
+        "unit": "% of available freshwater",
+        "caution": "Withdrawals as a share of available freshwater resources. Values can exceed 100%.",
+        "name": "Level of water stress: freshwater withdrawal as a proportion of available freshwater resources",
+        "definition": "The level of water stress: freshwater withdrawal as a proportion of available freshwater resources is the ratio between total freshwater withdrawn by all major sectors and total renewable freshwater resources, after taking into account environmental water requirements. Main sectors, as defined by ISIC standards, include agriculture; forestry and fishing; manufacturing; electricity industry; and services. This indicator is also known as water withdrawal intensity.",
+        "organization": "AQUASTAT - FAO's Global Information System on Water and Agriculture, Food and Agriculture Organization of the United Nations (FAO), uri: https://data.apps.fao.org/aquastat/, publisher: Food and Agriculture Organization of the United Nations (FAO), date accessed: 20240529",
+        "url": "https://data.worldbank.org/indicator/ER.H2O.FWST.ZS"
+      }
+    ]
+  },
+  {
+    "id": "energy",
+    "title": "Energy",
+    "headline": "Powering daily life.",
+    "description": "Access to electricity and clean cooking, renewables and energy intensity.",
+    "measures": [
+      {
+        "code": "EG.ELC.ACCS.ZS",
+        "label": "Electricity access",
+        "unit": "% of population",
+        "caution": "",
+        "name": "Access to electricity (% of population)",
+        "definition": "Access to electricity is the percentage of population with access to electricity. Electrification data are collected from industry, national surveys and international sources.",
+        "organization": "SDG 7.1.1 Electrification Dataset, World Bank (WB), uri: https://trackingsdg7.esmap.org/downloads, note: Data is downloaded from ESMAP website. Data is released when a new Tracking SDG7 report is released., publisher: World Bank (WB), date accessed: 2024-05-16, date published: 2023",
+        "url": "https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS"
+      },
+      {
+        "code": "EG.CFT.ACCS.ZS",
+        "label": "Clean cooking access",
+        "unit": "% of population",
+        "caution": "",
+        "name": "Access to clean fuels and technologies for cooking (% of population)",
+        "definition": "Access to clean fuels and technologies for cooking is the proportion of total population primarily using clean cooking fuels and technologies for cooking. Under WHO guidelines, kerosene is excluded from clean cooking fuels.",
+        "organization": "Tracking SDG 7: The Energy Progress Report, ACRA Europe, uri: https://trackingsdg7.esmap.org/, note: License: Creative Commons Attribution—NonCommercial 3.0 IGO (CC BY-NC 3.0 IGO), publisher: International Energy Agency (IEA), International Renewable Energy Agency (IRENA), United Nations Statistical Division (UNSD), World Bank, World Health Organization (WHO), date published: 2025-06;\nInternational Renewable Energy Agency (IRENA), note: Tracking SDG 7: The Energy Progress Report;\nUnited Nations (UN), note: Tracking SDG 7: The Energy Progress Report, publisher: UN Statistics Division;\nWorld Bank (WB), note: Tracking SDG 7: The Energy Progress Report;\nWorld Health Organization (WHO), note: Tracking SDG 7: The Energy Progress Report",
+        "url": "https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS"
+      },
+      {
+        "code": "EG.FEC.RNEW.ZS",
+        "label": "Renewable energy consumption",
+        "unit": "% of final energy consumption",
+        "caution": "Includes energy beyond electricity generation.",
+        "name": "Renewable energy consumption (% of total final energy consumption)",
+        "definition": "Renewable energy consumption is the share of renewable energy in total final energy consumption.",
+        "organization": "IEA Energy Statistics Data Browser, International Energy Agency (IEA), uri: https://www.iea.org/data-and-statistics/data-tools/energy-statistics-data-browser, publisher: International Energy Agency (IEA), date accessed: 2025-03-25",
+        "url": "https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS"
+      },
+      {
+        "code": "EG.EGY.PRIM.PP.KD",
+        "label": "Energy intensity",
+        "unit": "MJ / $2021 PPP GDP",
+        "caution": "Energy use per unit of economic output; not energy use per person.",
+        "name": "Energy intensity level of primary energy (MJ/$2021 PPP GDP)",
+        "definition": "Energy intensity level of primary energy is the ratio between energy supply and gross domestic product measured at purchasing power parity. Energy intensity is an indication of how much energy is used to produce one unit of economic output. Lower ratio indicates that less energy is used to produce one unit of output.",
+        "organization": "Tracking SDG 7: The Energy Progress Report, International Energy Agency (IEA), note: License: Creative Commons Attribution—NonCommercial 3.0 IGO (CC BY-NC 3.0 IGO);\nInternational Renewable Energy Agency (IRENA), note: Tracking SDG 7: The Energy Progress Report;\nUnited Nations (UN), note: Tracking SDG 7: The Energy Progress Report, publisher: UN Statistics Division;\nWorld Bank (WB), note: Tracking SDG 7: The Energy Progress Report;\nWorld Health Organization (WHO), note: Tracking SDG 7: The Energy Progress Report",
+        "url": "https://data.worldbank.org/indicator/EG.EGY.PRIM.PP.KD"
+      }
+    ]
+  },
+  {
+    "id": "economy",
+    "title": "Economy & employment",
+    "headline": "How economies grow.",
+    "description": "Living standards, prices, jobs and productivity.",
+    "measures": [
+      {
+        "code": "NY.GDP.PCAP.KD",
+        "label": "GDP per person",
+        "unit": "constant 2015 US$",
+        "caution": "Real GDP per capita; not household income.",
+        "name": "GDP per capita (constant 2015 US$)",
+        "definition": "Gross domestic product is the total income earned through the production of goods and services in an economic territory during an accounting period. It can be measured in three different ways: using either the expenditure approach, the income approach, or the production approach. The core indicator has been divided by the general population to achieve a per capita estimate.This indicator is expressed in constant prices, meaning the series has been adjusted to account for price changes over time. The reference year for this adjustment is 2015. This indicator is expressed in United States dollars.",
+        "organization": "Country official statistics, National Statistical Organizations and/or Central Banks;\nNational Accounts data files, Organisation for Economic Co-operation and Development (OECD);\nStaff estimates, World Bank (WB)",
+        "url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.KD"
+      },
+      {
+        "code": "NY.GDP.MKTP.KD.ZG",
+        "label": "GDP growth",
+        "unit": "annual %",
+        "caution": "",
+        "name": "GDP growth (annual %)",
+        "definition": "Gross domestic product is the total income earned through the production of goods and services in an economic territory during an accounting period. It can be measured in three different ways: using either the expenditure approach, the income approach, or the production approach. This indicator denotes the percentage change over each previous year of the constant price (base year 2015) series in United States dollars.",
+        "organization": "Country official statistics, National Statistical Organizations and/or Central Banks;\nNational Accounts data files, Organisation for Economic Co-operation and Development (OECD);\nStaff estimates, World Bank (WB)",
+        "url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG"
+      },
+      {
+        "code": "FP.CPI.TOTL.ZG",
+        "label": "Consumer price inflation",
+        "unit": "annual %",
+        "caution": "",
+        "name": "Inflation, consumer prices (annual %)",
+        "definition": "Inflation as measured by the consumer price index reflects the annual percentage change in the cost to the average consumer of acquiring a basket of goods and services that may be fixed or changed at specified intervals, such as yearly.",
+        "organization": "International Financial Statistics database, International Monetary Fund (IMF)",
+        "url": "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG"
+      },
+      {
+        "code": "SL.UEM.TOTL.ZS",
+        "label": "Unemployment",
+        "unit": "% of labour force",
+        "caution": "Modeled ILO estimate; distinct from individual national survey series.",
+        "name": "Unemployment, total (% of total labor force) (modeled ILO estimate)",
+        "definition": "Unemployment refers to the share of the labor force that is without work but available for and seeking employment.",
+        "organization": "ILO Modelled Estimates database (ILOEST), International Labour Organization (ILO), uri: https://ilostat.ilo.org/data/bulk/, publisher: ILOSTAT, type: external database, date accessed: January 17, 2026",
+        "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS"
+      },
+      {
+        "code": "SL.GDP.PCAP.EM.KD",
+        "label": "Output per worker",
+        "unit": "constant 2021 PPP $",
+        "caution": "GDP per person employed, not wages.",
+        "name": "GDP per person employed (constant 2021 PPP $)",
+        "definition": "GDP per person employed is gross domestic product (GDP) divided by total employment in the economy. Purchasing power parity (PPP) GDP is GDP converted to 2021 constant international dollars using PPP rates. An international dollar has the same purchasing power over GDP that a U.S. dollar has in the United States.",
+        "organization": "Staff estimates, World Bank (WB), note: Estimates are based on employment, population, GDP, and PPP data obtained from International Labour Organization, United Nations Population Division, Eurostat, OECD, and World Bank., type: estimates based on external database;\nInternational Labour Organization (ILO);\nUnited Nations (UN), publisher: UN Population Division;\nEurostat (ESTAT);\nOrganisation for Economic Co-operation and Development (OECD);\nWorld Development Indicators database, World Bank (WB)",
+        "url": "https://data.worldbank.org/indicator/SL.GDP.PCAP.EM.KD"
+      }
+    ]
+  },
+  {
+    "id": "cities",
+    "title": "Cities & infrastructure",
+    "headline": "Where we live and connect.",
+    "description": "Urbanization, internet access and housing conditions.",
+    "measures": [
+      {
+        "code": "SP.URB.TOTL.IN.ZS",
+        "label": "Urban population",
+        "unit": "% of total population",
+        "caution": "Urban definitions differ between countries.",
+        "name": "Urban population (% of total population)",
+        "definition": "Urban population refers to people living in urban areas as defined by national statistical offices. The data are collected and smoothed by United Nations Population Division.",
+        "organization": "World Urbanization Prospects, United Nations (UN), uri: https://population.un.org/wup/, note: United Nations Population Division's World Urbanization Prospects, National definitions, publisher: UN Population Division",
+        "url": "https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS"
+      },
+      {
+        "code": "SP.URB.GROW",
+        "label": "Urban population growth",
+        "unit": "annual %",
+        "caution": "",
+        "name": "Urban population growth (annual %)",
+        "definition": "Annual urban population growth rate for year t is the exponential rate of growth of midyear urban population from year t-1 to t, expressed as a percentage. Urban population refers to people living in urban areas as defined by national statistical offices. It is calculated using World Bank total population estimates and urban ratios from the United Nations World Urbanization Prospects.",
+        "organization": "World Urbanization Prospects, United Nations (UN), uri: https://population.un.org/wup/, note: World Bank staff estimates based on the United Nations Population Division's World Urbanization Prospects, National definitions, publisher: UN Population Division;\nStaff estimates, World Bank (WB), note: World Bank staff estimates based on the United Nations Population Division's World Urbanization Prospects, National definitions",
+        "url": "https://data.worldbank.org/indicator/SP.URB.GROW"
+      },
+      {
+        "code": "IT.NET.USER.ZS",
+        "label": "Internet use",
+        "unit": "% of population",
+        "caution": "",
+        "name": "Individuals using the Internet (% of population)",
+        "definition": "Internet users are individuals who have used the Internet (from any location) in the last 3 months. The Internet can be used via a computer, mobile phone, personal digital assistant, games machine, digital TV etc.",
+        "organization": "World Telecommunication/ICT Indicators Database, International Telecommunication Union (ITU), uri: https://datahub.itu.int/",
+        "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS"
+      },
+      {
+        "code": "EN.POP.SLUM.UR.ZS",
+        "label": "Urban population living in slums",
+        "unit": "% of urban population",
+        "caution": "Often unavailable for high-income countries; missing is not zero.",
+        "name": "Population living in slums (% of urban population)",
+        "definition": "Population living in slums is the proportion of the urban population living in slum households. A slum household is defined as a group of individuals living under the same roof lacking one or more of the following conditions: access to improved water, access to improved sanitation, sufficient living area, housing durability, and security of tenure, as adopted in the Millennium Development Goal Target 7.D. The successor, the Sustainable Development Goal 11.1.1, considers inadequate housing (housing affordability) to complement the above definition of slums/informal settlements.",
+        "organization": "Urban Indicators Database, UN Human Settlements Programme (UN-Habitat), uri: https://data.unhabitat.org/",
+        "url": "https://data.worldbank.org/indicator/EN.POP.SLUM.UR.ZS"
+      }
+    ]
+  },
+  {
+    "id": "peace",
+    "title": "Peace & institutions",
+    "headline": "Safety, rights and institutions.",
+    "description": "Homicide, legal identity, corruption and the rule of law.",
+    "measures": [
+      {
+        "code": "VC.IHR.PSRC.P5",
+        "label": "Intentional homicide rate",
+        "unit": "deaths / 100,000 people",
+        "caution": "Not a measure of war fatalities.",
+        "name": "Intentional homicides (per 100,000 people)",
+        "definition": "An intentional homicide is defined as an unlawful death inflicted upon a person with the intent to cause death or serious injury.",
+        "organization": "UNODC Research - Data Portal – Intentional Homicide, UN Office on Drugs and Crime (UNODC)",
+        "url": "https://data.worldbank.org/indicator/VC.IHR.PSRC.P5"
+      },
+      {
+        "code": "SP.REG.BRTH.ZS",
+        "label": "Birth registration",
+        "unit": "%",
+        "caution": "",
+        "name": "Completeness of birth registration (%)",
+        "definition": "Completeness of birth registration is the percentage of children under age 5 whose births were registered at the time of the survey. The numerator of completeness of birth registration includes children whose birth certificate was seen by the interviewer or whose mother or caretaker says the birth has been registered.",
+        "organization": "Household surveys, UN Children's Fund (UNICEF), note: Household surveys such as Demographic and Health Surveys and Multiple Indicator Cluster Surveys. Largely compiled by UNICEF.",
+        "url": "https://data.worldbank.org/indicator/SP.REG.BRTH.ZS"
+      },
+      {
+        "code": "GOV_WGI_CC_EST",
+        "label": "Control of corruption",
+        "unit": "governance estimate",
+        "caution": "Approximately −2.5 to +2.5. Higher values indicate stronger control; estimates carry uncertainty.",
+        "name": "Control of Corruption - Governance estimate (approx. -2.5 to +2.5)",
+        "definition": "Control of Corruption (CC) captures perceptions of the extent to which public power is used for private gain, including both petty and grand corruption, as well as capture of the state by elites and private interests. \n\nGovernance estimate from the aggregation model, in units of a standard normal distribution, i.e. ranging from approximately -2.5 to 2.5. Larger values correspond to better governance.\n\nThe (country-series-time) metadata include the (a) number of sources, and (b) standard error. The number of sources indicates the number of underlying data sources on which the governance estimate is based. The standard error indicates the precision of the governance estimate. Larger values indicate less precise estimates. A 90% confidence interval for the governance estimate is given by the estimate +/- 1.64 times the standard error.",
+        "organization": "The Worldwide Governance Indicators: Revised Methodology for Measuring Governance Using Perception Data., World Bank Group (WBG), uri: https://www.worldbank.org/en/publication/worldwide-governance-indicators, note: Detailed documentation of the WGI, interactive tools for exploring the data, and full access to the underlying source data available at www.govindicators.org. Worldwide Governance Indicators, 2025 Revision, World Bank (www.govindicators.org), Accessed on 12/15/2025. And: World Bank (2025). “The Worldwide Governance Indicators: Revised Methodology for Measuring Governance Using Perception Data.” Washington, DC: World Bank Group. The 2025 revision builds upon the original WGI methodology which was introduced in 1999 and summarized by the following paper: Kaufmann, Daniel & Aart C. Kraay. (2024). “The Worldwide Governance Indicators: Methodology and 2024 Update.” Policy Research Working Paper. Washington, DC: World Bank Group., date accessed: 2026-06-03, date published: 2025",
+        "url": "https://data.worldbank.org/indicator/GOV_WGI_CC_EST"
+      },
+      {
+        "code": "GOV_WGI_RL_EST",
+        "label": "Rule of law",
+        "unit": "governance estimate",
+        "caution": "Approximately −2.5 to +2.5. Higher values indicate stronger rule of law; estimates carry uncertainty.",
+        "name": "Rule of Law - Governance estimate (approx. -2.5 to +2.5)",
+        "definition": "Rule of Law (RL) captures perceptions of the extent to which agents respect and follow the rules of society, including contract enforcement, property rights, the police, courts, and the likelihood of crime and violence. \n\nGovernance estimate from the aggregation model, in units of a standard normal distribution, i.e. ranging from approximately -2.5 to 2.5. Larger values correspond to better governance.\n\nThe (country-series-time) metadata include the (a) number of sources, and (b) standard error. The number of sources indicates the number of underlying data sources on which the governance estimate is based. The standard error indicates the precision of the governance estimate. Larger values indicate less precise estimates. A 90% confidence interval for the governance estimate is given by the estimate +/- 1.64 times the standard error.",
+        "organization": "The Worldwide Governance Indicators: Revised Methodology for Measuring Governance Using Perception Data., World Bank Group (WBG), uri: https://www.worldbank.org/en/publication/worldwide-governance-indicators, note: Detailed documentation of the WGI, interactive tools for exploring the data, and full access to the underlying source data available at www.govindicators.org. Worldwide Governance Indicators, 2025 Revision, World Bank (www.govindicators.org), Accessed on 12/15/2025. And: World Bank (2025). “The Worldwide Governance Indicators: Revised Methodology for Measuring Governance Using Perception Data.” Washington, DC: World Bank Group. The 2025 revision builds upon the original WGI methodology which was introduced in 1999 and summarized by the following paper: Kaufmann, Daniel & Aart C. Kraay. (2024). “The Worldwide Governance Indicators: Methodology and 2024 Update.” Policy Research Working Paper. Washington, DC: World Bank Group., date accessed: 2026-06-03, date published: 2025",
+        "url": "https://data.worldbank.org/indicator/GOV_WGI_RL_EST"
+      }
+    ]
+  },
+  {
+    "id": "conflict",
+    "title": "Conflict & displacement",
+    "headline": "The human cost of conflict.",
+    "description": "Battle-related deaths, refugees, internal displacement and military spending.",
+    "measures": [
+      {
+        "code": "VC.BTL.DETH",
+        "label": "Battle-related deaths",
+        "unit": "people",
+        "caution": "Recorded combat-related fatalities, including civilians killed in combat. Not all war-related or indirect deaths; not a live conflict-event feed.",
+        "name": "Battle-related deaths (number of people)",
+        "definition": "Battle-related deaths are deaths in battle-related conflicts between warring parties in the conflict dyad (two conflict units that are parties to a conflict). Battle-related deaths refer to those deaths caused by the warring parties that can be directly related to combat. This includes battlefield fighting, guerrilla activities (e.g. hit and-run attacks/ambushes) and all kinds of bombardments of military bases, cities and villages etc. The target for the attacks is either the military forces or representatives for the parties, though there is often substantial collateral damage in the form of civilians being killed in the crossfire, indiscriminate bombings, etc. All fatalities, military as well as civilian, incurred in such situations are counted as battle-related deaths.",
+        "organization": "UCDP Battle-related Deaths Dataset , Uppsala Conflict Data Program (UCDP), uri: https://ucdp.uu.se/downloads/, publisher: Uppsala University",
+        "url": "https://data.worldbank.org/indicator/VC.BTL.DETH"
+      },
+      {
+        "code": "SM.POP.RHCR.EA",
+        "label": "Refugees by country of asylum",
+        "unit": "people",
+        "caution": "Refugees under UNHCR’s mandate, hosted in the selected country. Excludes refugees under UNRWA’s mandate.",
+        "name": "Refugees under the mandate of the UNHCR by country or territory of asylum",
+        "definition": "Refugees under the mandate of the Office of the United Nations High Commissioner for Refugees (UNHCR) include individuals recognized under the 1951 Convention relating to the Status of Refugees, its 1967 Protocol, the 1969 Organization of African Unity (OAU) Convention Governing the Specific Aspects of Refugee Problems in Africa, the refugee definition contained in the 1984 Cartagena Declaration on Refugees as incorporated into national laws, those recognized in accordance with the UNHCR Statute, individuals granted complementary forms of protection, and those enjoying temporary protection. The refugee population also includes people in a refugee-like situation, which is a category that is descriptive in nature and includes groups of people who are outside their country or territory of origin and who face protection risks similar to those of refugees, but for whom refugee status has, for practical or other reasons, not been ascertained. Refugees under the mandate of the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Palestine Refugees, are not typically included in the statistics on refugees (and people in a refugee-like situation) under the mandate of the UNHCR.",
+        "organization": "Refugee Population Statistics Database, UN High Commissioner for Refugees (UNHCR), uri: https://www.unhcr.org/refugee-statistics/download",
+        "url": "https://data.worldbank.org/indicator/SM.POP.RHCR.EA"
+      },
+      {
+        "code": "SM.POP.RHCR.EO",
+        "label": "Refugees by country of origin",
+        "unit": "people",
+        "caution": "Refugees under UNHCR’s mandate originating from the selected country; not the number hosted there.",
+        "name": "Refugees under the mandate of the UNHCR by country or territory of origin",
+        "definition": "Refugees under the mandate of the Office of the United Nations High Commissioner for Refugees (UNHCR) include individuals recognized under the 1951 Convention relating to the Status of Refugees, its 1967 Protocol, the 1969 Organization of African Unity (OAU) Convention Governing the Specific Aspects of Refugee Problems in Africa, the refugee definition contained in the 1984 Cartagena Declaration on Refugees as incorporated into national laws, those recognized in accordance with the UNHCR Statute, individuals granted complementary forms of protection, and those enjoying temporary protection. The refugee population also includes people in a refugee-like situation, which is a category that is descriptive in nature and includes groups of people who are outside their country or territory of origin and who face protection risks similar to those of refugees, but for whom refugee status has, for practical or other reasons, not been ascertained. Refugees under the mandate of the United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA), Palestine Refugees, are not typically included in the statistics on refugees (and people in a refugee-like situation) under the mandate of the UNHCR.",
+        "organization": "Refugee Population Statistics Database, UN High Commissioner for Refugees (UNHCR), uri: https://www.unhcr.org/refugee-statistics/download",
+        "url": "https://data.worldbank.org/indicator/SM.POP.RHCR.EO"
+      },
+      {
+        "code": "SM.POP.IDPC",
+        "label": "Internally displaced people",
+        "unit": "people",
+        "caution": "Population stock, not the number of new displacement events.",
+        "name": "Internally displaced people (IDP) by country or territory of asylum / origin",
+        "definition": "Internally displaced people (IDPs) are persons or groups of persons who have been forced or obliged to flee or to leave their homes or places of habitual residence, in particular as a result of, or in order to avoid the effects of armed conflict, situations of generalized violence, and violations of human rights, and who have not crossed an internationally recognized State border.",
+        "organization": "Refugee Population Statistics Database, UN High Commissioner for Refugees (UNHCR), uri: https://www.unhcr.org/refugee-statistics/download;\nGlobal Internal Displacement Database, Internal Displacement Monitoring Centre (IDMC), uri: https://www.internal-displacement.org/database/displacement-data/",
+        "url": "https://data.worldbank.org/indicator/SM.POP.IDPC"
+      },
+      {
+        "code": "VC.IDP.NWCV",
+        "label": "New conflict displacement",
+        "unit": "displacement cases",
+        "caution": "Counts movements, not necessarily distinct people; someone can be displaced more than once.",
+        "name": "Internally displaced persons, new displacement associated with conflict and violence (number of cases)",
+        "definition": "Internally displaced persons are defined according to the 1998 Guiding Principles (http://www.internal-displacement.org/publications/1998/ocha-guiding-principles-on-internal-displacement) as people or groups of people who have been forced or obliged to flee or to leave their homes or places of habitual residence, in particular as a result of armed conflict, or to avoid the effects of armed conflict, situations of generalized violence, violations of human rights, or natural or human-made disasters and who have not crossed an international border. \"New Displacement\" refers to the number of new cases or incidents of displacement recorded over the specified year, rather than the number of people displaced. This is done because people may have been displaced more than once.",
+        "organization": "Internal Displacement Monitoring Centre (IDMC), uri: http://www.internal-displacement.org/",
+        "url": "https://data.worldbank.org/indicator/VC.IDP.NWCV"
+      },
+      {
+        "code": "MS.MIL.XPND.GD.ZS",
+        "label": "Military expenditure",
+        "unit": "% of GDP",
+        "caution": "",
+        "name": "Military expenditure (% of GDP)",
+        "definition": "Military expenditure by country as percentage of gross domestic product",
+        "organization": "SIPRI Military Expenditure Database, Stockholm International Peace Research Institute (SIPRI), uri: https://www.sipri.org/databases",
+        "url": "https://data.worldbank.org/indicator/MS.MIL.XPND.GD.ZS"
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {mergePublicMessages,validatePublicMessage,publicChatFields} from '../lib/public-chat.ts';
+const row=id=>({id,display_name:'Guest',body:'<script>plain text</script>',created_at:'2026-11-17T00:00:00Z'});
+assert.deepEqual(mergePublicMessages([row(3),row(4)],[row(1),row(3)]).map(m=>m.id),[1,3,4]);
+assert.deepEqual(mergePublicMessages([row(1)],[{...row(1),body:'Updated'}]),[{...row(1),body:'Updated'}]);
+assert.equal(validatePublicMessage(' Hello ',' '),null);
+assert.equal(validatePublicMessage('a'.repeat(2000),'a'.repeat(40)),null);
+assert.ok(validatePublicMessage(' ',''));
+assert.ok(validatePublicMessage('a'.repeat(2001),''));
+assert.ok(validatePublicMessage('Hello','a'.repeat(41)));
+assert.equal(publicChatFields,'id,display_name,body,created_at');
+assert.equal(mergePublicMessages([],[row(1)])[0].body,'<script>plain text</script>');
+console.log('Passed public message validation, history ordering, duplicate merging, safe public field selection and plain-text preservation.');

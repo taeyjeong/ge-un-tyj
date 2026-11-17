@@ -1,0 +1,22 @@
+{
+  "mpi": {
+    "url": "https://hdr.undp.org/sites/default/files/publications/additional-files/2026-10/2026_gMPI_Table1and2.xlsx",
+    "file": "/index-sources/mpi-2026.xlsx",
+    "sha256": "7af20330132c46541d9d9696a7e8b6354cbb134f53977d91356bdbce6d0e0de4"
+  },
+  "ghi": {
+    "url": "https://www.globalhungerindex.org/xlsx/2026.xlsx",
+    "file": "/index-sources/ghi-2026.xlsx",
+    "sha256": "289ecb890a6beeb45d070c6f1057b83177b764f59f3e2b9df451790da81fb2be"
+  },
+  "epi": {
+    "url": "https://epi.yale.edu/sites/default/files/2026-09/epi2026results2026-07-07.xlsx",
+    "file": "/index-sources/epi-2026.xlsx",
+    "sha256": "1f8dcceb4f7dc381e95bb7402424da8b969fd7c2e1e027a0d67d3177d54143f7"
+  },
+  "epi_methods": {
+    "url": "https://epi.yale.edu/sites/default/files/2026-09/epi2026methods.xlsx",
+    "file": "/index-sources/epi_methods-2026.xlsx",
+    "sha256": "e43bde44c65f7b13c40ccb86582fdb235b4bded1011e1d872e77caa1e7731199"
+  }
+}

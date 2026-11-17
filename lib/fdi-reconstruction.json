@@ -1,0 +1,39 @@
+{
+  "method": "Affine least-squares reconstruction of published IMF sub-index relationships; parameters inferred from this extract, not official published PCA loadings.",
+  "normalization": "Weighted mean followed by min-max normalization, as described by IMF WP/16/5.",
+  "sample": "All individual-country observations in the downloaded dataflow, excluding IMF regional aggregates.",
+  "parameters": {
+    "fi": {
+      "weights": {
+        "fid": 0.3865685379994108,
+        "fia": 0.3838067112703905,
+        "fie": 0.22962475073019875
+      },
+      "minimum": -1.1476013468155982e-11,
+      "maximum": 0.8920528884559337,
+      "maxAbsoluteError": 6.119160922413158e-08,
+      "observations": 7503
+    },
+    "fm": {
+      "weights": {
+        "fmd": 0.3736043967342075,
+        "fma": 0.31570867286147875,
+        "fme": 0.3106869304043138
+      },
+      "minimum": -3.528049340709683e-11,
+      "maximum": 0.986655474172678,
+      "maxAbsoluteError": 5.878351749810662e-08,
+      "observations": 7503
+    },
+    "fd": {
+      "weights": {
+        "fi": 0.5000000063571973,
+        "fm": 0.4999999936428027
+      },
+      "minimum": -4.863997552028405e-10,
+      "maximum": 0.9820850076364314,
+      "maxAbsoluteError": 5.611133035987592e-08,
+      "observations": 7503
+    }
+  }
+}

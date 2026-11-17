@@ -1,0 +1,1 @@
+export default function IndexSections(){return <nav className="index-section-nav" aria-label="On this index page"><a href="#compare">Compare</a><a href="#calculate">Calculate</a><a href="#experiment">Experiment</a><a href="#equation">Equation & sources</a></nav>}

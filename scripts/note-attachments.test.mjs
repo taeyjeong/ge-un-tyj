@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {attachmentError,maxAttachmentSize,previewableImage} from '../lib/note-attachments.ts';
+for(const name of ['slides.pptx','sheet.xlsx','letter.docx','archive.zip','report.pdf','photo.HEIC','scan.tiff','vector.svg','camera.nef','design.psd'])assert.equal(attachmentError({name,size:100,type:''}),null);
+assert.equal(attachmentError({name:'future-format.xyz',size:100,type:'image/example'}),null);
+assert.ok(attachmentError({name:'file.exe',size:100,type:'application/octet-stream'}));
+assert.ok(attachmentError({name:'empty.pdf',size:0,type:'application/pdf'}));
+assert.ok(attachmentError({name:'large.pdf',size:maxAttachmentSize+1,type:'application/pdf'}));
+assert.equal(attachmentError({name:'limit.pdf',size:maxAttachmentSize,type:'application/pdf'}),null);
+assert.equal(previewableImage('image/svg+xml'),false);
+assert.equal(previewableImage('image/tiff'),false);
+assert.equal(previewableImage('image/png'),true);
+console.log('Passed attachment formats, file size limits, empty-file rejection, and safe preview selection.');
