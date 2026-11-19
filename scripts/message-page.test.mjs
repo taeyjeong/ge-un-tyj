@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {messagePage,messagePageLabel} from '../lib/message-page.ts';
+assert.equal(messagePage({pathname:'/indices/hdi',search:'?token=secret&countries=JPN'}),'/indices/hdi');
+assert.equal(messagePage({pathname:'/indices-redone',search:'?index=hdi&token=secret&countries=JPN'}),'/indices-redone?index=hdi');
+assert.equal(messagePage({pathname:'/indices-redone',search:'?index=unknown'}),'/indices-redone');
+assert.equal(messagePage({pathname:'//outside.example',search:''}),'/');
+assert.equal(messagePageLabel('/indices-redone?index=hdi'),'Indices dashboard · HDI');
+assert.equal(messagePageLabel('/indices-redone'),'Indices dashboard · GII');
+assert.equal(messagePageLabel('/indices/hdi'),'HDI · Index explorer');
+assert.equal(messagePageLabel('/'),'GII · Homepage');
+assert.equal(messagePageLabel(null),'Page not recorded');
+console.log('Passed current-page identity, dashboard index context, sensitive query exclusion, labels and unknown historical origin.');

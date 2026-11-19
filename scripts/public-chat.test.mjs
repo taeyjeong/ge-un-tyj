@@ -8,6 +8,6 @@ assert.equal(validatePublicMessage('a'.repeat(2000),'a'.repeat(40)),null);
 assert.ok(validatePublicMessage(' ',''));
 assert.ok(validatePublicMessage('a'.repeat(2001),''));
 assert.ok(validatePublicMessage('Hello','a'.repeat(41)));
-assert.equal(publicChatFields,'id,display_name,body,created_at');
+assert.equal(publicChatFields,'id,display_name,body,created_at,page_path');
 assert.equal(mergePublicMessages([],[row(1)])[0].body,'<script>plain text</script>');
 console.log('Passed public message validation, history ordering, duplicate merging, safe public field selection and plain-text preservation.');

@@ -1,5 +1,5 @@
-export interface PublicMessage {id:number;display_name:string;body:string;created_at:string}
-export const publicChatFields='id,display_name,body,created_at';
+export interface PublicMessage {id:number;display_name:string;body:string;created_at:string;page_path:string|null}
+export const publicChatFields='id,display_name,body,created_at,page_path';
 export const publicChatPageSize=50;
 export function validatePublicMessage(body:string,name:string){
  if(!body.trim()||body.trim().length>2000)return 'Write a message of 1–2,000 characters.';
