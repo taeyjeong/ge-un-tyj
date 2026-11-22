@@ -5,6 +5,14 @@ import {useEffect, useRef, useState, type FormEvent} from 'react';
 import styles from './PublicChat.module.css';
 
 interface Turn {role: 'user' | 'assistant'; content: string}
+const VISITOR_KEY = 'ge:ask-data:visitor';
+function visitorId() {  // random id kept in this browser so the log can group a visitor's questions; not linked to any account
+  try {
+    const saved = localStorage.getItem(VISITOR_KEY);
+    if (saved) return saved;
+    const fresh = crypto.randomUUID(); localStorage.setItem(VISITOR_KEY, fresh); return fresh;
+  } catch {return undefined;}
+}
 const EXAMPLES = ['Which kinds of peace agreements mention women most often?', 'Did women sign the 2016 Colombia peace agreement?', 'Does it matter if a woman signs a comprehensive agreement?'];
 
 function linkify(text: string) {
@@ -35,7 +43,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
     const next: Turn[] = [...turns, {role: 'user', content: q}];
     setTurns(next); setQuestion(''); setBusy(true); setError('');
     try {
-      const res = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({messages: next})});
+      const res = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({messages: next, visitorId: visitorId(), pagePath: window.location.pathname})});
       const data = await res.json().catch(() => ({})) as {answer?: string; error?: string};
       if (!res.ok || !data.answer) throw new Error(data.error || 'The assistant couldn’t answer right now. Please try again.');
       setTurns([...next, {role: 'assistant', content: data.answer}]);
@@ -46,7 +54,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
   }
 
   return <>
-    <div className={styles.visibility}><span aria-hidden="true">✦</span><span>Answers from an AI (Claude) using PA-X, PADD and CFR data.<small>Private to you · not posted to the public chat · AI can make mistakes; check the linked sources.</small></span></div>
+    <div className={styles.visibility}><span aria-hidden="true">✦</span><span>Answers from an AI (Claude) using PA-X, PADD and CFR data.<small>Not shown to other visitors · questions and answers are saved to improve the site (no account or name attached) · AI can make mistakes; check the linked sources.</small></span></div>
     {error && <p className={styles.error} role="alert">{error}</p>}
     <div ref={list} className={styles.messages} role="log" aria-label="Questions and answers" aria-live="polite">
       {!turns.length && <div className={styles.empty}><p>Ask about 2,257 peace agreements and women’s inclusion. For example:</p>
@@ -59,7 +67,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
       <label htmlFor="ask-data-question" className={styles.srOnly}>Question about the data</label>
       <textarea ref={box} id="ask-data-question" placeholder="Ask a question about the data…" rows={3} maxLength={2000} disabled={busy} value={question}
         onChange={e => setQuestion(e.target.value)} onKeyDown={e => {if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {e.preventDefault(); void ask(question);}}}/>
-      <div className={styles.sendRow}><span>{turns.length ? <button type="button" className={styles.linkButton} disabled={busy} onClick={() => {setTurns([]); setError('');}}>New conversation</button> : 'Private · answered by Claude'}</span>
+      <div className={styles.sendRow}><span>{turns.length ? <button type="button" className={styles.linkButton} disabled={busy} onClick={() => {setTurns([]); setError('');}}>New conversation</button> : 'Answered by Claude · saved to improve the site'}</span>
         <button type="submit" disabled={busy || !question.trim()}>{busy ? 'Thinking…' : 'Ask'}</button></div>
     </form>
   </>;

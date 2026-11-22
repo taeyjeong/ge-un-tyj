@@ -112,6 +112,20 @@ function rates(args: Args): ToolResult {
     note: 'Raw shares (no controls). "mention women" = PA-X GeWom: any provision on women, girls or gender. Small groups are unreliable.'});
 }
 
+// Official public sources that could answer questions this project's data can't. Links checked 22 Nov 2026.
+export const OFFICIAL_SOURCES = [
+  {name: 'PA-X Peace Agreements Database (full site)', publisher: 'PeaceRep, University of Edinburgh', url: 'https://www.peaceagreements.org/', covers: 'Full text of every agreement and ~280 coded provisions, including detailed gender provisions (PA-X Gender), beyond the yes/no flag this project uses.', topics: ['agreement text', 'specific provisions', 'gender provision detail', 'local agreements']},
+  {name: 'PA-X downloads', publisher: 'PeaceRep, University of Edinburgh', url: 'https://www.peaceagreements.org/downloads', covers: 'Downloadable PA-X datasets and codebooks, including newer versions.', topics: ['agreements after 2025', 'other PA-X variables']},
+  {name: 'UCDP datasets', publisher: 'Uppsala Conflict Data Program', url: 'https://ucdp.uu.se/downloads/', covers: 'Peace agreements from 1975 and conflict data: battle deaths, conflict onset and termination, whether fighting resumed.', topics: ['agreements before 1990', 'conflict deaths', 'whether peace lasted', 'violence']},
+  {name: 'UN Peacemaker peace agreements database', publisher: 'United Nations', url: 'https://peacemaker.un.org/en/areas-of-work/peace-agreements-database-and-language-of-peace-tool/peace-agreements-search', covers: 'Searchable archive of about 1,300 peace agreement documents.', topics: ['agreement documents', 'UN-mediated processes']},
+  {name: 'Peace Accords Matrix', publisher: 'Kroc Institute, University of Notre Dame', url: 'https://kroc.nd.edu/research/peace-processes-accords/', covers: 'Year-by-year implementation of 51 provision types in 34 comprehensive agreements since 1989.', topics: ['implementation', 'whether promises were kept']},
+  {name: 'PADD: Peace Agreement Delegate Dataset (Harvard Dataverse)', publisher: 'Elizabeth Good, American Political Science Review 2025', url: 'https://doi.org/10.7910/DVN/MBMU7F', covers: 'Every named delegate in 116 comprehensive agreements with role and coded gender, plus the author\'s code and codebook.', topics: ['individual delegates', 'roles', 'delegate-level detail']},
+  {name: 'Women\'s Participation in Peace Processes', publisher: 'Council on Foreign Relations', url: 'https://www.cfr.org/womens-participation-in-peace-processes', covers: 'Women\'s share of negotiators, mediators and signatories in 73 major processes, with case narratives.', topics: ['women negotiators', 'mediators', 'case studies']},
+  {name: 'Facts and figures: Women, peace and security', publisher: 'UN Women', url: 'https://www.unwomen.org/en/articles/facts-and-figures/facts-and-figures-women-peace-and-security', covers: 'Recent global figures on women in peace processes from the UN Secretary-General\'s annual reports.', topics: ['recent global totals', 'UN-led processes', 'years after 2020']},
+  {name: 'IPU Parline', publisher: 'Inter-Parliamentary Union', url: 'https://data.ipu.org/', covers: 'Women\'s share of seats in every national parliament, over time.', topics: ['women in parliament', 'women in government']},
+  {name: 'Women, Peace and Security Index', publisher: 'Georgetown Institute for Women, Peace and Security', url: 'https://giwps.georgetown.edu/the-index/', covers: 'Country scores on women\'s inclusion, justice and security.', topics: ['country-level women\'s status', 'security', 'justice']},
+];
+
 export const TOOLS: ToolDef[] = [
   {
     name: 'search', title: 'Search peace agreements',
@@ -182,6 +196,12 @@ export const TOOLS: ToolDef[] = [
     description: 'Summarize what each part of the project found, with key numbers and caveats: part "1" (PA-X: what kinds of agreements mention women), "2a" (PADD: does women’s role matter), "2b" (CFR: women negotiators by agreement type), "original" (the original prediction question), "3" (planned). Omit part for all.',
     inputSchema: {type: 'object', properties: {part: {type: 'string', enum: ['1', '2a', '2b', 'original', '3']}}},
     run: args => {const p = str(args.part); return p ? (FINDINGS[p] ? ok(FINDINGS[p]) : fail('part must be 1, 2a, 2b, original or 3')) : ok({parts: Object.values(FINDINGS)});},
+  },
+  {
+    name: 'official_data_sources', title: 'Official public data sources',
+    description: 'List official public data sources (UN, academic) that cover things this project’s data does not, with links and what each covers. Use when a question can’t be answered from the project’s data, to suggest where the answer could be found and what could be added to the project.',
+    inputSchema: {type: 'object', properties: {}},
+    run: () => ok({sources: OFFICIAL_SOURCES, note: 'Links checked 22 Nov 2026. These are not part of this project’s data yet; any of them could be added.'}),
   },
   {
     name: 'data_issues', title: 'Known data issues',
