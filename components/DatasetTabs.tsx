@@ -39,7 +39,7 @@ export default function SiteNavigation({active,countries=['JPN','KOR','USA']}:{a
    <div className="site-nav-dropdown"><button ref={indexButton} type="button" className={`site-nav-trigger ${context.isIndex?'is-current':''}`} aria-expanded={open==='indices'} aria-controls={`${id}-indices`} onClick={()=>toggle('indices')} onKeyDown={e=>focusMenu(e,'indices')}><span>Indices{context.indexLabel&&<small> / {context.indexLabel}</small>}</span><span className="site-nav-chevron" aria-hidden="true">⌄</span></button>{panel('indices',indexNavigation)}</div>
    <div className="site-nav-dropdown"><button ref={dataButton} type="button" className={`site-nav-trigger ${context.isData?'is-current':''}`} aria-expanded={open==='data'} aria-controls={`${id}-data`} onClick={()=>toggle('data')} onKeyDown={e=>focusMenu(e,'data')}><span>Data{context.dataLabel&&<small> / {context.dataLabel}</small>}</span><span className="site-nav-chevron" aria-hidden="true">⌄</span></button>{panel('data',dataNavigation)}</div>
    <Link className={`site-nav-lab ${context.path==='/lab'?'is-current':''}`} href={href('/lab')} aria-current={context.path==='/lab'?'page':undefined} onClick={close}>Data lab<span aria-hidden="true"> ↗</span></Link>
-   <Link className={`site-nav-lab ${['/peace-agreements','/project-log','/ask-history'].includes(context.path)?'is-current':''}`} href={href('/peace-agreements')} aria-current={context.path==='/peace-agreements'?'page':undefined} onClick={close}>Peace agreements</Link>
+   <Link className={`site-nav-lab ${['/peace-agreements','/project-log','/ask-history'].includes(context.path)?'is-current':''}`} href='/peace-agreements' aria-current={context.path==='/peace-agreements'?'page':undefined} onClick={close}>Peace agreements</Link>
   </div>
  </nav>;
 }

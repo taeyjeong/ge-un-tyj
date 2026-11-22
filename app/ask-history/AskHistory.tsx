@@ -3,10 +3,10 @@
 import {Fragment, useCallback, useEffect, useState} from 'react';
 
 interface Row {id: number; created_at: string; page_path: string | null; question: string; answer: string | null;
-  status: 'answered' | 'insufficient_data' | 'refused' | 'error'; tools_used: string[]; data_gap: {missing?: string; topics?: string[]} | null;
+  status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error'; tools_used: string[]; data_gap: {missing?: string; topics?: string[]} | null;
   model: string | null; duration_ms: number | null}
-const LABEL: Record<Row['status'], string> = {answered: 'Answered', insufficient_data: 'Data not sufficient', refused: 'Declined', error: 'Error'};
-const PILL: Record<Row['status'], string> = {answered: 'resolved', insufficient_data: 'limitation', refused: 'open', error: 'open'};
+const LABEL: Record<Row['status'], string> = {answered: 'Answered', partial: 'Partly answered', insufficient_data: 'Data not sufficient', refused: 'Declined', error: 'Error'};
+const PILL: Record<Row['status'], string> = {answered: 'resolved', partial: 'handled', insufficient_data: 'limitation', refused: 'open', error: 'open'};
 const when = (iso: string) => new Date(iso).toLocaleString(undefined, {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'});
 
 function linkify(text: string) {  // clickable links in answers; markdown bold markers dropped

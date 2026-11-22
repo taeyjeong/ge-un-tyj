@@ -7,7 +7,7 @@ import {serverSupabase} from '../../../lib/supabase/server-admin';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const STATUSES = ['answered', 'insufficient_data', 'refused', 'error'] as const;
+const STATUSES = ['answered', 'partial', 'insufficient_data', 'refused', 'error'] as const;
 const FIELDS = 'id,created_at,page_path,question,answer,status,tools_used,data_gap,model,duration_ms';
 
 export async function GET(request: NextRequest) {

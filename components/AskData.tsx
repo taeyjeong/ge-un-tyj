@@ -5,7 +5,7 @@
 import {useEffect, useRef, useState, type FormEvent} from 'react';
 import styles from './PublicChat.module.css';
 
-interface Turn {role: 'user' | 'assistant'; content: string; at?: string}
+interface Turn {role: 'user' | 'assistant'; content: string; at?: string; coverage?: 'full' | 'partial' | 'none'}
 interface Conversation {id: string; started: string; updated: string; turns: Turn[]}
 
 const VISITOR_KEY = 'ge:ask-data:visitor', HISTORY_KEY = 'ge:ask-data:history', MAX_SAVED = 50;
@@ -70,9 +70,9 @@ export default function AskData({focusKey}: {focusKey: number}) {
     try {
       const res = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({messages: next.map(({role, content}) => ({role, content})), visitorId: visitorId(), pagePath: window.location.pathname})});
-      const data = await res.json().catch(() => ({})) as {answer?: string; error?: string};
+      const data = await res.json().catch(() => ({})) as {answer?: string; error?: string; coverage?: Turn['coverage']};
       if (!res.ok || !data.answer) throw new Error(data.error || 'The assistant couldn’t answer right now. Please try again.');
-      const done: Turn[] = [...next, {role: 'assistant', content: data.answer, at: new Date().toISOString()}];
+      const done: Turn[] = [...next, {role: 'assistant', content: data.answer, at: new Date().toISOString(), coverage: data.coverage}];
       setTurns(done); save(done);
     } catch (e) {
       setTurns(turns); setQuestion(q);  // keep the question so it can be resent
@@ -113,7 +113,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
       {!turns.length && <div className={styles.empty}><p>Ask about 2,257 peace agreements and women’s inclusion. For example:</p>
         <div className={styles.examples}>{EXAMPLES.map(e => <button key={e} type="button" disabled={busy} onClick={() => void ask(e)}>{e}</button>)}</div></div>}
       {turns.map((t, i) => <article key={i} className={t.role === 'user' ? `${styles.message} ${styles.mine}` : `${styles.message} ${styles.ai}`}>
-        <div><strong>{t.role === 'user' ? 'You' : 'Data assistant'}</strong>{t.at && <time dateTime={t.at}>{when(t.at)}</time>}</div><p>{t.role === 'assistant' ? linkify(t.content) : t.content}</p></article>)}
+        <div><strong>{t.role === 'user' ? 'You' : 'Data assistant'}</strong>{t.role === 'assistant' && t.coverage && t.coverage !== 'full' && <span className={t.coverage === 'partial' ? styles.badgePartial : styles.badgeNone}>{t.coverage === 'partial' ? 'Partly answered' : 'Data not sufficient'}</span>}{t.at && <time dateTime={t.at}>{when(t.at)}</time>}</div><p>{t.role === 'assistant' ? linkify(t.content) : t.content}</p></article>)}
       {busy && <p className={styles.thinking}>Looking through the data…</p>}
     </div>
     <form className={styles.composer} onSubmit={e => void ask(question, e)}>

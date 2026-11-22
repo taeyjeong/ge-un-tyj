@@ -31,11 +31,11 @@ How to answer:
 When the project's data can't answer the question, fully or in part:
 - Say so plainly at the start: the data here isn't sufficient to answer it. Don't fill the gap from general knowledge, and don't guess.
 - Explain in one sentence what is missing (for example: years after 2025, the text of a provision, implementation, battle deaths, women in parliament).
-- Call report_data_gap once, describing what was missing.
-- Call official_data_sources and name one to three official public sources that would cover it, with their links, and note that they could be added to this project.
+- Call report_data_gap once, describing what was missing, with coverage "partial" if you can still answer part of the question from the data, or "none" if you can't answer any of it.
+- Call official_data_sources and name one to three sources from that list that would cover it, with their links, and note that they could be added to this project. Only suggest sources from that list; if none fits, say that no listed source covers it.
 - If part of the question can be answered from the data, answer that part too, clearly separated.
 
-Stay on the topic of peace agreements, women's participation and this project; briefly decline unrelated requests.`;
+Stay on the topic of peace agreements, women's participation and this project. For an unrelated question, call report_data_gap with coverage "none" (so it's recorded), then briefly say it's outside what this project covers; don't answer it from general knowledge.`;
 
 // Best-effort limit per visitor IP (resets when the server instance restarts).
 const recent = new Map<string, number[]>();
@@ -47,8 +47,8 @@ function rateLimited(ip: string) {
 }
 
 interface ChatTurn {role: 'user' | 'assistant'; content: string}
-interface DataGap {missing: string; topics?: string[]}
-interface LogEntry {visitor_id: string | null; page_path: string | null; question: string; answer: string | null; status: 'answered' | 'insufficient_data' | 'refused' | 'error';
+interface DataGap {coverage: 'partial' | 'none'; missing: string; topics?: string[]}
+interface LogEntry {visitor_id: string | null; page_path: string | null; question: string; answer: string | null; status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error';
   tools_used: string[]; data_gap: DataGap | null; model: string; duration_ms: number; input_tokens: number | null; output_tokens: number | null; error: string | null}
 
 function saveLog(entry: LogEntry) {
@@ -100,15 +100,18 @@ export async function POST(request: NextRequest) {
     })),
     betaTool({
       name: 'report_data_gap',
-      description: 'Record that this project’s data can’t fully answer the question. Call it once, before answering, whenever data is missing or insufficient.',
+      description: 'Record that this project’s data can’t fully answer the question. Call it once, before answering, whenever data is missing or insufficient. coverage: "partial" when part of the question can still be answered from the data, "none" when none of it can.',
       inputSchema: {type: 'object', properties: {
+        coverage: {type: 'string', enum: ['partial', 'none'], description: 'partial = some of the question is answered from the data; none = the data can’t answer any of it.'},
         missing: {type: 'string', description: 'One sentence: what data would be needed but isn’t in PA-X, PADD or CFR as used here.'},
         topics: {type: 'array', items: {type: 'string'}, description: 'Short topic labels, e.g. "implementation", "after 2025", "women in parliament".'},
-      }, required: ['missing']},
-      run: (input: {missing: string; topics?: string[]}) => {
+      }, required: ['coverage', 'missing']},
+      run: (input: {coverage?: string; missing: string; topics?: string[]}) => {
         toolsUsed.push('report_data_gap');
-        dataGap = {missing: String(input.missing).slice(0, 500), topics: Array.isArray(input.topics) ? input.topics.slice(0, 8).map(s => String(s).slice(0, 60)) : undefined};
-        return 'Recorded. Now tell the visitor plainly that the data is not sufficient, and suggest official sources.';
+        dataGap = {coverage: input.coverage === 'partial' ? 'partial' : 'none', missing: String(input.missing).slice(0, 500), topics: Array.isArray(input.topics) ? input.topics.slice(0, 8).map(s => String(s).slice(0, 60)) : undefined};
+        return input.coverage === 'partial'
+          ? 'Recorded as partial. Answer the part the data covers, say plainly which part it can’t answer, and suggest official sources for that part.'
+          : 'Recorded. Tell the visitor plainly that the data is not sufficient to answer, and suggest official sources.';
       },
     }),
   ];
@@ -136,8 +139,8 @@ export async function POST(request: NextRequest) {
     }
     const answer = final.content.filter(b => b.type === 'text').map(b => (b as {text: string}).text).join('\n').trim()
       || 'I couldn’t finish that answer. Please try a more specific question.';
-    saveLog({...base, answer, status: dataGap ? 'insufficient_data' : 'answered', tools_used: toolsUsed, data_gap: dataGap, duration_ms: Date.now() - started, ...usage, error: null});
-    return NextResponse.json({answer, dataGap: !!dataGap});
+    saveLog({...base, answer, status: dataGap ? ((dataGap as DataGap).coverage === 'partial' ? 'partial' : 'insufficient_data') : 'answered', tools_used: toolsUsed, data_gap: dataGap, duration_ms: Date.now() - started, ...usage, error: null});
+    return NextResponse.json({answer, coverage: dataGap ? (dataGap as DataGap).coverage : 'full'});
   } catch (error) {
     const status = error instanceof Anthropic.APIError ? error.status : undefined;
     saveLog({...base, answer: null, status: 'error', tools_used: toolsUsed, data_gap: null, duration_ms: Date.now() - started, input_tokens: null, output_tokens: null,
