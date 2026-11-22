@@ -1,3 +1,4 @@
+import defaults from './default-countries.json';
 export interface NavigationLink {href:string;label:string;description?:string}
 export interface NavigationGroup {label:string;links:NavigationLink[]}
 export const indexNavigation:NavigationGroup[]=[
@@ -17,12 +18,17 @@ export const dataNavigation:NavigationGroup[]=[
  {label:'Peace & conflict',links:[{href:'/topics/peace',label:'Safety & institutions'},{href:'/topics/conflict',label:'Conflict & displacement'}]},
 ];
 export function canonicalNavigationPath(path:string){return path==='/indices/gii'?'/':path;}
-// The default selection (Japan, Korea, USA) is what pages use when the URL has no countries, so links
-// leave it out: the URL only carries ?countries= when someone picks different countries.
-export const defaultCountries=['JPN','KOR','USA'] as const;
-export function countriesQuery(countries:readonly string[]){const isDefault=countries.length===defaultCountries.length&&[...countries].map(c=>c.toUpperCase()).sort().join(',')===[...defaultCountries].sort().join(',');return isDefault?'':'?'+new URLSearchParams({countries:countries.join(',')}).toString();}
-export function navigationHref(path:string,countries:readonly string[]){return canonicalNavigationPath(path)+countriesQuery(countries);}
-export function navigationCountries(input:string|string[]|undefined){return input===undefined?['JPN','KOR','USA']:[...new Set((Array.isArray(input)?input.join(','):input).split(',').map(c=>c.trim().toUpperCase()).filter(c=>/^[A-Z]{3}$/.test(c)))];}
+// Each section has its own three default countries (lib/default-countries.json, computed by
+// scripts/compute_default_countries.py: the biggest change plus the two worst latest values).
+// Links carry ?countries= only when the visitor changed the selection on the current page;
+// otherwise the destination opens with its own defaults.
+type Defaults=Record<string,{countries:string[]}>;
+const sectionDefaults=defaults as Defaults;
+export function defaultCountriesFor(path:string):string[]{return [...(sectionDefaults[canonicalNavigationPath(path)]??sectionDefaults['/']).countries];}
+function sameCountries(a:readonly string[],b:readonly string[]){return a.length===b.length&&[...a].map(c=>c.toUpperCase()).sort().join(',')===[...b].sort().join(',');}
+export function countriesQuery(countries:readonly string[],fromPath='/'){return sameCountries(countries,defaultCountriesFor(fromPath))?'':'?'+new URLSearchParams({countries:countries.join(',')}).toString();}
+export function navigationHref(path:string,countries:readonly string[],fromPath='/'){return canonicalNavigationPath(path)+countriesQuery(countries,fromPath);}
+export function navigationCountries(input:string|string[]|undefined,path='/'){return input===undefined?defaultCountriesFor(path):[...new Set((Array.isArray(input)?input.join(','):input).split(',').map(c=>c.trim().toUpperCase()).filter(c=>/^[A-Z]{3}$/.test(c)))];}
 export function navigationContext(path:string){
  path=canonicalNavigationPath(path);
  const index=indexNavigation.flatMap(g=>g.links).find(link=>link.href===path);

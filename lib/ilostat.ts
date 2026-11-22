@@ -11,7 +11,7 @@ export function parseIloQuery(params:URLSearchParams):IloQuery{
  const dataset=params.get('dataset')??'hourly-earnings';
  if(!Object.hasOwn(iloDatasets,dataset))throw new Error('Choose a supported ILO indicator.');
  const countries=[...new Set((params.get('countries')??'JPN,KOR,USA').split(',').map(code=>code.trim().toUpperCase()).filter(Boolean))].sort();
- if(!countries.length||countries.length>20||countries.some(code=>!/^[A-Z]{3}$/.test(code)))throw new Error('Choose between 1 and 20 valid ISO3 country codes.');
+ if(!countries.length||countries.length>60||countries.some(code=>!/^[A-Z]{3}$/.test(code)))throw new Error('Choose between 1 and 60 valid ISO3 country codes.');
  const rawFrom=params.get('from')??'2020',rawTo=params.get('to')??'2023';
  if(!/^\d{4}$/.test(rawFrom)||!/^\d{4}$/.test(rawTo))throw new Error('Years must contain four digits.');
  const from=Number(rawFrom),to=Number(rawTo);

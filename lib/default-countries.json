@@ -1,0 +1,678 @@
+{
+ "/indices/gii": {
+  "countries": [
+   "ARE",
+   "NGA",
+   "SOM"
+  ],
+  "picks": [
+   {
+    "code": "ARE",
+    "name": "United Arab Emirates",
+    "reason": "biggest change: 0.764 (1995) → 0.040 (2023)"
+   },
+   {
+    "code": "NGA",
+    "name": "Nigeria",
+    "reason": "highest latest: 0.677 (2023)"
+   },
+   {
+    "code": "SOM",
+    "name": "Somalia",
+    "reason": "highest latest: 0.675 (2023)"
+   }
+  ],
+  "measure": "Gender Inequality Index",
+  "worse": "higher"
+ },
+ "/indices/hdi": {
+  "countries": [
+   "CHN",
+   "SSD",
+   "CAF"
+  ],
+  "picks": [
+   {
+    "code": "CHN",
+    "name": "China",
+    "reason": "biggest change: 0.491 (1990) → 0.797 (2023)"
+   },
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "lowest latest: 0.388 (2023)"
+   },
+   {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "reason": "lowest latest: 0.414 (2023)"
+   }
+  ],
+  "measure": "Human Development Index",
+  "worse": "lower"
+ },
+ "/indices/gdi": {
+  "countries": [
+   "PAK",
+   "YEM",
+   "TCD"
+  ],
+  "picks": [
+   {
+    "code": "PAK",
+    "name": "Pakistan",
+    "reason": "biggest change: 0.541 (1990) → 0.838 (2023)"
+   },
+   {
+    "code": "YEM",
+    "name": "Yemen",
+    "reason": "lowest latest: 0.407 (2023)"
+   },
+   {
+    "code": "TCD",
+    "name": "Chad",
+    "reason": "lowest latest: 0.787 (2023)"
+   }
+  ],
+  "measure": "Gender Development Index (female ÷ male HDI)",
+  "worse": "lower"
+ },
+ "/indices/ihdi": {
+  "countries": [
+   "SWZ",
+   "SSD",
+   "TCD"
+  ],
+  "picks": [
+   {
+    "code": "SWZ",
+    "name": "Eswatini (Kingdom of)",
+    "reason": "biggest change: 0.316 (2010) → 0.431 (2023)"
+   },
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "lowest latest: 0.226 (2023)"
+   },
+   {
+    "code": "TCD",
+    "name": "Chad",
+    "reason": "lowest latest: 0.252 (2023)"
+   }
+  ],
+  "measure": "Inequality-adjusted HDI",
+  "worse": "lower"
+ },
+ "/indices/phdi": {
+  "countries": [
+   "ISR",
+   "SSD",
+   "TCD"
+  ],
+  "picks": [
+   {
+    "code": "ISR",
+    "name": "Israel",
+    "reason": "biggest change: 0.418 (1990) → 0.709 (2023)"
+   },
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "lowest latest: 0.383 (2023)"
+   },
+   {
+    "code": "TCD",
+    "name": "Chad",
+    "reason": "lowest latest: 0.397 (2023)"
+   }
+  ],
+  "measure": "Planetary pressures-adjusted HDI",
+  "worse": "lower"
+ },
+ "/": {
+  "countries": [
+   "ARE",
+   "NGA",
+   "SOM"
+  ],
+  "picks": [
+   {
+    "code": "ARE",
+    "name": "United Arab Emirates",
+    "reason": "biggest change: 0.764 (1995) → 0.040 (2023)"
+   },
+   {
+    "code": "NGA",
+    "name": "Nigeria",
+    "reason": "highest latest: 0.677 (2023)"
+   },
+   {
+    "code": "SOM",
+    "name": "Somalia",
+    "reason": "highest latest: 0.675 (2023)"
+   }
+  ],
+  "measure": "Gender Inequality Index",
+  "worse": "higher"
+ },
+ "/lab/hdr": {
+  "countries": [
+   "ARE",
+   "NGA",
+   "SOM"
+  ],
+  "picks": [
+   {
+    "code": "ARE",
+    "name": "United Arab Emirates",
+    "reason": "biggest change: 0.764 (1995) → 0.040 (2023)"
+   },
+   {
+    "code": "NGA",
+    "name": "Nigeria",
+    "reason": "highest latest: 0.677 (2023)"
+   },
+   {
+    "code": "SOM",
+    "name": "Somalia",
+    "reason": "highest latest: 0.675 (2023)"
+   }
+  ],
+  "measure": "Gender Inequality Index",
+  "worse": "higher"
+ },
+ "/indices/mpi": {
+  "countries": [
+   "TCD",
+   "NER",
+   "BDI"
+  ],
+  "picks": [
+   {
+    "code": "TCD",
+    "name": "Chad",
+    "reason": "highest latest: 0.517 (2026)"
+   },
+   {
+    "code": "NER",
+    "name": "Niger",
+    "reason": "highest latest: 0.470 (2026)"
+   },
+   {
+    "code": "BDI",
+    "name": "Burundi",
+    "reason": "highest latest: 0.409 (2026)"
+   }
+  ],
+  "measure": "Multidimensional Poverty Index",
+  "worse": "higher"
+ },
+ "/indices/ghi": {
+  "countries": [
+   "AGO",
+   "SOM",
+   "HTI"
+  ],
+  "picks": [
+   {
+    "code": "AGO",
+    "name": "Angola",
+    "reason": "biggest change: 61.7 (2000) → 24.3 (2026)"
+   },
+   {
+    "code": "SOM",
+    "name": "Somalia",
+    "reason": "highest latest: 47.0 (2026)"
+   },
+   {
+    "code": "HTI",
+    "name": "Haiti",
+    "reason": "highest latest: 34.4 (2026)"
+   }
+  ],
+  "measure": "Global Hunger Index",
+  "worse": "higher"
+ },
+ "/indices/epi": {
+  "countries": [
+   "LAO",
+   "IND",
+   "MLI"
+  ],
+  "picks": [
+   {
+    "code": "LAO",
+    "name": "Lao People's Democratic Republic",
+    "reason": "lowest latest: 21.8 (2026)"
+   },
+   {
+    "code": "IND",
+    "name": "India",
+    "reason": "lowest latest: 22.5 (2026)"
+   },
+   {
+    "code": "MLI",
+    "name": "Mali",
+    "reason": "lowest latest: 23.6 (2026)"
+   }
+  ],
+  "measure": "Environmental Performance Index",
+  "worse": "lower"
+ },
+ "/indices/fdi": {
+  "countries": [
+   "ESP",
+   "CAF",
+   "SSD"
+  ],
+  "picks": [
+   {
+    "code": "ESP",
+    "name": "Spain",
+    "reason": "biggest change: 0.127 (1980) → 0.827 (2020)"
+   },
+   {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "reason": "lowest latest: 0.039 (2020)"
+   },
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "lowest latest: 0.049 (2020)"
+   }
+  ],
+  "measure": "Financial Development Index",
+  "worse": "lower"
+ },
+ "/topics/climate": {
+  "countries": [
+   "EST",
+   "QAT",
+   "TTO"
+  ],
+  "picks": [
+   {
+    "code": "EST",
+    "name": "Estonia",
+    "reason": "biggest change: 25.5 (1990) → 7.759 (2024)"
+   },
+   {
+    "code": "QAT",
+    "name": "Qatar",
+    "reason": "highest latest: 47.3 (2024)"
+   },
+   {
+    "code": "TTO",
+    "name": "Trinidad and Tobago",
+    "reason": "highest latest: 19.6 (2024)"
+   }
+  ],
+  "measure": "CO₂ emissions per person (World Bank EN.GHG.CO2.PC.CE.AR5)",
+  "worse": "higher"
+ },
+ "/topics/poverty": {
+  "countries": [
+   "CHN",
+   "MOZ",
+   "NGA"
+  ],
+  "picks": [
+   {
+    "code": "CHN",
+    "name": "China",
+    "reason": "biggest change: 83.1 (1990) → 0.000 (2022)"
+   },
+   {
+    "code": "MOZ",
+    "name": "Mozambique",
+    "reason": "highest latest: 81.4 (2022)"
+   },
+   {
+    "code": "NGA",
+    "name": "Nigeria",
+    "reason": "highest latest: 41.8 (2022)"
+   }
+  ],
+  "measure": "Poverty below $3 a day (World Bank SI.POV.DDAY)",
+  "worse": "higher"
+ },
+ "/topics/food": {
+  "countries": [
+   "SSD",
+   "CAF",
+   "SLE"
+  ],
+  "picks": [
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "highest latest: 88.8 (2024)"
+   },
+   {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "reason": "highest latest: 88.1 (2022)"
+   },
+   {
+    "code": "SLE",
+    "name": "Sierra Leone",
+    "reason": "highest latest: 88.1 (2024)"
+   }
+  ],
+  "measure": "Moderate or severe food insecurity (World Bank SN.ITK.MSFI.ZS)",
+  "worse": "higher"
+ },
+ "/topics/health": {
+  "countries": [
+   "SSD",
+   "NGA",
+   "TCD"
+  ],
+  "picks": [
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "biggest change: 28.6 (1990) → 57.7 (2024)"
+   },
+   {
+    "code": "NGA",
+    "name": "Nigeria",
+    "reason": "lowest latest: 54.6 (2024)"
+   },
+   {
+    "code": "TCD",
+    "name": "Chad",
+    "reason": "lowest latest: 55.2 (2024)"
+   }
+  ],
+  "measure": "Life expectancy (World Bank SP.DYN.LE00.IN)",
+  "worse": "lower"
+ },
+ "/topics/education": {
+  "countries": [
+   "KHM",
+   "NER",
+   "AGO"
+  ],
+  "picks": [
+   {
+    "code": "KHM",
+    "name": "Cambodia",
+    "reason": "biggest change: 18.0 (1997) → 91.0 (2024)"
+   },
+   {
+    "code": "NER",
+    "name": "Niger",
+    "reason": "lowest latest: 40.8 (2024)"
+   },
+   {
+    "code": "AGO",
+    "name": "Angola",
+    "reason": "lowest latest: 47.9 (2023)"
+   }
+  ],
+  "measure": "Primary school completion (World Bank SE.PRM.CMPT.ZS)",
+  "worse": "lower"
+ },
+ "/topics/water": {
+  "countries": [
+   "MAR",
+   "CAF",
+   "SLE"
+  ],
+  "picks": [
+   {
+    "code": "MAR",
+    "name": "Morocco",
+    "reason": "biggest change: 40.7 (2000) → 80.0 (2024)"
+   },
+   {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "reason": "lowest latest: 6.217 (2024)"
+   },
+   {
+    "code": "SLE",
+    "name": "Sierra Leone",
+    "reason": "lowest latest: 10.9 (2024)"
+   }
+  ],
+  "measure": "Safely managed drinking water (World Bank SH.H2O.SMDW.ZS)",
+  "worse": "lower"
+ },
+ "/topics/energy": {
+  "countries": [
+   "BGD",
+   "SSD",
+   "TCD"
+  ],
+  "picks": [
+   {
+    "code": "BGD",
+    "name": "Bangladesh",
+    "reason": "biggest change: 14.3 (1991) → 99.5 (2024)"
+   },
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "lowest latest: 5.400 (2024)"
+   },
+   {
+    "code": "TCD",
+    "name": "Chad",
+    "reason": "lowest latest: 13.4 (2024)"
+   }
+  ],
+  "measure": "Electricity access (World Bank EG.ELC.ACCS.ZS)",
+  "worse": "lower"
+ },
+ "/topics/economy": {
+  "countries": [
+   "IRL",
+   "BDI",
+   "AFG"
+  ],
+  "picks": [
+   {
+    "code": "IRL",
+    "name": "Ireland",
+    "reason": "biggest change: 23,457.0 (1990) → 104,416.8 (2025)"
+   },
+   {
+    "code": "BDI",
+    "name": "Burundi",
+    "reason": "lowest latest: 273.4 (2025)"
+   },
+   {
+    "code": "AFG",
+    "name": "Afghanistan",
+    "reason": "lowest latest: 374.4 (2024)"
+   }
+  ],
+  "measure": "GDP per person (World Bank NY.GDP.PCAP.KD)",
+  "worse": "lower"
+ },
+ "/topics/cities": {
+  "countries": [
+   "NPL",
+   "THA",
+   "CHN"
+  ],
+  "picks": [
+   {
+    "code": "NPL",
+    "name": "Nepal",
+    "reason": "biggest change: 19.8 (1990) → 67.0 (2025)"
+   },
+   {
+    "code": "THA",
+    "name": "Thailand",
+    "reason": "biggest change: 18.8 (1990) → 62.8 (2025)"
+   },
+   {
+    "code": "CHN",
+    "name": "China",
+    "reason": "biggest change: 26.2 (1990) → 66.3 (2025)"
+   }
+  ],
+  "measure": "Urban population (World Bank SP.URB.TOTL.IN.ZS)",
+  "worse": null
+ },
+ "/topics/peace": {
+  "countries": [
+   "SLV",
+   "JAM",
+   "ECU"
+  ],
+  "picks": [
+   {
+    "code": "SLV",
+    "name": "El Salvador",
+    "reason": "biggest change: 134.3 (1994) → 7.898 (2022)"
+   },
+   {
+    "code": "JAM",
+    "name": "Jamaica",
+    "reason": "highest latest: 49.4 (2023)"
+   },
+   {
+    "code": "ECU",
+    "name": "Ecuador",
+    "reason": "highest latest: 45.7 (2023)"
+   }
+  ],
+  "measure": "Intentional homicide rate (World Bank VC.IHR.PSRC.P5)",
+  "worse": "higher"
+ },
+ "/topics/conflict": {
+  "countries": [
+   "UKR",
+   "ISR",
+   "SDN"
+  ],
+  "picks": [
+   {
+    "code": "UKR",
+    "name": "Ukraine",
+    "reason": "biggest change: 4,894.0 (2014) → 68,097.0 (2024)"
+   },
+   {
+    "code": "ISR",
+    "name": "Israel",
+    "reason": "highest latest: 21,440.0 (2024)"
+   },
+   {
+    "code": "SDN",
+    "name": "Sudan",
+    "reason": "highest latest: 4,680.0 (2024)"
+   }
+  ],
+  "measure": "Battle-related deaths (World Bank VC.BTL.DETH)",
+  "worse": "higher"
+ },
+ "/topics": {
+  "countries": [
+   "ARE",
+   "NGA",
+   "SOM"
+  ],
+  "picks": [
+   {
+    "code": "ARE",
+    "name": "United Arab Emirates",
+    "reason": "biggest change: 0.764 (1995) → 0.040 (2023)"
+   },
+   {
+    "code": "NGA",
+    "name": "Nigeria",
+    "reason": "highest latest: 0.677 (2023)"
+   },
+   {
+    "code": "SOM",
+    "name": "Somalia",
+    "reason": "highest latest: 0.675 (2023)"
+   }
+  ],
+  "measure": "Gender Inequality Index",
+  "worse": "higher"
+ },
+ "/unicef": {
+  "countries": [
+   "NER",
+   "CAF",
+   "SSD"
+  ],
+  "picks": [
+   {
+    "code": "NER",
+    "name": "Niger",
+    "reason": "highest latest: 76.3 (2012)"
+   },
+   {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "reason": "highest latest: 61.0 (2019)"
+   },
+   {
+    "code": "SSD",
+    "name": "South Sudan",
+    "reason": "highest latest: 51.5 (2010)"
+   }
+  ],
+  "measure": "Women married before age 18 (UNICEF, latest survey per country)",
+  "worse": "higher"
+ },
+ "/sdg": {
+  "countries": [
+   "MEX",
+   "LKA",
+   "KGZ"
+  ],
+  "picks": [
+   {
+    "code": "MEX",
+    "name": "Mexico",
+    "reason": "biggest change: 29.1 (2002) → 21.4 (2024)"
+   },
+   {
+    "code": "LKA",
+    "name": "Sri Lanka",
+    "reason": "highest latest: 25.4 (2017)"
+   },
+   {
+    "code": "KGZ",
+    "name": "Kyrgyzstan",
+    "reason": "highest latest: 23.5 (2025)"
+   }
+  ],
+  "measure": "Women’s time on unpaid care and domestic work (% of day, UN SDG 5.4.1)",
+  "worse": "higher"
+ },
+ "/employment": {
+  "countries": [
+   "URY",
+   "BGD",
+   "MLI"
+  ],
+  "picks": [
+   {
+    "code": "URY",
+    "name": "Uruguay",
+    "reason": "biggest change: 15.1 (2001) → 40.2 (2025)"
+   },
+   {
+    "code": "BGD",
+    "name": "Bangladesh",
+    "reason": "lowest latest: 7.226 (2024)"
+   },
+   {
+    "code": "MLI",
+    "name": "Mali",
+    "reason": "lowest latest: 9.007 (2022)"
+   }
+  ],
+  "measure": "Women in senior and middle management (ILO)",
+  "worse": "lower"
+ }
+}

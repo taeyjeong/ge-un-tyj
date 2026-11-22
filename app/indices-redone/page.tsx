@@ -8,5 +8,5 @@ export default async function Page({searchParams}:{searchParams:Promise<{index?:
  const definition=indexFor(params.index??'gii')??indexFor('gii')!;
  const {countries,rows}=indexPageData(definition.id);
  const compact=countries.map(country=>({...country,series:{}}));
- return <IndicesDashboard key={definition.id} indexId={definition.id} countries={compact} observations={rows} initialSelected={navigationCountries(params.countries)}/>;
+ return <IndicesDashboard key={definition.id} indexId={definition.id} countries={compact} observations={rows} initialSelected={navigationCountries(params.countries,'/indices-redone')}/>;
 }

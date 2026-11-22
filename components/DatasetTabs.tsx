@@ -1,12 +1,12 @@
 'use client';
 import Link from 'next/link';
 import {useEffect,useId,useRef,useState,type KeyboardEvent} from 'react';
-import {dataNavigation,indexNavigation,navigationContext,navigationHref,type NavigationGroup} from '../lib/navigation';
+import {dataNavigation,indexNavigation,navigationContext,navigationHref,type NavigationGroup,defaultCountriesFor} from '../lib/navigation';
 type Menu='indices'|'data';
-export default function SiteNavigation({active,countries=['JPN','KOR','USA']}:{active:string;countries?:string[]}){
+export default function SiteNavigation({active,countries=defaultCountriesFor(active)}:{active:string;countries?:string[]}){
  const [open,setOpen]=useState<Menu|null>(null),[mobileOpen,setMobileOpen]=useState(false);
  const nav=useRef<HTMLElement>(null),indexButton=useRef<HTMLButtonElement>(null),dataButton=useRef<HTMLButtonElement>(null),mobileButton=useRef<HTMLButtonElement>(null);
- const id=useId(),context=navigationContext(active);const href=(path:string)=>navigationHref(path,countries);
+ const id=useId(),context=navigationContext(active);const href=(path:string)=>navigationHref(path,countries,active);
  function close(){setOpen(null);setMobileOpen(false);}
  useEffect(()=>{
   const outside=(e:PointerEvent)=>{if(!nav.current?.contains(e.target as Node)){setOpen(null);setMobileOpen(false);}};

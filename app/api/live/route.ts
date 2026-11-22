@@ -5,7 +5,7 @@ export const runtime='nodejs';export const maxDuration=60;
 export async function GET(request:NextRequest){
  const p=request.nextUrl.searchParams;const source=p.get('source') as LiveSource;const measure=p.get('measure')??(source==='sdg'?'care':'marriage18');
  const countries=[...new Set((p.get('countries')??'').split(','))];const from=Number(p.get('from')),to=Number(p.get('to'));
- if(!Object.hasOwn(liveMeasures,source??'')||!Object.hasOwn(liveMeasures[source],measure)||!countries.length||countries.length>20||countries.some(c=>!Object.hasOwn(areas,c))||!Number.isInteger(from)||!Number.isInteger(to)||from<1990||to>2100||from>to||to-from>40)return NextResponse.json({error:'Choose a supported measure, 1–20 countries, and a year range of up to 41 years (1990–2100).'},{status:400});
+ if(!Object.hasOwn(liveMeasures,source??'')||!Object.hasOwn(liveMeasures[source],measure)||!countries.length||countries.length>60||countries.some(c=>!Object.hasOwn(areas,c))||!Number.isInteger(from)||!Number.isInteger(to)||from<1990||to>2100||from>to||to-from>40)return NextResponse.json({error:'Choose a supported measure, 1–60 countries, and a year range of up to 41 years (1990–2100).'},{status:400});
  const definition=liveMeasures[source][measure as never] as {code:string};const sourceUrls:string[]=[];
  async function get(url:URL){sourceUrls.push(url.toString());const r=await fetch(url,{next:{revalidate:86400},signal:AbortSignal.timeout(25000)});if(r.status===404&&source==='unicef')return null;if(!r.ok)throw new Error(`${source.toUpperCase()} returned HTTP ${r.status}. Try a smaller query or retry later.`);return r.json();}
  try{

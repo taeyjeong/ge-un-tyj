@@ -13,7 +13,7 @@ export function parseTopicQuery(params:URLSearchParams):TopicQuery{
  const topic=params.get('topic')??'all';
  if(topic!=='all'&&!topicFor(topic))throw new Error('Choose a supported topic.');
  const countries=[...new Set((params.get('countries')??'JPN,KOR,USA').split(',').map(c=>c.trim().toUpperCase()).filter(Boolean))].sort();
- const limit=topic==='all'?5:20;
+ const limit=topic==='all'?5:60;
  if(!countries.length||countries.length>limit||countries.some(c=>!Object.hasOwn(areas,c)))throw new Error(`Choose 1–${limit} supported countries${topic==='all'?' for the overview':''}.`);
  const fromText=params.get('from')??'2000',toText=params.get('to')??'2025';
  const from=Number(fromText),to=Number(toText);
