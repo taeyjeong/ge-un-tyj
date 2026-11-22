@@ -10,11 +10,25 @@ export interface Issue {id: string; date: string; dataset: Dataset; issue: strin
 export interface Source {name: string; publisher: string; unit: string; size: string; access: string; join: string}
 export interface Decision {date: string; decision: string; why: string}
 
+export interface Update {date: string; title: string; detail: string}
+
+// Dated history of the project, newest first. lastUpdated follows the newest entry.
+export const updates: Update[] = [
+  {date: '2026-11-22', title: 'One Peace agreements page; public chat moved into the notebook', detail: 'Parts 1, 2a and 2b now sit in order on a single Peace agreements page, with this log linked from it. The public chat moved into the bottom-left panel (shown to everyone not signed in; a tab for signed-in users). The bottom-right button is now Ask the data only, with each visitor’s own history saved in their browser. Every question and answer is listed publicly on the Questions asked page (no visitor IDs shown).'},
+  {date: '2026-11-22', title: 'Ask-the-data log and honest “data not sufficient” answers', detail: 'Every AI question and answer is logged to Supabase (ask_data_log), including the data gap when the data can’t answer. The assistant now says so plainly and points to checked official sources that could be added.'},
+  {date: '2026-11-22', title: 'AI chat and MCP server', detail: 'Added the “Ask the data” chat (Claude, using the project’s data as tools) and a read-only MCP server at /api/mcp for clients such as ChatGPT.'},
+  {date: '2026-11-22', title: 'Parts 2a and 2b published', detail: 'Part 2a (PA-X + PADD): a woman signatory is linked to about 3× the odds of gender provisions in comprehensive agreements. Part 2b (PA-X + CFR): no clear link between women negotiators and gender provisions in either agreement type. All 73 CFR pages were collected and matched to PA-X. This project log was started.'},
+  {date: '2026-11-22', title: 'Part 1 published on the site', detail: 'Part 1 slides, notebook and PA-X CSV added to the site, with a notebook download on every slide.'},
+  {date: '2026-11-21', title: 'Part 1 slides and interactive decision tree', detail: '17 slides, including the full 121-node decision tree with drag-to-move and Ctrl+scroll zoom.'},
+  {date: '2026-11-20', title: 'Part 1 analysis', detail: 'PA-X v10 (2,257 agreements) analyzed in a Jupyter notebook: decision tree, random forest and gradient boosting; feature importance; deep dives on stage, region, conflict type and signers.'},
+];
+export const lastUpdated = updates[0].date;
+
 export const projectPlan = [
-  {part: 'Part 1', data: 'PA-X', question: 'What kinds of peace agreements mention women?', status: 'Done · live'},
-  {part: 'Part 2a', data: 'PA-X + PADD', question: 'In comprehensive peace agreements, does it matter what role women hold?', status: 'Done · live'},
-  {part: 'Part 2b', data: 'PA-X + CFR', question: 'Does the link between women negotiators and gender provisions depend on the type of agreement?', status: 'Done · live'},
-  {part: 'Part 3', data: 'PA-X + PADD + CFR', question: 'Do both measures of women at the table agree, and does the answer hold when combined?', status: 'Not started'},
+  {part: 'Part 1', data: 'PA-X', question: 'What kinds of peace agreements mention women?', status: 'Done · live (20–22 Nov 2026)'},
+  {part: 'Part 2a', data: 'PA-X + PADD', question: 'In comprehensive peace agreements, does it matter what role women hold?', status: 'Done · live (22 Nov 2026)'},
+  {part: 'Part 2b', data: 'PA-X + CFR', question: 'Does the link between women negotiators and gender provisions depend on the type of agreement?', status: 'Done · live (22 Nov 2026)'},
+  {part: 'Part 3', data: 'PA-X + PADD + CFR', question: 'Do both measures of women at the table agree, and does the answer hold when combined?', status: 'Not started · exploratory patterns noted 22 Nov 2026'},
 ];
 
 export const questionSets: QuestionSet[] = [
@@ -83,6 +97,7 @@ export const decisions: Decision[] = [
   {date: '2026-11-22', decision: 'Part 2a question: does women’s role matter in comprehensive agreements? Part 2b question: does the women-negotiator link depend on agreement type?', why: 'The recommended option for each: they use what is unique to PADD (roles) and to CFR (all stages).'},
   {date: '2026-11-22', decision: 'All 73 CFR pages listed with links and their status in the analysis (cfr-pages-collected.html).', why: 'Anyone can check every scraped value against its source page.'},
   {date: '2026-11-22', decision: 'The project is available as a read-only MCP server at /api/mcp (7 tools: search, fetch, find_agreements, gender_provision_rates, women_at_the_table, project_findings, data_issues).', why: 'So ChatGPT and other MCP clients can query the PA-X, PADD and CFR data and the findings directly. Rebuild its data with scripts/build_peace_mcp_data.py when the CSVs change.'},
-  {date: '2026-11-22', decision: 'The site chat has an “Ask the data” tab: Claude (Opus 5.5) answers questions using the same tools as the MCP server, via /api/ask.', why: 'Visitors can ask about the data in plain language; answers come from the project’s data and findings, not the model’s memory. Answers are private and not saved; limited to 20 questions per visitor per 10 minutes.'},
+  {date: '2026-11-22', decision: 'The site chat has an “Ask the data” tab: Claude (Opus 5.5) answers questions using the same tools as the MCP server, via /api/ask.', why: 'Visitors can ask about the data in plain language; answers come from the project’s data and findings, not the model’s memory. Limited to 20 questions per visitor per 10 minutes.'},
+  {date: '2026-11-22', decision: 'Ask-the-data questions and answers are logged and shown publicly on the Questions asked page (/ask-history), without visitor IDs; each visitor’s own conversations are also kept in their browser.', why: 'Anyone can see what people ask and where the data falls short, which shows what data to add next. The chat tells visitors their questions are public and not to include personal details.'},
   {date: '2026-11-22', decision: 'Every slide links to its Jupyter notebook.', why: 'Anyone viewing a slide can download the code and data behind it.'},
 ];

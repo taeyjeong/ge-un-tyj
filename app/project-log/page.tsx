@@ -1,17 +1,23 @@
 import Link from 'next/link';
 import DatasetTabs from '../../components/DatasetTabs';
 import {navigationCountries} from '../../lib/navigation';
-import {decisions, issues, projectPlan, questionSets, sources, type Dataset} from '../../lib/project-log';
+import {decisions, issues, lastUpdated, projectPlan, questionSets, sources, updates, type Dataset} from '../../lib/project-log';
 export const metadata={title:'Project log · GE / UN Data',description:'Research questions under consideration, data sources, data issues and decisions for the peace agreements project.'};
 const DATASETS:Dataset[]=['PA-X','PADD','CFR'];
+const long=(d:string)=>new Date(d+'T12:00:00Z').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'});
 export default async function Page({searchParams}:{searchParams:Promise<{countries?:string|string[]}>}){
  const params=await searchParams;const selected=navigationCountries(params.countries);
  const counts=issues.reduce<Record<string,number>>((c,i)=>(c[i.status]=(c[i.status]??0)+1,c),{});
- return <><header><Link className="brand" href="/">GE<span> / UN DATA</span></Link><span>PROJECT LOG</span></header><main className="project-log"><DatasetTabs active="/project-log" countries={selected}/>
+ return <><header><Link className="brand" href="/">GE<span> / UN DATA</span></Link><span>PROJECT LOG</span></header><main className="project-log"><DatasetTabs active="/peace-agreements" countries={selected}/>
   <div className="eyebrow">PEACE AGREEMENTS PROJECT · WORKING NOTES</div>
   <h1>Project log.</h1>
-  <p className="intro">Questions being considered, the datasets behind each part, every data issue found so far and how it was handled, and the decisions made along the way. Parts <Link href="/peace-agreements">1</Link>, <Link href="/women-signatories">2a</Link> and <Link href="/women-negotiators">2b</Link> are live; part 3 is next.</p>
-  <nav className="log-jump" aria-label="On this page"><a href="#plan">Plan</a><a href="#questions">Questions</a><a href="#sources">Data sources</a><a href="#issues">Issues ({issues.length})</a><a href="#decisions">Decisions</a></nav>
+  <p className="intro">Questions being considered, the datasets behind each part, every data issue found so far and how it was handled, and the decisions made along the way. Parts <Link href="/peace-agreements#part-1">1</Link>, <Link href="/peace-agreements#part-2a">2a</Link> and <Link href="/peace-agreements#part-2b">2b</Link> are live; part 3 is next.</p>
+  <p className="project-updated">Last updated {long(lastUpdated)} · <Link href="/peace-agreements">← Back to the Peace agreements project</Link></p>
+  <nav className="log-jump" aria-label="On this page"><a href="#updates">Updates ({updates.length})</a><a href="#plan">Plan</a><a href="#questions">Questions</a><a href="#sources">Data sources</a><a href="#issues">Issues ({issues.length})</a><a href="#decisions">Decisions</a></nav>
+
+  <section id="updates" aria-labelledby="updates-h"><h2 id="updates-h">Update history</h2>
+   <ol className="log-updates">{updates.map(u=><li key={u.date+u.title}><time dateTime={u.date}>{long(u.date)}</time><div><strong>{u.title}</strong><p>{u.detail}</p></div></li>)}</ol>
+  </section>
 
   <section id="plan" aria-labelledby="plan-h"><h2 id="plan-h">Plan</h2>
    <div className="log-table"><table><thead><tr><th>Part</th><th>Data</th><th>Question</th><th>Status</th></tr></thead><tbody>
@@ -48,6 +54,6 @@ export default async function Page({searchParams}:{searchParams:Promise<{countri
    </tbody></table></div>
   </section>
 
-  <footer><p>Updated as the project develops. Entries live in lib/project-log.ts.</p><p>Independent explorer.<br/>Not affiliated with the data publishers.</p></footer>
+  <footer><p>Last updated {long(lastUpdated)}. Entries live in lib/project-log.ts.<br/><Link href="/peace-agreements">← Peace agreements project</Link></p><p>Independent explorer.<br/>Not affiliated with the data publishers.</p></footer>
  </main></>;
 }

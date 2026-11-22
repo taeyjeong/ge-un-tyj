@@ -1,6 +1,7 @@
 // "Ask the data": answers questions about peace agreements with Claude, using the same read-only
 // tools as the MCP server (lib/peace-mcp.ts) over the PA-X, PADD and CFR data. Each question and
-// answer is logged to Supabase (public.ask_data_log) when SUPABASE_SECRET_KEY is configured.
+// answer is logged to Supabase (public.ask_data_log) when SUPABASE_SECRET_KEY is configured, and
+// listed publicly at /ask-history (without the visitor's browser ID).
 // Needs ANTHROPIC_API_KEY (.env.local locally, Vercel project settings in production).
 import Anthropic from '@anthropic-ai/sdk';
 import {betaTool} from '@anthropic-ai/sdk/helpers/beta/json-schema';
