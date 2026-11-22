@@ -14,6 +14,7 @@ export interface Update {date: string; title: string; detail: string}
 
 // Dated history of the project, newest first. lastUpdated follows the newest entry.
 export const updates: Update[] = [
+  {date: '2026-11-22', title: 'Peace data in SQL (Supabase), queried by the AI', detail: 'The PA-X, PADD and CFR CSVs are now also loaded into Supabase tables (pax_agreements, padd_agreements, padd_delegates, cfr_processes, and a joined view women_at_the_table) by scripts/load_peace_data.py. Ask the data gained a read-only SQL tool, so it can answer questions the fixed tools couldn’t, such as counts for one region and decade, or the names of women signatories. The CSVs stay as the source and as downloads.'},
   {date: '2026-11-22', title: 'Data-driven default countries; OECD selection; 60-country limit', detail: 'Each section now opens with its own three countries instead of Japan, Korea and the USA: the country with the biggest change plus the two worst today, from different UN sub-regions and with at least 1 million people (scripts/compute_default_countries.py). The country picker has a Select all OECD (38) button, and the live-data pages accept up to 60 countries.'},
   {date: '2026-11-22', title: 'One Peace agreements page; public chat moved into the notebook', detail: 'Parts 1, 2a and 2b now sit in order on a single Peace agreements page, with this log linked from it. The public chat moved into the bottom-left panel (shown to everyone not signed in; a tab for signed-in users). The bottom-right button is now Ask the data only, with each visitor’s own history saved in their browser. Every question and answer is listed publicly on the Questions asked page (no visitor IDs shown).'},
   {date: '2026-11-22', title: 'Ask-the-data log and honest “data not sufficient” answers', detail: 'Every AI question and answer is logged to Supabase (ask_data_log), including the data gap when the data can’t answer. The assistant now says so plainly and points to checked official sources that could be added.'},
@@ -90,6 +91,7 @@ export const issues: Issue[] = [
 ];
 
 export const decisions: Decision[] = [
+  {date: '2026-11-22', decision: 'Hybrid storage: CSVs stay the source and downloads; Supabase holds a copy for SQL.', why: 'Notebooks and downloads keep working unchanged, and the AI gets flexible queries. The tables have no public access; the AI’s SQL runs through one function as a read-only role (one SELECT, 200 rows, 5 s).'},
   {date: '2026-11-21', decision: 'Website file names describe the project, not the author (gender-provisions-in-peace-agreements.*).', why: 'Clearer public links; the coursework copies keep the JeongTae- prefix.'},
   {date: '2026-11-22', decision: 'Part 1 committed and deployed alone; part 2 kept local.', why: 'Part 2 is still being designed.'},
   {date: '2026-11-22', decision: 'One dataset per part added: 1 = PA-X, 2 = PA-X + one more, 3 = all three.', why: 'Each part answers something the previous one couldn’t.'},

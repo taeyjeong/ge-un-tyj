@@ -21,6 +21,7 @@ Your data comes only from the tools:
 - PADD (Peace Agreement Delegate Dataset): people named in 116 comprehensive agreements, with role and gender inferred from names.
 - CFR Women's Participation in Peace Processes: women's share of negotiators for 47 major agreements.
 - The project's own findings (project_findings) and known data issues (data_issues).
+- query_database: read-only SQL over the same three datasets, for questions the other tools can't answer (custom filters, counts by year/region/country, joins across datasets, named delegates). Prefer the other tools when they fit; use SQL when they don't, and keep queries small.
 
 How to answer:
 - Get every number from a tool; don't state figures from memory. Keep answers short: a few sentences or a small list, in plain language for a general reader.
@@ -59,6 +60,15 @@ function saveLog(entry: LogEntry) {
     if (error) console.error('ask: could not log question', error.code, error.message);
   });
 }
+
+// Read-only SQL over the peace tables in Supabase (migration 20261122000300). Runs through the
+// query_peace_data() function as the read-only role peace_reader: one SELECT, max 200 rows, 5 s.
+const DB_SCHEMA = `Postgres tables (read-only; one SELECT or WITH query; max 200 rows returned, so aggregate in SQL):
+pax_agreements: one row per PA-X agreement (2,257, 1990-2025). agt_id (PA-X AgtId; link https://www.peaceagreements.org/view/<agt_id>), name, signed_on date, year, country, region, process_id, process_name, conflict_type (Government | Territory | Government/territory | Inter-group | Other), agreement_level (Inter | InterIntra | Intra | IntraLocal), stage (Pre | SubPar | SubComp | Imp | Ren | Cea | Oth), stage_label (Pre-negotiation | Partial substantive | Comprehensive | Implementation | Renewal | Ceasefire | Other), status, pages, n_characters, parties, third_parties, country_iso3, country2_iso3, mentions_women boolean (any provision on women, girls or gender), gewom (PA-X GeWom code), un_signatory, other_intl_signatory, peacekeeping (booleans), raw jsonb (all 279 PA-X columns, e.g. raw->>'GeMe', raw->>'GeLgbti', raw->>'GeFa', raw->>'Cons'; values are numbers or text).
+padd_agreements: PADD, one row per comprehensive agreement with named people (116, 1990-2020). agt_id (joins pax_agreements), delegates, women_delegates, pct_women_delegates (0-1), signatories, women_signatories, pct_women_signatories (0-1), negotiators, women_negotiators, pct_women_negotiators (0-1), mediators, women_mediators, observers, women_observers, women_role_group (Woman signatory | Women present, none signed | No women named), raw jsonb (all PADD columns).
+padd_delegates: one row per person named (2,301). id, agt_id, name, position_simple (Sig | Neg | Ob | Med | Adv | Log | WomCom | Unknown), position_label, position_detail, title, affiliation, is_woman (true, false, or null = unknown; assumed from names).
+cfr_processes: CFR Women's Participation in Peace Processes (73 process pages). slug, url, country, agreement, process_type, negotiators_pct, mediators_pct, signatories_pct (0-100, null = no data), parliament_year, parliament_pct, ref_women_girls_gender (copied from PA-X), ref_violence_against_women, negotiating_parties, third_parties, pax_agt_id (joins pax_agreements; null if unmatched).
+women_at_the_table (view): agreements with PADD and/or CFR data. agt_id, name, year, country, region, stage_label, mentions_women, un_signatory, pct_women_delegates, pct_women_signatories, women_signatories, women_role_group, cfr_negotiators_pct, cfr_signatories_pct, cfr_url.`;
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -115,6 +125,19 @@ export async function POST(request: NextRequest) {
       },
     }),
   ];
+  const db = serverSupabase();
+  if (db) tools.push(betaTool({
+    name: 'query_database',
+    description: `Run one read-only SQL query over the project's peace agreements data and get the rows back as JSON. ${DB_SCHEMA}`,
+    inputSchema: {type: 'object', properties: {sql: {type: 'string', description: 'One PostgreSQL SELECT (or WITH ... SELECT) query, no semicolons in the middle.'}}, required: ['sql']},
+    run: async (input: {sql: string}) => {
+      toolsUsed.push('query_database');
+      const {data, error} = await db.rpc('query_peace_data', {sql: String(input.sql ?? '').slice(0, 4000)});
+      if (error) throw new Error(`SQL error: ${error.message}`);  // returned to Claude so it can fix the query
+      const text = JSON.stringify(data);
+      return text.length > 20000 ? text.slice(0, 20000) + ' … (truncated; aggregate or select fewer columns)' : text;
+    },
+  }) as unknown as typeof tools[number]);
 
   const started = Date.now();
   const base = {visitor_id: visitorId, page_path: pagePath, question, model: MODEL};
