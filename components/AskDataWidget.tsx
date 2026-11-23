@@ -36,7 +36,7 @@ export default function AskDataWidget() {
       <span aria-hidden="true">{open ? '×' : '✦'}</span>Ask the data</button>
     {open && <section ref={panel} id={`${id}-panel`} className={big ? `${styles.panel} ${styles.panelMax}` : styles.panel} role="dialog" aria-modal={big || undefined} aria-label="Ask the data" onKeyDown={keyboard}>
       <div className={styles.heading}><div><h2>Ask the data</h2><p>Peace agreements & women’s inclusion, answered from the data.</p></div><div className={styles.headingButtons}><button type="button" className={styles.maximize} aria-pressed={big} aria-label={big ? 'Restore chat size' : 'Maximize chat'} title={big ? 'Restore size' : 'Maximize'} onClick={() => setBig(v => !v)}>{big ? '⤡' : '⤢'}</button><button type="button" aria-label="Close" onClick={close}>×</button></div></div>
-      <AskData focusKey={focusKey} seed={seed}/>
+      <AskData focusKey={focusKey} seed={seed} big={big}/>
     </section>}
   </div>;
 }

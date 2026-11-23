@@ -8,7 +8,7 @@ import {downloadChatPdf, pdfFilename} from '../lib/chat-pdf';
 import type {ChatSeed} from '../lib/ask-data-events';
 
 interface Turn {role: 'user' | 'assistant'; content: string; at?: string; coverage?: 'full' | 'partial' | 'none'}
-interface Conversation {id: string; started: string; updated: string; turns: Turn[]}
+interface Conversation {id: string; started: string; updated: string; turns: Turn[]; continuedFrom?: number}
 
 const VISITOR_KEY = 'ge:ask-data:visitor', HISTORY_KEY = 'ge:ask-data:history', MAX_SAVED = 50;
 function visitorId() {  // random id kept in this browser so the log can group a visitor's questions; not linked to any account
@@ -43,26 +43,29 @@ function linkify(text: string) {
   return parts.map((p, i) => typeof p === 'string' ? <span key={i}>{p.replace(/\*\*(.+?)\*\*/g, '$1')}</span> : <a key={i} href={p.href} target="_blank" rel="noopener noreferrer">{p.label}</a>);
 }
 
-export default function AskData({focusKey, seed}: {focusKey: number; seed?: (ChatSeed & {key: number}) | null}) {
+export default function AskData({focusKey, seed, big = false}: {focusKey: number; seed?: (ChatSeed & {key: number}) | null; big?: boolean}) {
   const [turns, setTurns] = useState<Turn[]>([]), [question, setQuestion] = useState(''), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const [showHistory, setShowHistory] = useState(false), [history, setHistory] = useState<Conversation[]>([]);
-  const conversationId = useRef<string | null>(null), started = useRef<string>('');
+  const conversationId = useRef<string | null>(null), started = useRef<string>(''), continuedFrom = useRef<number | undefined>(undefined);
   const list = useRef<HTMLDivElement>(null), box = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {setHistory(readHistory());}, []);
   useEffect(() => {if (!showHistory) box.current?.focus();}, [focusKey, showHistory]);
   useEffect(() => {list.current?.scrollTo({top: list.current.scrollHeight});}, [turns, busy]);
 
-  function save(next: Turn[]) {  // keep this conversation at the top of the browser's history
+  function ensureId() {  // one random id per conversation, sent with each question so the server log can group them
     if (!conversationId.current) {conversationId.current = crypto.randomUUID(); started.current = new Date().toISOString();}
-    const entry: Conversation = {id: conversationId.current, started: started.current, updated: new Date().toISOString(), turns: next};
+    return conversationId.current;
+  }
+  function save(next: Turn[]) {  // keep this conversation at the top of the browser's history
+    const entry: Conversation = {id: ensureId(), started: started.current, updated: new Date().toISOString(), turns: next, continuedFrom: continuedFrom.current};
     const updated = [entry, ...readHistory().filter(c => c.id !== entry.id)];
     writeHistory(updated); setHistory(updated.slice(0, MAX_SAVED));
   }
-  function startNew() {conversationId.current = null; setTurns([]); setError(''); setShowHistory(false);}
-  function reopen(c: Conversation) {conversationId.current = c.id; started.current = c.started; setTurns(c.turns); setError(''); setShowHistory(false);}
+  function startNew() {conversationId.current = null; continuedFrom.current = undefined; setTurns([]); setError(''); setShowHistory(false);}
+  function reopen(c: Conversation) {conversationId.current = c.id; started.current = c.started; continuedFrom.current = c.continuedFrom; setTurns(c.turns); setError(''); setShowHistory(false);}
   useEffect(() => {  // a question and answer from /ask-history becomes a new conversation the visitor can continue
     if (!seed) return;
-    conversationId.current = null; setTurns(seed.turns); setQuestion(seed.draft ?? ''); setError(''); setShowHistory(false);
+    conversationId.current = null; continuedFrom.current = seed.continuedFrom; setTurns(seed.turns); setQuestion(seed.draft ?? ''); setError(''); setShowHistory(false);
     if (seed.turns.length) save(seed.turns);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seed?.key]);
@@ -87,7 +90,7 @@ export default function AskData({focusKey, seed}: {focusKey: number; seed?: (Cha
     setTurns(next); setQuestion(''); setBusy(true); setError('');
     try {
       const res = await fetch('/api/ask', {method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({messages: next.map(({role, content}) => ({role, content})), visitorId: visitorId(), pagePath: window.location.pathname})});
+        body: JSON.stringify({messages: next.map(({role, content}) => ({role, content})), visitorId: visitorId(), pagePath: window.location.pathname, conversationId: ensureId(), continuedFrom: continuedFrom.current})});
       const data = await res.json().catch(() => ({})) as {answer?: string; error?: string; coverage?: Turn['coverage']};
       if (!res.ok || !data.answer) throw new Error(data.error || 'The assistant couldn’t answer right now. Please try again.');
       const done: Turn[] = [...next, {role: 'assistant', content: data.answer, at: new Date().toISOString(), coverage: data.coverage}];
@@ -125,7 +128,7 @@ export default function AskData({focusKey, seed}: {focusKey: number; seed?: (Cha
   </>;
 
   return <>
-    <div className={styles.visibility}><span aria-hidden="true">✦</span><span>Answers from an AI (Claude) using PA-X, PADD and CFR peace data, plus UNDP country gender indicators.<small><b>Questions and answers are public</b>: they’re saved and listed on the <a href="/ask-history">Questions asked</a> page (no name or account attached), so don’t include personal details. AI can make mistakes; check the linked sources.</small></span></div>
+    {!big && <div className={styles.visibility}><span aria-hidden="true">✦</span><span>Answers from an AI (Claude) using PA-X, PADD and CFR peace data, plus UNDP country gender indicators.<small><b>Questions and answers are public</b>: they’re saved and listed on the <a href="/ask-history">Questions asked</a> page (no name or account attached), so don’t include personal details. AI can make mistakes; check the linked sources.</small></span></div>}
     {toolbar}
     {error && <p className={styles.error} role="alert">{error}</p>}
     <div ref={list} className={styles.messages} role="log" aria-label="Questions and answers" aria-live="polite">

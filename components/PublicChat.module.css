@@ -10,4 +10,4 @@
 .headingButtons{display:flex;align-items:center;gap:4px}.heading .maximize{font-size:19px;padding:2px 6px;border-radius:6px}.heading .maximize:hover{background:#eef3f9}
 .backdrop{position:fixed;inset:0;background:#16396b40;z-index:-1}
 .panelMax{position:fixed;inset:24px max(24px,calc((100vw - 1040px)/2)) 96px;width:auto;max-width:none;height:auto}.panelMax .messages{padding:22px 28px}.panelMax .message{margin-right:0}.panelMax .message p{font-size:14px;line-height:1.75}.panelMax .composer{padding:14px 28px 16px}
-@media(max-width:640px){.heading .maximize,.backdrop{display:none}.panelMax{inset:0}}
+@media(max-width:640px){.backdrop{display:none}.panelMax{inset:0}.panelMax .messages,.panelMax .composer{padding-left:16px;padding-right:16px}.panelMax .message p{font-size:14px}}

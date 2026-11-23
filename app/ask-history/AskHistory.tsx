@@ -6,7 +6,7 @@ import {continueInChat} from '../../lib/ask-data-events';
 
 interface Row {id: number; created_at: string; page_path: string | null; question: string; answer: string | null;
   status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error'; tools_used: string[]; data_gap: {missing?: string; topics?: string[]} | null;
-  model: string | null; duration_ms: number | null}
+  model: string | null; duration_ms: number | null; conversation?: {position: number; size: number; continued: boolean} | null}
 const LABEL: Record<Row['status'], string> = {answered: 'Answered', partial: 'Partly answered', insufficient_data: 'Data not sufficient', refused: 'Declined', error: 'Error'};
 const PILL: Record<Row['status'], string> = {answered: 'resolved', partial: 'handled', insufficient_data: 'limitation', refused: 'open', error: 'open'};
 const when = (iso: string) => new Date(iso).toLocaleString(undefined, {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'});
@@ -27,22 +27,45 @@ function entries(list: Row[]): PdfEntry[] {
   ]);
 }
 
-// Opens the chat with this question and answer so follow-up questions build on it. With no saved
-// answer (an error), the question is put back in the box to ask again.
-function continueRow(r: Row) {
-  const coverage = r.status === 'partial' ? 'partial' : r.status === 'insufficient_data' ? 'none' : 'full';
-  continueInChat(r.answer
-    ? {turns: [{role: 'user', content: r.question, at: r.created_at}, {role: 'assistant', content: r.answer, at: r.created_at, coverage}]}
-    : {turns: [], draft: r.question});
+// The whole conversation a question belongs to (and any conversation it was continued from), oldest first.
+async function loadThread(r: Row): Promise<Row[]> {
+  if (!r.conversation) return [r];
+  const res = await fetch(`/api/ask-history?thread=${r.id}`);
+  const data = await res.json().catch(() => ({})) as {rows?: Row[]; error?: string};
+  if (!res.ok || !data.rows?.length) throw new Error(data.error ?? 'Could not load the conversation.');
+  return data.rows;
+}
+
+// Opens the chat with the whole conversation so follow-up questions build on it. Questions that got
+// no answer are left out; if the last one had none, it's put back in the box to ask again.
+function continueThread(rows: Row[], from: number) {
+  const answered = rows.filter(r => r.answer);
+  const last = rows[rows.length - 1];
+  continueInChat({continuedFrom: from, draft: last.answer ? undefined : last.question,
+    turns: answered.flatMap(r => [
+      {role: 'user' as const, content: r.question, at: r.created_at},
+      {role: 'assistant' as const, content: r.answer!, at: r.created_at, coverage: r.status === 'partial' ? 'partial' as const : r.status === 'insufficient_data' ? 'none' as const : 'full' as const},
+    ])});
 }
 
 export default function AskHistory() {
   const [rows, setRows] = useState<Row[]>([]), [counts, setCounts] = useState<Record<string, number>>({}), [hasMore, setHasMore] = useState(false);
   const [status, setStatus] = useState(''), [search, setSearch] = useState(''), [applied, setApplied] = useState(''), [message, setMessage] = useState(''), [loading, setLoading] = useState(true);
   const [open, setOpen] = useState<number | null>(null), [saving, setSaving] = useState(false);
+  async function continueRow(r: Row) {
+    setSaving(true); setMessage('');
+    try {continueThread(await loadThread(r), r.id);}
+    catch (e) {setMessage(e instanceof Error ? e.message : 'Could not load the conversation.');}
+    finally {setSaving(false);}
+  }
   async function download(list: Row[], one: boolean) {
     setSaving(true); setMessage('');
     try {
+      if (one && list[0].conversation) {
+        const all = await loadThread(list[0]);
+        await downloadChatPdf({title: 'Ask the data: conversation', subtitle: `${all.length} questions · started ${when(all[0].created_at)}`, entries: entries(all), filename: pdfFilename(`ask-the-data-conversation-q${list[0].id}`, all[0].created_at)});
+        return;
+      }
       await downloadChatPdf(one
         ? {title: 'Ask the data: question and answer', subtitle: `Asked ${when(list[0].created_at)}${list[0].page_path ? ` on ${list[0].page_path}` : ''}`, entries: entries(list), filename: pdfFilename(`ask-the-data-q${list[0].id}`, list[0].created_at)}
         : {title: 'Ask the data: questions people have asked', subtitle: `${list.length} question${list.length === 1 ? '' : 's'}, newest first${status ? ` · ${LABEL[status as Row['status']]}` : ''}${applied ? ` · matching “${applied}”` : ''}`, entries: entries(list), filename: pdfFilename('ask-the-data-history')});
@@ -81,14 +104,14 @@ export default function AskHistory() {
         <tr className="log-row" onClick={() => setOpen(open === r.id ? null : r.id)}>
           <td><small>{when(r.created_at)}</small>{r.page_path && <><br/><small>asked on {r.page_path}</small></>}</td>
           <td><span className={`log-pill log-pill-${PILL[r.status]}`}>{LABEL[r.status]}</span></td>
-          <td><button type="button" className="log-expand" aria-expanded={open === r.id}>{r.question}</button><br/><small>{open === r.id ? 'Hide answer' : 'Show answer'}</small></td>
+          <td><button type="button" className="log-expand" aria-expanded={open === r.id}>{r.question}</button><br/>{r.conversation && <small className="log-thread">{r.conversation.size > 1 ? `Question ${r.conversation.position} of ${r.conversation.size} in a conversation` : 'Follow-up'}{r.conversation.continued ? ' · continued from an earlier chat' : ''} · </small>}<small>{open === r.id ? 'Hide answer' : 'Show answer'}</small></td>
           <td>{r.data_gap?.missing ?? ''}{r.data_gap?.topics?.length ? <><br/><small>{r.data_gap.topics.join(' · ')}</small></> : null}</td>
         </tr>
         {open === r.id && <tr className="log-answer"><td colSpan={4}>
           <p className="log-answer-text">{r.answer ? linkify(r.answer) : '(no answer: the assistant couldn’t respond)'}</p>
           <p className="log-answer-actions">
-            <button type="button" className="button" onClick={() => continueRow(r)}>{r.answer ? 'Continue this chat →' : 'Ask this again →'}</button>
-            <button type="button" className="button secondary" disabled={saving} onClick={() => void download([r], true)}>↓ Download this answer as PDF</button>
+            <button type="button" className="button" disabled={saving} onClick={() => void continueRow(r)}>{saving ? 'Loading…' : r.conversation ? 'Continue this conversation →' : r.answer ? 'Continue this chat →' : 'Ask this again →'}</button>
+            <button type="button" className="button secondary" disabled={saving} onClick={() => void download([r], true)}>{r.conversation ? '↓ Download this conversation as PDF' : '↓ Download this answer as PDF'}</button>
           </p>
           <small>{[r.model && `Answered by ${r.model}`, r.duration_ms != null && `${(r.duration_ms / 1000).toFixed(1)}s`, r.tools_used.length && `tools: ${r.tools_used.join(', ')}`].filter(Boolean).join(' · ')}</small>
         </td></tr>}

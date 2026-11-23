@@ -50,14 +50,15 @@ function rateLimited(ip: string) {
 
 interface ChatTurn {role: 'user' | 'assistant'; content: string}
 interface DataGap {coverage: 'partial' | 'none'; missing: string; topics?: string[]}
-interface LogEntry {visitor_id: string | null; page_path: string | null; question: string; answer: string | null; status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error';
+interface LogEntry {visitor_id: string | null; conversation_id: string | null; continued_from: number | null; page_path: string | null; question: string; answer: string | null; status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error';
   tools_used: string[]; data_gap: DataGap | null; model: string; duration_ms: number; input_tokens: number | null; output_tokens: number | null; error: string | null}
 
 function saveLog(entry: LogEntry) {
   const db = serverSupabase();
   if (!db) return;
   after(async () => {  // runs after the response is sent, so logging never slows the answer
-    const {error} = await db.from('ask_data_log').insert(entry);
+    let {error} = await db.from('ask_data_log').insert(entry);
+    if (error?.code === '23503') ({error} = await db.from('ask_data_log').insert({...entry, continued_from: null}));  // unknown parent row
     if (error) console.error('ask: could not log question', error.code, error.message);
   });
 }
@@ -78,12 +79,14 @@ export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
   if (rateLimited(ip)) return NextResponse.json({error: 'Too many questions in a short time. Please wait a few minutes.'}, {status: 429});
 
-  let turns: ChatTurn[], visitorId: string | null = null, pagePath: string | null = null;
+  let turns: ChatTurn[], visitorId: string | null = null, pagePath: string | null = null, conversationId: string | null = null, continuedFrom: number | null = null;
   try {
-    const body = await request.json() as {messages?: unknown; visitorId?: unknown; pagePath?: unknown};
+    const body = await request.json() as {messages?: unknown; visitorId?: unknown; pagePath?: unknown; conversationId?: unknown; continuedFrom?: unknown};
     turns = (Array.isArray(body.messages) ? body.messages : []).filter((m): m is ChatTurn =>
       !!m && typeof m === 'object' && ((m as ChatTurn).role === 'user' || (m as ChatTurn).role === 'assistant') && typeof (m as ChatTurn).content === 'string');
     if (typeof body.visitorId === 'string' && UUID.test(body.visitorId)) visitorId = body.visitorId;
+    if (typeof body.conversationId === 'string' && UUID.test(body.conversationId)) conversationId = body.conversationId;
+    if (Number.isSafeInteger(body.continuedFrom) && (body.continuedFrom as number) > 0) continuedFrom = body.continuedFrom as number;
     if (typeof body.pagePath === 'string' && body.pagePath.startsWith('/') && !body.pagePath.startsWith('//')) pagePath = body.pagePath.slice(0, 1000);
   } catch {return NextResponse.json({error: 'Invalid request.'}, {status: 400});}
   turns = turns.slice(-MAX_TURNS).map(t => ({role: t.role, content: t.content.slice(0, MAX_CHARS)}));
@@ -141,7 +144,7 @@ export async function POST(request: NextRequest) {
   }) as unknown as typeof tools[number]);
 
   const started = Date.now();
-  const base = {visitor_id: visitorId, page_path: pagePath, question, model: MODEL};
+  const base = {visitor_id: visitorId, conversation_id: conversationId, continued_from: continuedFrom, page_path: pagePath, question, model: MODEL};
   const client = new Anthropic();
   try {
     const final = await client.beta.messages.toolRunner({

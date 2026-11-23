@@ -3,7 +3,9 @@
 // Used by the public history page (/ask-history).
 
 export interface SeedTurn {role: 'user' | 'assistant'; content: string; at?: string; coverage?: 'full' | 'partial' | 'none'}
-export interface ChatSeed {turns: SeedTurn[]; draft?: string}
+// continuedFrom: the /ask-history row the conversation was opened from; sent with each new question so
+// the server can link the new conversation to the old one.
+export interface ChatSeed {turns: SeedTurn[]; draft?: string; continuedFrom?: number}
 
 export const CONTINUE_EVENT = 'ge:ask-data:continue';
 
