@@ -4,6 +4,7 @@
 // conversations are also kept in their browser (localStorage) and can be reopened from History.
 import {useEffect, useRef, useState, type FormEvent} from 'react';
 import styles from './PublicChat.module.css';
+import {downloadChatPdf, pdfFilename} from '../lib/chat-pdf';
 
 interface Turn {role: 'user' | 'assistant'; content: string; at?: string; coverage?: 'full' | 'partial' | 'none'}
 interface Conversation {id: string; started: string; updated: string; turns: Turn[]}
@@ -60,6 +61,16 @@ export default function AskData({focusKey}: {focusKey: number}) {
   function reopen(c: Conversation) {conversationId.current = c.id; started.current = c.started; setTurns(c.turns); setError(''); setShowHistory(false);}
   function forget(id: string) {const updated = readHistory().filter(c => c.id !== id); writeHistory(updated); setHistory(updated); if (conversationId.current === id) startNew();}
 
+  const [saving, setSaving] = useState(false);
+  async function downloadPdf(c: {started: string; turns: Turn[]}) {
+    setSaving(true); setError('');
+    try {
+      await downloadChatPdf({title: 'Ask the data: conversation', subtitle: `Peace agreements & women’s inclusion · started ${when(c.started)}`, filename: pdfFilename('ask-the-data', c.started),
+        entries: c.turns.map(t => ({role: t.role, content: t.content, at: t.at, note: t.coverage === 'partial' ? 'Partly answered' : t.coverage === 'none' ? 'Data not sufficient' : undefined}))});
+    } catch {setError('Couldn’t make the PDF. Please try again.');}
+    finally {setSaving(false);}
+  }
+
   async function ask(text: string, event?: FormEvent) {
     event?.preventDefault();
     const q = text.trim();
@@ -83,6 +94,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
   const toolbar = <div className={styles.status}>
     <span>{showHistory ? `${history.length} saved conversation${history.length === 1 ? '' : 's'} · this browser only` : turns.length ? `Conversation started ${when(started.current || new Date().toISOString())}` : 'New conversation'}</span>
     <span className={styles.toolbarButtons}>
+      {!showHistory && turns.length > 0 && <button type="button" disabled={busy || saving} onClick={() => void downloadPdf({started: started.current || new Date().toISOString(), turns})} aria-label="Download this conversation as a PDF">{saving ? 'Saving…' : '↓ PDF'}</button>}
       {!showHistory && turns.length > 0 && <button type="button" disabled={busy} onClick={startNew}>New</button>}
       <button type="button" disabled={busy} aria-pressed={showHistory} onClick={() => setShowHistory(v => !v)}>{showHistory ? 'Back to chat' : `History (${history.length})`}</button>
     </span>
@@ -98,7 +110,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
         return <article key={c.id} role="listitem" className={`${styles.message} ${styles.historyItem}`}>
           <div><strong>{when(c.updated)}</strong><span>{asked} question{asked === 1 ? '' : 's'}</span></div>
           <p>{first.length > 160 ? first.slice(0, 160) + '…' : first}</p>
-          <div className={styles.historyActions}><button type="button" onClick={() => reopen(c)}>Open</button><button type="button" onClick={() => forget(c.id)} aria-label={`Delete conversation from ${when(c.updated)}`}>Delete</button></div>
+          <div className={styles.historyActions}><button type="button" onClick={() => reopen(c)}>Open</button><button type="button" disabled={saving} onClick={() => void downloadPdf(c)} aria-label={`Download conversation from ${when(c.updated)} as a PDF`}>PDF</button><button type="button" onClick={() => forget(c.id)} aria-label={`Delete conversation from ${when(c.updated)}`}>Delete</button></div>
         </article>;
       })}
       {history.length > 0 && <p className={styles.empty}>Your conversations, saved in this browser (up to {MAX_SAVED}). Everyone’s questions are on the <a href="/ask-history">Questions asked</a> page.</p>}
@@ -106,7 +118,7 @@ export default function AskData({focusKey}: {focusKey: number}) {
   </>;
 
   return <>
-    <div className={styles.visibility}><span aria-hidden="true">✦</span><span>Answers from an AI (Claude) using PA-X, PADD and CFR data.<small><b>Questions and answers are public</b>: they’re saved and listed on the <a href="/ask-history">Questions asked</a> page (no name or account attached), so don’t include personal details. AI can make mistakes; check the linked sources.</small></span></div>
+    <div className={styles.visibility}><span aria-hidden="true">✦</span><span>Answers from an AI (Claude) using PA-X, PADD and CFR peace data, plus UNDP country gender indicators.<small><b>Questions and answers are public</b>: they’re saved and listed on the <a href="/ask-history">Questions asked</a> page (no name or account attached), so don’t include personal details. AI can make mistakes; check the linked sources.</small></span></div>
     {toolbar}
     {error && <p className={styles.error} role="alert">{error}</p>}
     <div ref={list} className={styles.messages} role="log" aria-label="Questions and answers" aria-live="polite">

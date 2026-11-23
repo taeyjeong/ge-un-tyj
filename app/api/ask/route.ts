@@ -1,5 +1,5 @@
 // "Ask the data": answers questions about peace agreements with Claude, using the same read-only
-// tools as the MCP server (lib/peace-mcp.ts) over the PA-X, PADD and CFR data. Each question and
+// tools as the MCP server (lib/peace-mcp.ts) over the PA-X, PADD and CFR data and UNDP HDR country gender indicators. Each question and
 // answer is logged to Supabase (public.ask_data_log) when SUPABASE_SECRET_KEY is configured, and
 // listed publicly at /ask-history (without the visitor's browser ID).
 // Needs ANTHROPIC_API_KEY (.env.local locally, Vercel project settings in production).
@@ -20,6 +20,7 @@ Your data comes only from the tools:
 - PA-X Peace Agreements Database v10: 2,257 agreements (1990–2025) and whether each includes provisions on women, girls or gender ("mentions women").
 - PADD (Peace Agreement Delegate Dataset): people named in 116 comprehensive agreements, with role and gender inferred from names.
 - CFR Women's Participation in Peace Processes: women's share of negotiators for 47 major agreements.
+- UNDP Human Development Report 2025 country gender indicators (country_gender_indicators): GII, GDI, women's share of parliament seats, labour force participation, secondary education, maternal mortality, adolescent births, life expectancy, schooling and income by sex, for 195 countries, 1990-2023. Country context only, not data about the peace process. Countries join to agreements by country name or ISO3 (pax_agreements.country_iso3).
 - The project's own findings (project_findings) and known data issues (data_issues).
 - query_database: read-only SQL over the same three datasets, for questions the other tools can't answer (custom filters, counts by year/region/country, joins across datasets, named delegates). Prefer the other tools when they fit; use SQL when they don't, and keep queries small.
 
@@ -31,7 +32,7 @@ How to answer:
 
 When the project's data can't answer the question, fully or in part:
 - Say so plainly at the start: the data here isn't sufficient to answer it. Don't fill the gap from general knowledge, and don't guess.
-- Explain in one sentence what is missing (for example: years after 2025, the text of a provision, implementation, battle deaths, women in parliament).
+- Explain in one sentence what is missing (for example: years after 2025, the text of a provision, implementation, battle deaths).
 - Call report_data_gap once, describing what was missing, with coverage "partial" if you can still answer part of the question from the data, or "none" if you can't answer any of it.
 - Call official_data_sources and name one to three sources from that list that would cover it, with their links, and note that they could be added to this project. Only suggest sources from that list; if none fits, say that no listed source covers it.
 - If part of the question can be answered from the data, answer that part too, clearly separated.
@@ -114,7 +115,7 @@ export async function POST(request: NextRequest) {
       inputSchema: {type: 'object', properties: {
         coverage: {type: 'string', enum: ['partial', 'none'], description: 'partial = some of the question is answered from the data; none = the data can’t answer any of it.'},
         missing: {type: 'string', description: 'One sentence: what data would be needed but isn’t in PA-X, PADD or CFR as used here.'},
-        topics: {type: 'array', items: {type: 'string'}, description: 'Short topic labels, e.g. "implementation", "after 2025", "women in parliament".'},
+        topics: {type: 'array', items: {type: 'string'}, description: 'Short topic labels, e.g. "implementation", "after 2025", "battle deaths".'},
       }, required: ['coverage', 'missing']},
       run: (input: {coverage?: string; missing: string; topics?: string[]}) => {
         toolsUsed.push('report_data_gap');

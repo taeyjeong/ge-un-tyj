@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {indexNavigation,dataNavigation,navigationHref,navigationCountries,navigationContext,canonicalNavigationPath} from '../lib/navigation.ts';
+import {indexNavigation,dataNavigation,navigationHref,navigationCountries,navigationContext,canonicalNavigationPath,defaultCountriesFor,countriesQuery} from '../lib/navigation.ts';
 import {indexDefinitions} from '../lib/indices.ts';
 const indexLinks=indexNavigation.flatMap(g=>g.links);const dataLinks=dataNavigation.flatMap(g=>g.links);
 assert.equal(indexNavigation.length,5);assert.equal(dataNavigation.length,7);
@@ -9,7 +9,7 @@ for(const index of indexDefinitions)assert(indexLinks.some(link=>link.href===(in
 const topics=JSON.parse(fs.readFileSync(new URL('../lib/topics.json',import.meta.url)));for(const topic of topics)assert(dataLinks.some(link=>link.href==='/topics/'+topic.id),topic.id);
 for(const route of ['/sdg','/employment','/unicef'])assert(dataLinks.some(link=>link.href===route));
 assert(dataLinks.every(link=>!link.href.startsWith('/indices')));assert(indexLinks.every(link=>!link.href.startsWith('/topics')));
-assert.deepEqual(navigationCountries(undefined),['JPN','KOR','USA']);assert.deepEqual(navigationCountries(''),[]);assert.deepEqual(navigationCountries(['ind,npl','IND, kor']),['IND','NPL','KOR']);assert.deepEqual(navigationCountries('https://example.com,USA'),['USA']);
+assert.deepEqual(navigationCountries(undefined),defaultCountriesFor('/'));assert.equal(defaultCountriesFor('/').length,3);assert.deepEqual(navigationCountries(undefined,'/unicef'),defaultCountriesFor('/unicef'));assert.equal(countriesQuery(defaultCountriesFor('/sdg'),'/sdg'),'');assert.equal(navigationHref('/sdg',defaultCountriesFor('/sdg'),'/sdg'),'/sdg');assert.deepEqual(navigationCountries(''),[]);assert.deepEqual(navigationCountries(['ind,npl','IND, kor']),['IND','NPL','KOR']);assert.deepEqual(navigationCountries('https://example.com,USA'),['USA']);
 assert.equal(canonicalNavigationPath('/indices/gii'),'/');
 assert.equal(navigationHref('/indices/gii',['IND','NPL']),'/?countries=IND%2CNPL');assert.equal(navigationHref('/data',[]),'/data?countries=');
 const context=navigationContext('/indices/gii');assert.equal(context.path,'/');assert.equal(context.isIndex,true);assert.equal(navigationContext('/indices/hdi').indexLabel,'HDI');assert.equal(navigationContext('/indices/fcs').indexLabel,'FCS');assert.equal(navigationContext('/sdg').isData,true);assert.equal(navigationContext('/lab/hdr').isData,true);assert.equal(navigationContext('/lab').isData,false);

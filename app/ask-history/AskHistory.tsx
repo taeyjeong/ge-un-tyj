@@ -1,6 +1,7 @@
 'use client';
 // Public list of every "Ask the data" question and answer, read through /api/ask-history.
 import {Fragment, useCallback, useEffect, useState} from 'react';
+import {downloadChatPdf, pdfFilename, type PdfEntry} from '../../lib/chat-pdf';
 
 interface Row {id: number; created_at: string; page_path: string | null; question: string; answer: string | null;
   status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error'; tools_used: string[]; data_gap: {missing?: string; topics?: string[]} | null;
@@ -18,10 +19,26 @@ function linkify(text: string) {  // clickable links in answers; markdown bold m
   return parts.map((p, i) => typeof p === 'string' ? <span key={i}>{p.replace(/\*\*(.+?)\*\*/g, '$1')}</span> : <a key={i} href={p.href} target="_blank" rel="noopener noreferrer">{p.label}</a>);
 }
 
+function entries(list: Row[]): PdfEntry[] {
+  return list.flatMap(r => [
+    {role: 'user' as const, content: r.question, at: r.created_at, note: LABEL[r.status]},
+    {role: 'assistant' as const, content: (r.answer ?? '(no answer: the assistant couldn’t respond)') + (r.data_gap?.missing ? `\n\nWhat data was missing: ${r.data_gap.missing}` : '')},
+  ]);
+}
+
 export default function AskHistory() {
   const [rows, setRows] = useState<Row[]>([]), [counts, setCounts] = useState<Record<string, number>>({}), [hasMore, setHasMore] = useState(false);
   const [status, setStatus] = useState(''), [search, setSearch] = useState(''), [applied, setApplied] = useState(''), [message, setMessage] = useState(''), [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(null), [saving, setSaving] = useState(false);
+  async function download(list: Row[], one: boolean) {
+    setSaving(true); setMessage('');
+    try {
+      await downloadChatPdf(one
+        ? {title: 'Ask the data: question and answer', subtitle: `Asked ${when(list[0].created_at)}${list[0].page_path ? ` on ${list[0].page_path}` : ''}`, entries: entries(list), filename: pdfFilename(`ask-the-data-q${list[0].id}`, list[0].created_at)}
+        : {title: 'Ask the data: questions people have asked', subtitle: `${list.length} question${list.length === 1 ? '' : 's'}, newest first${status ? ` · ${LABEL[status as Row['status']]}` : ''}${applied ? ` · matching “${applied}”` : ''}`, entries: entries(list), filename: pdfFilename('ask-the-data-history')});
+    } catch {setMessage('Couldn’t make the PDF. Please try again.');}
+    finally {setSaving(false);}
+  }
 
   const load = useCallback(async (append = false, before?: number) => {
     setLoading(true); setMessage('');
@@ -45,6 +62,7 @@ export default function AskHistory() {
       <button type="button" aria-pressed={!status} onClick={() => setStatus('')}>All ({total})</button>
       {(Object.keys(LABEL) as Row['status'][]).map(s => <button key={s} type="button" aria-pressed={status === s} onClick={() => setStatus(s)}><span className={`log-pill log-pill-${PILL[s]}`}>{LABEL[s]}</span> {counts[s] ?? 0}</button>)}
       <form onSubmit={e => {e.preventDefault(); setApplied(search.trim());}}><input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search questions…" aria-label="Search questions"/></form>
+      <button type="button" disabled={!rows.length || saving} onClick={() => void download(rows, false)}>{saving ? 'Making PDF…' : `↓ Download ${rows.length} as PDF`}</button>
     </div>
     {message && <p className="project-note" role="alert">{message}</p>}
     <div className="log-table"><table><thead><tr><th>When</th><th>Status</th><th>Question</th><th>What data was missing</th></tr></thead><tbody>
@@ -58,6 +76,7 @@ export default function AskHistory() {
         </tr>
         {open === r.id && <tr className="log-answer"><td colSpan={4}>
           <p className="log-answer-text">{r.answer ? linkify(r.answer) : '(no answer: the assistant couldn’t respond)'}</p>
+          <p><button type="button" className="button secondary" disabled={saving} onClick={() => void download([r], true)}>↓ Download this answer as PDF</button></p>
           <small>{[r.model && `Answered by ${r.model}`, r.duration_ms != null && `${(r.duration_ms / 1000).toFixed(1)}s`, r.tools_used.length && `tools: ${r.tools_used.join(', ')}`].filter(Boolean).join(' · ')}</small>
         </td></tr>}
       </Fragment>)}

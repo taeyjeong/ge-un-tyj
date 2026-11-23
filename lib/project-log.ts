@@ -14,6 +14,7 @@ export interface Update {date: string; title: string; detail: string}
 
 // Dated history of the project, newest first. lastUpdated follows the newest entry.
 export const updates: Update[] = [
+  {date: '2026-11-22', title: 'Chat: maximize, PDF downloads, and UNDP gender data', detail: 'Ask the data can be maximized to a large window, and any conversation can be downloaded as a PDF from the chat or from your saved history. On the Questions asked page you can download one answer or every question shown. The AI can now also look up country gender indicators from the UNDP Human Development Report 2025 (GII, women in parliament, labour force participation, education, maternal mortality and more, 1990–2023), so it can put an agreement’s country in context. A “How to use the AI” section on this page lists example questions and the sources the AI uses.'},
   {date: '2026-11-22', title: 'Peace data in SQL (Supabase), queried by the AI', detail: 'The PA-X, PADD and CFR CSVs are now also loaded into Supabase tables (pax_agreements, padd_agreements, padd_delegates, cfr_processes, and a joined view women_at_the_table) by scripts/load_peace_data.py. Ask the data gained a read-only SQL tool, so it can answer questions the fixed tools couldn’t, such as counts for one region and decade, or the names of women signatories. The CSVs stay as the source and as downloads.'},
   {date: '2026-11-22', title: 'Data-driven default countries; OECD selection; 60-country limit', detail: 'Each section now opens with its own three countries instead of Japan, Korea and the USA: the country with the biggest change plus the two worst today, from different UN sub-regions and with at least 1 million people (scripts/compute_default_countries.py). The country picker has a Select all OECD (38) button, and the live-data pages accept up to 60 countries.'},
   {date: '2026-11-22', title: 'One Peace agreements page; public chat moved into the notebook', detail: 'Parts 1, 2a and 2b now sit in order on a single Peace agreements page, with this log linked from it. The public chat moved into the bottom-left panel (shown to everyone not signed in; a tab for signed-in users). The bottom-right button is now Ask the data only, with each visitor’s own history saved in their browser. Every question and answer is listed publicly on the Questions asked page (no visitor IDs shown).'},
@@ -104,3 +105,41 @@ export const decisions: Decision[] = [
   {date: '2026-11-22', decision: 'Ask-the-data questions and answers are logged and shown publicly on the Questions asked page (/ask-history), without visitor IDs; each visitor’s own conversations are also kept in their browser.', why: 'Anyone can see what people ask and where the data falls short, which shows what data to add next. The chat tells visitors their questions are public and not to include personal details.'},
   {date: '2026-11-22', decision: 'Every slide links to its Jupyter notebook.', why: 'Anyone viewing a slide can download the code and data behind it.'},
 ];
+
+// "How to use the AI" guide shown on the project log. Keep in step with docs/ai-data.md.
+export interface AskExample {question: string; uses: string}
+export const askGuide = {
+  steps: [
+    'Click “Ask the data” at the bottom right of any page. Use ⤢ to open a larger window.',
+    'Type a question in plain English and press Enter. Answers take 10–30 seconds while the AI looks through the data.',
+    'Ask follow-up questions in the same conversation. “New” starts over; “History” reopens your past conversations (kept in this browser only).',
+    'Use “↓ PDF” to download a conversation. Every question and answer is also public on the Questions asked page, where each one can be downloaded too.',
+  ],
+  tips: [
+    'Be specific about place, years and agreement type, e.g. “ceasefires in Africa since 2010”.',
+    'Name the agreement or country when you can; the AI links each agreement to its PA-X page.',
+    'Every number comes from the data below. If the data can’t answer, the answer is marked “Partly answered” or “Data not sufficient” and suggests where the data could be found.',
+    'Don’t include personal details: questions are published. The AI can make mistakes, so check the linked sources.',
+  ],
+  examples: [
+    {question: 'Which kinds of peace agreements mention women most often?', uses: 'PA-X'},
+    {question: 'How many agreements signed in Africa in the 2010s mention women?', uses: 'PA-X (SQL)'},
+    {question: 'Did the share of agreements mentioning women change after UN Resolution 1325 (2000)?', uses: 'PA-X'},
+    {question: 'Did women sign the 2016 Colombia peace agreement?', uses: 'PA-X, PADD, CFR'},
+    {question: 'List the women mediators named in PADD.', uses: 'PADD (SQL)'},
+    {question: 'Does it matter if a woman signs a comprehensive agreement?', uses: 'Project findings (part 2a)'},
+    {question: 'What share of negotiators were women in the Philippines–MILF talks?', uses: 'CFR'},
+    {question: 'What share of parliament did women hold in South Sudan when its 2018 agreement was signed?', uses: 'PA-X + UNDP HDR'},
+    {question: 'Compare the Gender Inequality Index of countries with the most peace agreements.', uses: 'PA-X + UNDP HDR'},
+    {question: 'What are the known problems with the PADD data?', uses: 'Data issues log'},
+  ] as AskExample[],
+  cannot: 'It can’t answer questions outside this data: the full text of provisions, whether agreements were carried out, battle deaths, agreements after 2025, or topics unrelated to peace agreements and women’s inclusion. For those it says the data isn’t sufficient and points to official sources such as UCDP, the Peace Accords Matrix or UN Women.',
+  sources: [
+    {name: 'PA-X Peace Agreements Database v10', publisher: 'PeaceRep, University of Edinburgh', covers: '2,257 agreements, 1990–2025, and whether each has provisions on women, girls or gender', url: 'https://www.peaceagreements.org/'},
+    {name: 'PADD: Peace Agreement Delegate Dataset 1.0', publisher: 'Elizabeth Good, APSR 2025', covers: '2,301 people named in 116 comprehensive agreements (1990–2020), with role and gender assumed from names', url: 'https://doi.org/10.7910/DVN/MBMU7F'},
+    {name: 'Women’s Participation in Peace Processes', publisher: 'Council on Foreign Relations', covers: 'Women’s share of negotiators, mediators and signatories in 73 processes (47 matched to PA-X)', url: 'https://www.cfr.org/womens-participation-in-peace-processes'},
+    {name: 'Human Development Report 2025', publisher: 'UNDP', covers: 'Country gender indicators for 195 countries, 1990–2023: GII, GDI, women in parliament, labour force, education, maternal mortality', url: 'https://hdr.undp.org/data-center/documentation-and-downloads'},
+    {name: 'This project’s findings and data issues', publisher: 'GE / UN Data', covers: 'Results of parts 1, 2a and 2b, and every known data problem (this page)', url: '/project-log#issues'},
+  ],
+  model: 'Answers come from Claude (Anthropic), which can only read the sources listed below, using fixed tools and read-only SQL queries on a copy of the PA-X, PADD and CFR data.',
+};

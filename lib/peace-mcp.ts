@@ -2,6 +2,7 @@
 // bundled project data (lib/peace-mcp-data.json, built by scripts/build_peace_mcp_data.py).
 import data from './peace-mcp-data.json';
 import {issues, type Dataset, type IssueStatus} from './project-log';
+import {GENDER_INDICATORS, genderIndicators} from './gender-indicators';
 
 const SITE = 'https://ge-un-tyj.vercel.app';
 const paxUrl = (id: number) => `https://www.peaceagreements.org/view/${id}`;
@@ -192,6 +193,21 @@ export const TOOLS: ToolDef[] = [
     },
   },
   {
+    name: 'country_gender_indicators', title: 'Country gender indicators (UNDP HDR)',
+    description: `Gender indicators for countries from the UNDP Human Development Report 2025 data (195 countries, 1990-2023): ${Object.entries(GENDER_INDICATORS).map(([k, v]) => `${k} = ${v}`).join('; ')}. Use it to put an agreement's country in context, e.g. women's share of parliament or the GII in the year an agreement was signed. Omit years for the latest value; give year_from/year_to for a time series. Country-level only: it says nothing about the peace process itself.`,
+    inputSchema: {type: 'object', properties: {
+      countries: {type: 'array', items: {type: 'string'}, maxItems: 30, description: 'Country names or ISO3 codes, e.g. ["Colombia", "SSD"].'},
+      indicators: {type: 'array', items: {type: 'string', enum: Object.keys(GENDER_INDICATORS)}, maxItems: 8, description: 'Default: gii, pr_f, lfpr_f.'},
+      year_from: {type: 'integer', minimum: 1990, maximum: 2023}, year_to: {type: 'integer', minimum: 1990, maximum: 2023},
+    }, required: ['countries']},
+    run: args => {
+      const countries = Array.isArray(args.countries) ? args.countries.map(String).filter(Boolean) : str(args.countries) ? [str(args.countries)!] : [];
+      if (!countries.length) return fail('Give at least one country name or ISO3 code.');
+      const indicators = Array.isArray(args.indicators) ? args.indicators.map(String) : undefined;
+      return ok(genderIndicators({countries, indicators, year_from: num(args.year_from), year_to: num(args.year_to)}));
+    },
+  },
+  {
     name: 'project_findings', title: 'Project findings',
     description: 'Summarize what each part of the project found, with key numbers and caveats: part "1" (PA-X: what kinds of agreements mention women), "2a" (PADD: does women’s role matter), "2b" (CFR: women negotiators by agreement type), "original" (the original prediction question), "3" (planned). Omit part for all.',
     inputSchema: {type: 'object', properties: {part: {type: 'string', enum: ['1', '2a', '2b', 'original', '3']}}},
@@ -215,4 +231,4 @@ export const TOOLS: ToolDef[] = [
   },
 ];
 
-export const SERVER_INSTRUCTIONS = 'Read-only data on 2,257 peace agreements (PA-X v10, 1990–2025) and whether they include provisions on women, girls or gender, plus women at the negotiating table from PADD (116 comprehensive agreements) and the CFR tracker (47 agreements). Use search/fetch for specific agreements, gender_provision_rates for shares by group, women_at_the_table for negotiator and signatory data, project_findings for the project’s conclusions, and data_issues for limitations. Shares are raw unless a finding says otherwise; cite the url fields.';
+export const SERVER_INSTRUCTIONS = 'Read-only data on 2,257 peace agreements (PA-X v10, 1990–2025) and whether they include provisions on women, girls or gender, plus women at the negotiating table from PADD (116 comprehensive agreements) and the CFR tracker (47 agreements). Use search/fetch for specific agreements, gender_provision_rates for shares by group, women_at_the_table for negotiator and signatory data, country_gender_indicators for country context from the UNDP HDR (GII, women in parliament, labour force, education, maternal mortality; 1990-2023), project_findings for the project’s conclusions, and data_issues for limitations. Shares are raw unless a finding says otherwise; cite the url fields.';
