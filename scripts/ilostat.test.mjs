@@ -15,7 +15,7 @@ assert.equal(url.searchParams.get('format'),'.json');
 assert.equal(iloSourceUrl({...query,dataset:'women-management'}).searchParams.has('sex'),false);
 assert.equal(iloSourceUrl({...query,dataset:'hourly-earnings'}).searchParams.get('id'),'EAR_EHRA_SEX_NB_A');
 for(const params of ['dataset=arbitrary','countries=','countries=https://example.com','from=2024&to=2020','from=2020.5','sex=unknown','from=1900&to=2100'])assert.throws(()=>parseIloQuery(new URLSearchParams(params)));
-assert.throws(()=>parseIloQuery(new URLSearchParams({countries:Array.from({length:21},(_,i)=>'AA'+String.fromCharCode(65+i)).join(',')})));
+assert.throws(()=>parseIloQuery(new URLSearchParams({countries:Array.from({length:61},(_,i)=>'A'+String.fromCharCode(65+Math.floor(i/26))+String.fromCharCode(65+i%26)).join(',')})));
 const rows=[{ref_area:'JPN',time:'2023',obs_value:0,'source.label':'Survey'},{ref_area:'USA',time:'2022',obs_value:null}];
 assert.deepEqual(parseIloRows(rows),rows);
 assert.deepEqual(parseIloRows([]),[]);

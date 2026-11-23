@@ -1,5 +1,5 @@
 // "Ask the data": answers questions about peace agreements with Claude, using the same read-only
-// tools as the MCP server (lib/peace-mcp.ts) over the PA-X, PADD and CFR data. Each question and
+// tools as the MCP server (lib/peace-mcp.ts) over the PA-X, PADD and CFR data and UNDP HDR country gender indicators. Each question and
 // answer is logged to Supabase (public.ask_data_log) when SUPABASE_SECRET_KEY is configured, and
 // listed publicly at /ask-history (without the visitor's browser ID).
 // Needs ANTHROPIC_API_KEY (.env.local locally, Vercel project settings in production).
@@ -20,7 +20,9 @@ Your data comes only from the tools:
 - PA-X Peace Agreements Database v10: 2,257 agreements (1990–2025) and whether each includes provisions on women, girls or gender ("mentions women").
 - PADD (Peace Agreement Delegate Dataset): people named in 116 comprehensive agreements, with role and gender inferred from names.
 - CFR Women's Participation in Peace Processes: women's share of negotiators for 47 major agreements.
+- UNDP Human Development Report 2025 country gender indicators (country_gender_indicators): GII, GDI, women's share of parliament seats, labour force participation, secondary education, maternal mortality, adolescent births, life expectancy, schooling and income by sex, for 195 countries, 1990-2023. Country context only, not data about the peace process. Countries join to agreements by country name or ISO3 (pax_agreements.country_iso3).
 - The project's own findings (project_findings) and known data issues (data_issues).
+- query_database: read-only SQL over the same three datasets, for questions the other tools can't answer (custom filters, counts by year/region/country, joins across datasets, named delegates). Prefer the other tools when they fit; use SQL when they don't, and keep queries small.
 
 How to answer:
 - Get every number from a tool; don't state figures from memory. Keep answers short: a few sentences or a small list, in plain language for a general reader.
@@ -30,7 +32,7 @@ How to answer:
 
 When the project's data can't answer the question, fully or in part:
 - Say so plainly at the start: the data here isn't sufficient to answer it. Don't fill the gap from general knowledge, and don't guess.
-- Explain in one sentence what is missing (for example: years after 2025, the text of a provision, implementation, battle deaths, women in parliament).
+- Explain in one sentence what is missing (for example: years after 2025, the text of a provision, implementation, battle deaths).
 - Call report_data_gap once, describing what was missing, with coverage "partial" if you can still answer part of the question from the data, or "none" if you can't answer any of it.
 - Call official_data_sources and name one to three sources from that list that would cover it, with their links, and note that they could be added to this project. Only suggest sources from that list; if none fits, say that no listed source covers it.
 - If part of the question can be answered from the data, answer that part too, clearly separated.
@@ -59,6 +61,15 @@ function saveLog(entry: LogEntry) {
     if (error) console.error('ask: could not log question', error.code, error.message);
   });
 }
+
+// Read-only SQL over the peace tables in Supabase (migration 20261122000300). Runs through the
+// query_peace_data() function as the read-only role peace_reader: one SELECT, max 200 rows, 5 s.
+const DB_SCHEMA = `Postgres tables (read-only; one SELECT or WITH query; max 200 rows returned, so aggregate in SQL):
+pax_agreements: one row per PA-X agreement (2,257, 1990-2025). agt_id (PA-X AgtId; link https://www.peaceagreements.org/view/<agt_id>), name, signed_on date, year, country, region, process_id, process_name, conflict_type (Government | Territory | Government/territory | Inter-group | Other), agreement_level (Inter | InterIntra | Intra | IntraLocal), stage (Pre | SubPar | SubComp | Imp | Ren | Cea | Oth), stage_label (Pre-negotiation | Partial substantive | Comprehensive | Implementation | Renewal | Ceasefire | Other), status, pages, n_characters, parties, third_parties, country_iso3, country2_iso3, mentions_women boolean (any provision on women, girls or gender), gewom (PA-X GeWom code), un_signatory, other_intl_signatory, peacekeeping (booleans), raw jsonb (all 279 PA-X columns, e.g. raw->>'GeMe', raw->>'GeLgbti', raw->>'GeFa', raw->>'Cons'; values are numbers or text).
+padd_agreements: PADD, one row per comprehensive agreement with named people (116, 1990-2020). agt_id (joins pax_agreements), delegates, women_delegates, pct_women_delegates (0-1), signatories, women_signatories, pct_women_signatories (0-1), negotiators, women_negotiators, pct_women_negotiators (0-1), mediators, women_mediators, observers, women_observers, women_role_group (Woman signatory | Women present, none signed | No women named), raw jsonb (all PADD columns).
+padd_delegates: one row per person named (2,301). id, agt_id, name, position_simple (Sig | Neg | Ob | Med | Adv | Log | WomCom | Unknown), position_label, position_detail, title, affiliation, is_woman (true, false, or null = unknown; assumed from names).
+cfr_processes: CFR Women's Participation in Peace Processes (73 process pages). slug, url, country, agreement, process_type, negotiators_pct, mediators_pct, signatories_pct (0-100, null = no data), parliament_year, parliament_pct, ref_women_girls_gender (copied from PA-X), ref_violence_against_women, negotiating_parties, third_parties, pax_agt_id (joins pax_agreements; null if unmatched).
+women_at_the_table (view): agreements with PADD and/or CFR data. agt_id, name, year, country, region, stage_label, mentions_women, un_signatory, pct_women_delegates, pct_women_signatories, women_signatories, women_role_group, cfr_negotiators_pct, cfr_signatories_pct, cfr_url.`;
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -104,7 +115,7 @@ export async function POST(request: NextRequest) {
       inputSchema: {type: 'object', properties: {
         coverage: {type: 'string', enum: ['partial', 'none'], description: 'partial = some of the question is answered from the data; none = the data can’t answer any of it.'},
         missing: {type: 'string', description: 'One sentence: what data would be needed but isn’t in PA-X, PADD or CFR as used here.'},
-        topics: {type: 'array', items: {type: 'string'}, description: 'Short topic labels, e.g. "implementation", "after 2025", "women in parliament".'},
+        topics: {type: 'array', items: {type: 'string'}, description: 'Short topic labels, e.g. "implementation", "after 2025", "battle deaths".'},
       }, required: ['coverage', 'missing']},
       run: (input: {coverage?: string; missing: string; topics?: string[]}) => {
         toolsUsed.push('report_data_gap');
@@ -115,6 +126,19 @@ export async function POST(request: NextRequest) {
       },
     }),
   ];
+  const db = serverSupabase();
+  if (db) tools.push(betaTool({
+    name: 'query_database',
+    description: `Run one read-only SQL query over the project's peace agreements data and get the rows back as JSON. ${DB_SCHEMA}`,
+    inputSchema: {type: 'object', properties: {sql: {type: 'string', description: 'One PostgreSQL SELECT (or WITH ... SELECT) query, no semicolons in the middle.'}}, required: ['sql']},
+    run: async (input: {sql: string}) => {
+      toolsUsed.push('query_database');
+      const {data, error} = await db.rpc('query_peace_data', {sql: String(input.sql ?? '').slice(0, 4000)});
+      if (error) throw new Error(`SQL error: ${error.message}`);  // returned to Claude so it can fix the query
+      const text = JSON.stringify(data);
+      return text.length > 20000 ? text.slice(0, 20000) + ' … (truncated; aggregate or select fewer columns)' : text;
+    },
+  }) as unknown as typeof tools[number]);
 
   const started = Date.now();
   const base = {visitor_id: visitorId, page_path: pagePath, question, model: MODEL};

@@ -1,4 +1,4 @@
-import defaults from './default-countries.json';
+import defaults from './default-countries.json' with {type: 'json'};
 export interface NavigationLink {href:string;label:string;description?:string}
 export interface NavigationGroup {label:string;links:NavigationLink[]}
 export const indexNavigation:NavigationGroup[]=[
