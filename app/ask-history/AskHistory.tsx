@@ -2,6 +2,7 @@
 // Public list of every "Ask the data" question and answer, read through /api/ask-history.
 import {Fragment, useCallback, useEffect, useState} from 'react';
 import {downloadChatPdf, pdfFilename, type PdfEntry} from '../../lib/chat-pdf';
+import {continueInChat} from '../../lib/ask-data-events';
 
 interface Row {id: number; created_at: string; page_path: string | null; question: string; answer: string | null;
   status: 'answered' | 'partial' | 'insufficient_data' | 'refused' | 'error'; tools_used: string[]; data_gap: {missing?: string; topics?: string[]} | null;
@@ -24,6 +25,15 @@ function entries(list: Row[]): PdfEntry[] {
     {role: 'user' as const, content: r.question, at: r.created_at, note: LABEL[r.status]},
     {role: 'assistant' as const, content: (r.answer ?? '(no answer: the assistant couldn’t respond)') + (r.data_gap?.missing ? `\n\nWhat data was missing: ${r.data_gap.missing}` : '')},
   ]);
+}
+
+// Opens the chat with this question and answer so follow-up questions build on it. With no saved
+// answer (an error), the question is put back in the box to ask again.
+function continueRow(r: Row) {
+  const coverage = r.status === 'partial' ? 'partial' : r.status === 'insufficient_data' ? 'none' : 'full';
+  continueInChat(r.answer
+    ? {turns: [{role: 'user', content: r.question, at: r.created_at}, {role: 'assistant', content: r.answer, at: r.created_at, coverage}]}
+    : {turns: [], draft: r.question});
 }
 
 export default function AskHistory() {
@@ -76,7 +86,10 @@ export default function AskHistory() {
         </tr>
         {open === r.id && <tr className="log-answer"><td colSpan={4}>
           <p className="log-answer-text">{r.answer ? linkify(r.answer) : '(no answer: the assistant couldn’t respond)'}</p>
-          <p><button type="button" className="button secondary" disabled={saving} onClick={() => void download([r], true)}>↓ Download this answer as PDF</button></p>
+          <p className="log-answer-actions">
+            <button type="button" className="button" onClick={() => continueRow(r)}>{r.answer ? 'Continue this chat →' : 'Ask this again →'}</button>
+            <button type="button" className="button secondary" disabled={saving} onClick={() => void download([r], true)}>↓ Download this answer as PDF</button>
+          </p>
           <small>{[r.model && `Answered by ${r.model}`, r.duration_ms != null && `${(r.duration_ms / 1000).toFixed(1)}s`, r.tools_used.length && `tools: ${r.tools_used.join(', ')}`].filter(Boolean).join(' · ')}</small>
         </td></tr>}
       </Fragment>)}

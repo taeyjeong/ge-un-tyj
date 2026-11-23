@@ -40,7 +40,7 @@ lib/countries.json (UNDP HDR) ──lib/gender-indicators.ts──> country_gend
 
 - **SQL safety.** The Supabase tables have no public access. `query_database` calls `query_peace_data(sql)`, which runs as the read-only role `peace_reader`. It accepts one SELECT, returns at most 200 rows and stops after 5 seconds. Schema: `supabase/migrations/20261122000300_peace_data_tables.sql`.
 - **Updating the data.** Replace a CSV, then run both scripts: `scripts/build_peace_mcp_data.py` for the JSON and `../DataScience/.venv/bin/python scripts/load_peace_data.py` for Supabase.
-- **Logging.** Every question, answer, status (answered, partial, insufficient_data, refused, error), tools used and data gap goes to `ask_data_log`. They are listed publicly at `/ask-history`, without visitor IDs.
+- **Logging.** Every question, answer, status (answered, partial, insufficient_data, refused, error), tools used and data gap goes to `ask_data_log`. They are listed publicly at `/ask-history`, without visitor IDs. Each answer there has a "Continue this chat" button (`lib/ask-data-events.ts`), which opens the chat with that question and answer as the start of a new conversation.
 
 See [data-connections.md](data-connections.md) for how the datasets join.
 

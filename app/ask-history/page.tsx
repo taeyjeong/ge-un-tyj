@@ -9,7 +9,7 @@ export default async function Page({searchParams}: {searchParams: Promise<{count
   return <><header><Link className="brand" href="/">GE<span> / UN DATA</span></Link><span>QUESTIONS ASKED</span></header><main className="project-log"><DatasetTabs active="/peace-agreements" countries={selected}/>
     <div className="eyebrow">ASK THE DATA · PUBLIC HISTORY</div>
     <h1>Questions people have asked.</h1>
-    <p className="intro">Every question asked in the “Ask the data” chat, newest first, with the AI’s answer. Click a question to read the answer. “Partly answered” means the data covered some of the question; “Data not sufficient” means it couldn’t answer it. Both show what was missing and what data could be added.</p>
+    <p className="intro">Every question asked in the “Ask the data” chat, newest first, with the AI’s answer. Click a question to read the answer, then “Continue this chat” to ask follow-up questions about it. “Partly answered” means the data covered some of the question; “Data not sufficient” means it couldn’t answer it. Both show what was missing and what data could be added.</p>
     <p className="project-note"><Link href="/peace-agreements">← Peace agreements project</Link> · <Link href="/project-log">Project log</Link> · Answers come from an AI using the project’s data and can contain mistakes.</p>
     <section style={{marginTop: 24}}><AskHistory/></section>
   </main></>;

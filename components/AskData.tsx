@@ -5,6 +5,7 @@
 import {useEffect, useRef, useState, type FormEvent} from 'react';
 import styles from './PublicChat.module.css';
 import {downloadChatPdf, pdfFilename} from '../lib/chat-pdf';
+import type {ChatSeed} from '../lib/ask-data-events';
 
 interface Turn {role: 'user' | 'assistant'; content: string; at?: string; coverage?: 'full' | 'partial' | 'none'}
 interface Conversation {id: string; started: string; updated: string; turns: Turn[]}
@@ -42,7 +43,7 @@ function linkify(text: string) {
   return parts.map((p, i) => typeof p === 'string' ? <span key={i}>{p.replace(/\*\*(.+?)\*\*/g, '$1')}</span> : <a key={i} href={p.href} target="_blank" rel="noopener noreferrer">{p.label}</a>);
 }
 
-export default function AskData({focusKey}: {focusKey: number}) {
+export default function AskData({focusKey, seed}: {focusKey: number; seed?: (ChatSeed & {key: number}) | null}) {
   const [turns, setTurns] = useState<Turn[]>([]), [question, setQuestion] = useState(''), [busy, setBusy] = useState(false), [error, setError] = useState('');
   const [showHistory, setShowHistory] = useState(false), [history, setHistory] = useState<Conversation[]>([]);
   const conversationId = useRef<string | null>(null), started = useRef<string>('');
@@ -59,6 +60,12 @@ export default function AskData({focusKey}: {focusKey: number}) {
   }
   function startNew() {conversationId.current = null; setTurns([]); setError(''); setShowHistory(false);}
   function reopen(c: Conversation) {conversationId.current = c.id; started.current = c.started; setTurns(c.turns); setError(''); setShowHistory(false);}
+  useEffect(() => {  // a question and answer from /ask-history becomes a new conversation the visitor can continue
+    if (!seed) return;
+    conversationId.current = null; setTurns(seed.turns); setQuestion(seed.draft ?? ''); setError(''); setShowHistory(false);
+    if (seed.turns.length) save(seed.turns);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed?.key]);
   function forget(id: string) {const updated = readHistory().filter(c => c.id !== id); writeHistory(updated); setHistory(updated); if (conversationId.current === id) startNew();}
 
   const [saving, setSaving] = useState(false);
